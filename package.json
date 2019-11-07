@@ -6,7 +6,14 @@
     "unity": "2018.3",
     "unityRelease": "10f1",
     "keywords": [
-        "pattern"
+        "pattern",
+        "camerarig",
+        "tracked",
+        "alias",
+        "vr",
+        "ar",
+        "xr",
+        "spatial"
     ],
     "homepage": "https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/",
     "bugs": {
@@ -23,7 +30,7 @@
         "url": "https://github.com/ExtendRealityLtd"
     },
     "dependencies": {
-        "io.extendreality.zinnia.unity": "1.7.0",
+        "io.extendreality.zinnia.unity": "1.7.0"
     },
     "files": [
         "*.md",
