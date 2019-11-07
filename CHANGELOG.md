@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.0.0...v1.0.1) (2019-11-07)
+
+#### Bug Fixes
+
+* **HowToGuides:** provide correct package name in installation guide ([eeee49d](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/eeee49dc94286aaeb4198972fa1c7e5bd85f692e))
+  > The package name does not include dots and therefore should be written without any dot separators.
+
 ## 1.0.0 (2019-11-07)
 
 #### Features
