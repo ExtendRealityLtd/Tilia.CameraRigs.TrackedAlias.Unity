@@ -8,7 +8,7 @@
 
 ## Introduction
 
-The TrackedAlias prefab provides a way of attaching elements to CameraRig configurations without specifically tying them to the underlying SDK CameraRig.
+The Tracked Alias prefab provides a way of attaching elements to CameraRig configurations without specifically tying them to the underlying SDK CameraRig.
 
 This is useful if you want to support multiple SDK CameraRigs in your scene but don’t want to duplicate the same child GameObjects of all the relevant SDK CameraRigs.
 
@@ -30,7 +30,7 @@ Expand the `Tilia CameraRigs TrackedAlias Unity` Package directory in the Unity 
 
 ### Step 2
 
-Select the `TrackedAlias` GameObject in the Unity Hierarchy window then increase the `CameraRigs -> Elements -> Size` property by `2` on the `Tracked Alias Facade` component.
+Select the `CameraRigs.TrackedAlias` GameObject in the Unity Hierarchy window then increase the `CameraRigs -> Elements -> Size` property by `2` on the `Tracked Alias Facade` component.
 
 > The size property will be `0` by default so change it to `2`.
 
