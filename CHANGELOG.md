@@ -1,5 +1,14 @@
 # Changelog
 
+### [1.0.3](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.0.2...v1.0.3) (2019-11-07)
+
+#### Bug Fixes
+
+* **Prefab:** update prefab name to include namespace ([7a1b9a3](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/7a1b9a318bb5ba0eb2bbb855c756288af5e07220))
+  > The Tilia prefabs are always prefixed by their namespace for easier identification, however the TrackedAlias was missing this prefix.
+  > 
+  > This has now been renamed and all of the documentation has been updated to reflect the name change.
+
 ### [1.0.2](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.0.1...v1.0.2) (2019-11-07)
 
 #### Miscellaneous Chores
