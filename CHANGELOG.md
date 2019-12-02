@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.6](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.0.5...v1.0.6) (2019-12-02)
+
+#### Bug Fixes
+
+* **Facade:** remove isPlaying check from change handler ([8be4188](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/8be4188d0711b7d3146c5cba15306139bb55220c))
+  > There was an issue with Malimbe where change handler properties were running at edit time which would cause issues with the setup of the prefab. The original solution was to add in an isPlaying check to prevent this. A Malimbe fix has now been pushed so the latest version of Zinnia now contains the fix in Malimbe and therefore this check is now no longer required.
+
 ### [1.0.5](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.0.4...v1.0.5) (2019-12-02)
 
 #### Miscellaneous Chores
