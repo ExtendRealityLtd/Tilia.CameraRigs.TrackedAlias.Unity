@@ -2,7 +2,7 @@
     "name": "io.extendreality.tilia.camerarigs.trackedalias.unity",
     "displayName": "Tilia CameraRigs TrackedAlias Unity",
     "description": "A Tracked Alias prefab providing generic aliases to the active camera rig prefab for the Unity software.",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "unity": "2018.3",
     "unityRelease": "10f1",
     "keywords": [
