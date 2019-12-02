@@ -447,11 +447,6 @@
         [CalledAfterChangeOf(nameof(CameraRigs))]
         protected virtual void OnAfterCameraRigsChange()
         {
-            if (!Application.isPlaying)
-            {
-                return;
-            }
-
             SubscribeToCameraRigsEvents();
             RefreshCameraRigsConfiguration();
         }
