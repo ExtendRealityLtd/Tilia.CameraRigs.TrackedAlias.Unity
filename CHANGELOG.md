@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.1.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.0.9...v1.1.0) (2020-03-04)
+
+#### Features
+
+* **Facade:** expose linked haptic processes ([a908de4](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/a908de47a40383588d219d63bce3fd92b27e2f12))
+  > It is now possible to provide references to the  haptic processes that are provided to the linked alias associations.
+* **Facade:** utilize linked alias headset supplement cameras ([8f78187](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/8f7818752e73a6a9037d4808706b07d18f2bdac3))
+  > The LinkedAliasAssociationCollection now has the ability of providing a list of additional supplement cameras associated to the headset.
+  > 
+  > The TrackedAlias now utilizes this additional list and adds them to the valid scene cameras.
+
 ### [1.0.9](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.0.8...v1.0.9) (2020-03-04)
 
 #### Miscellaneous Chores
