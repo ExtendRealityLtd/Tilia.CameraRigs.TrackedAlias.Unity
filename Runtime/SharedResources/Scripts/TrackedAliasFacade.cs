@@ -7,6 +7,7 @@
     using UnityEngine;
     using UnityEngine.Events;
     using Zinnia.Data.Attribute;
+    using Zinnia.Haptics;
     using Zinnia.Tracking.CameraRig;
     using Zinnia.Tracking.CameraRig.Collection;
     using Zinnia.Tracking.Follow;
@@ -76,6 +77,10 @@
         /// </summary>
         public VelocityTracker ActiveLeftControllerVelocity => GetFirstActiveVelocityTracker(LeftControllerVelocityTrackers);
         /// <summary>
+        /// Retrieves the active Left Controller Haptic Process that the TrackedAlias is using.
+        /// </summary>
+        public HapticProcess ActiveLeftHapticProcess => GetFirstActiveHapticProcess(LeftControllerHapticProcesses);
+        /// <summary>
         /// Retrieves the active Right Controller that the TrackedAlias is using.
         /// </summary>
         public GameObject ActiveRightController => GetFirstActiveGameObject(RightControllers);
@@ -83,6 +88,10 @@
         /// Retrieves the active Right Controller Velocity Tracker that the TrackedAlias is using.
         /// </summary>
         public VelocityTracker ActiveRightControllerVelocity => GetFirstActiveVelocityTracker(RightControllerVelocityTrackers);
+        /// <summary>
+        /// Retrieves the active Right Controller Haptic Process that the TrackedAlias is using.
+        /// </summary>
+        public HapticProcess ActiveRightHapticProcess => GetFirstActiveHapticProcess(RightControllerHapticProcesses);
 
         /// <summary>
         /// Retrieves all of the linked CameraRig PlayAreas.
@@ -330,6 +339,60 @@
             }
         }
         /// <summary>
+        /// Retrieves all of the linked CameraRig Left Controller Haptic Processes.
+        /// </summary>
+        public IEnumerable<HapticProcess> LeftControllerHapticProcesses
+        {
+            get
+            {
+                if (CameraRigs == null)
+                {
+                    yield break;
+                }
+
+                foreach (LinkedAliasAssociationCollection cameraRig in CameraRigs.NonSubscribableElements)
+                {
+                    if (cameraRig == null)
+                    {
+                        continue;
+                    }
+
+                    HapticProcess leftControllerHapticProcess = cameraRig.LeftControllerHapticProcess;
+                    if (leftControllerHapticProcess != null)
+                    {
+                        yield return leftControllerHapticProcess;
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// Retrieves all of the linked CameraRig Right Controller Haptic Processes.
+        /// </summary>
+        public IEnumerable<HapticProcess> RightControllerHapticProcesses
+        {
+            get
+            {
+                if (CameraRigs == null)
+                {
+                    yield break;
+                }
+
+                foreach (LinkedAliasAssociationCollection cameraRig in CameraRigs.NonSubscribableElements)
+                {
+                    if (cameraRig == null)
+                    {
+                        continue;
+                    }
+
+                    HapticProcess rightControllerHapticProcess = cameraRig.RightControllerHapticProcess;
+                    if (rightControllerHapticProcess != null)
+                    {
+                        yield return rightControllerHapticProcess;
+                    }
+                }
+            }
+        }
+        /// <summary>
         /// The alias follower for the PlayArea.
         /// </summary>
         public ObjectFollower PlayAreaAlias => Configuration.PlayArea;
@@ -452,6 +515,23 @@
         protected virtual VelocityTracker GetFirstActiveVelocityTracker(IEnumerable<VelocityTracker> collection)
         {
             foreach (VelocityTracker element in collection)
+            {
+                if (element.gameObject.activeInHierarchy)
+                {
+                    return element;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the first active <see cref="HapticProcess"/> found in the given collection.
+        /// </summary>
+        /// <param name="collection">The collection to look for the first active in.</param>
+        /// <returns>The found first active element in the collection.</returns>
+        protected virtual HapticProcess GetFirstActiveHapticProcess(IEnumerable<HapticProcess> collection)
+        {
+            foreach (HapticProcess element in collection)
             {
                 if (element.gameObject.activeInHierarchy)
                 {
