@@ -193,6 +193,35 @@
             }
         }
         /// <summary>
+        /// Retrieves all of the linked CameraRig Supplement Headset Camera.
+        /// </summary>
+        public IEnumerable<Camera> HeadsetSupplementCameras
+        {
+            get
+            {
+                if (CameraRigs == null)
+                {
+                    yield break;
+                }
+
+                foreach (LinkedAliasAssociationCollection cameraRig in CameraRigs.NonSubscribableElements)
+                {
+                    if (cameraRig == null)
+                    {
+                        continue;
+                    }
+
+                    if (cameraRig.SupplementHeadsetCameras != null)
+                    {
+                        foreach (Camera headsetCamera in cameraRig.SupplementHeadsetCameras.NonSubscribableElements)
+                        {
+                            yield return headsetCamera;
+                        }
+                    }
+                }
+            }
+        }
+        /// <summary>
         /// Retrieves all of the linked CameraRig Left Controllers.
         /// </summary>
         public IEnumerable<GameObject> LeftControllers

@@ -81,6 +81,12 @@
         [Serialized]
         [field: Header("Other Settings"), DocumentedByXml, Restricted]
         public ListContainsRule ValidCameras { get; protected set; }
+        /// <summary>
+        /// Determines whether to include the CameraRig HeadsetSupplementCameras in the <see cref="ValidCameras"/> collection.
+        /// </summary>
+        [Serialized]
+        [field: DocumentedByXml]
+        public bool IncludeHeadsetSupplementCameras { get; set; } = true;
         #endregion
 
         /// <summary>
@@ -104,6 +110,14 @@
             foreach (Camera headsetCamera in Facade.HeadsetCameras)
             {
                 ValidCameras.Objects.RunWhenActiveAndEnabled(() => ValidCameras.Objects.Add(headsetCamera));
+            }
+
+            if (IncludeHeadsetSupplementCameras)
+            {
+                foreach (Camera supplementHeadsetCamera in Facade.HeadsetSupplementCameras)
+                {
+                    ValidCameras.Objects.RunWhenActiveAndEnabled(() => ValidCameras.Objects.Add(supplementHeadsetCamera));
+                }
             }
 
             HeadsetVelocityTrackers.VelocityTrackers.RunWhenActiveAndEnabled(() => HeadsetVelocityTrackers.VelocityTrackers.Clear());
