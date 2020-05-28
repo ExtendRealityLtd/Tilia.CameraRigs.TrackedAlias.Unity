@@ -401,6 +401,10 @@
         /// </summary>
         public ObjectFollower HeadsetAlias => Configuration.Headset;
         /// <summary>
+        /// The alias follower for the Headset Origin within the <see cref="PlayAreaAlias"/>.
+        /// </summary>
+        public ObjectFollower HeadsetOriginAlias => Configuration.HeadsetOrigin;
+        /// <summary>
         /// The alias follower for the LeftController.
         /// </summary>
         public ObjectFollower LeftControllerAlias => Configuration.LeftController;

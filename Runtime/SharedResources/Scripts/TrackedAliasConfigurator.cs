@@ -39,6 +39,13 @@
         public ObjectFollower Headset { get; protected set; }
 
         /// <summary>
+        /// The <see cref="ObjectFollower"/> component for the HeadsetOrigin within the PlayArea Alias.
+        /// </summary>
+        [Serialized]
+        [field: DocumentedByXml, Restricted]
+        public ObjectFollower HeadsetOrigin { get; protected set; }
+
+        /// <summary>
         /// The <see cref="ObjectFollower"/> component for the Left Controller.
         /// </summary>
         [Serialized]
