@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.1.5...v1.2.0) (2020-05-28)
+
+#### Features
+
+* **Prefab:** add headset origin GameObject within PlayArea Alias ([78d1f6e](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/78d1f6ea4b4c3123c9c61d763146bbd6880a41b6))
+  > The Headset Origin GameObject is a child of the PlayArea Alias GameObject and follows around the headset location. This new origin can be used as a pivot point when dealing with offsetting play area rotations.
+
 ### [1.1.5](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.1.4...v1.1.5) (2020-05-22)
 
 #### Miscellaneous Chores
