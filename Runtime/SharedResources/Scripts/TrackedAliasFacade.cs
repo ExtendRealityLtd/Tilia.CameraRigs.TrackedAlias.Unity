@@ -3,6 +3,7 @@
     using Malimbe.MemberChangeMethod;
     using Malimbe.PropertySerializationAttribute;
     using Malimbe.XmlDocumentationAttribute;
+    using System;
     using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.Events;
@@ -10,6 +11,7 @@
     using Zinnia.Haptics;
     using Zinnia.Tracking.CameraRig;
     using Zinnia.Tracking.CameraRig.Collection;
+    using Zinnia.Tracking.Collision.Active;
     using Zinnia.Tracking.Follow;
     using Zinnia.Tracking.Velocity;
 
@@ -18,6 +20,12 @@
     /// </summary>
     public class TrackedAliasFacade : MonoBehaviour
     {
+        /// <summary>
+        /// Defines the event with the <see cref="LinkedAliasAssociationCollection"/>.
+        /// </summary>
+        [Serializable]
+        public class LinkedAliasAssociationCollectionUnityEvent : UnityEvent<LinkedAliasAssociationCollection> { }
+
         #region Tracked Alias Settings
         /// <summary>
         /// The associated CameraRigs to track.
@@ -27,11 +35,15 @@
         public LinkedAliasAssociationCollectionObservableList CameraRigs { get; set; }
         #endregion
 
-        #region Tracking Begun Events
+        #region Tracking Events
+        /// <summary>
+        /// Emitted when the tracked alias is about to change.
+        /// </summary>
+        [Header("Tracking Events")]
+        public LinkedAliasAssociationCollectionUnityEvent TrackedAliasChanged = new LinkedAliasAssociationCollectionUnityEvent();
         /// <summary>
         /// Emitted when the headset starts tracking for the first time.
         /// </summary>
-        [Header("Tracking Begun Events")]
         public UnityEvent HeadsetTrackingBegun = new UnityEvent();
         /// <summary>
         /// Emitted when the left controller starts tracking for the first time.
@@ -52,6 +64,7 @@
         public TrackedAliasConfigurator Configuration { get; protected set; }
         #endregion
 
+        public LinkedAliasAssociationCollection ActiveLinkedAliasAssociation => GetFirstActiveLinkedAliasAssociationCollection(CameraRigs.NonSubscribableElements);
         /// <summary>
         /// Retrieves the active PlayArea that the TrackedAlias is using.
         /// </summary>
@@ -475,6 +488,23 @@
         protected virtual void RefreshCameraRigsConfiguration()
         {
             Configuration.SetUpCameraRigsConfiguration();
+        }
+
+        /// <summary>
+        /// Gets the first active <see cref="LinkedAliasAssociationCollection"/> found in the given collection.
+        /// </summary>
+        /// <param name="collection">The collection to look for the first active in.</param>
+        /// <returns>The found first active element in the collection.</returns>
+        protected virtual LinkedAliasAssociationCollection GetFirstActiveLinkedAliasAssociationCollection(IEnumerable<LinkedAliasAssociationCollection> collection)
+        {
+            foreach (LinkedAliasAssociationCollection element in collection)
+            {
+                if (element.gameObject.activeInHierarchy)
+                {
+                    return element;
+                }
+            }
+            return null;
         }
 
         /// <summary>
