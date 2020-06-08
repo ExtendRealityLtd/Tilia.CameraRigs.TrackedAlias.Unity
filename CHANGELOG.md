@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.2.2...v1.3.0) (2020-06-08)
+
+#### Features
+
+* **prefab:** emit event when linked tracked alias changes ([244459d](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/244459d448970c966bd2b4d340d0836b4d15946c))
+  > A new event is emitted when the linked Tracked Alias changes based on the knowledge that the headset alias follow source changes.
+
 ### [1.2.2](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.2.1...v1.2.2) (2020-06-08)
 
 #### Miscellaneous Chores
