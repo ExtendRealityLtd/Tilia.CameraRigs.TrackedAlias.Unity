@@ -159,6 +159,14 @@
         }
 
         /// <summary>
+        /// Notifies when the tracked alias source has changed.
+        /// </summary>
+        public virtual void NotifyTrackedAliasChanged(GameObject newAlias)
+        {
+            Facade.TrackedAliasChanged?.Invoke(Facade.ActiveLinkedAliasAssociation);
+        }
+
+        /// <summary>
         /// Notifies that the headset has started being tracked.
         /// </summary>
         public virtual void NotifyHeadsetTrackingBegun()
