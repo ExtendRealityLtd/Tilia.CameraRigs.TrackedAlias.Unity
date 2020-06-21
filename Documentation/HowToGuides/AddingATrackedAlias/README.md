@@ -8,11 +8,9 @@
 
 ## Introduction
 
-The Tracked Alias prefab provides a way of attaching elements to CameraRig configurations without specifically tying them to the underlying SDK CameraRig.
+The `CameraRigs.TrackedAlias` prefab provides a way of attaching elements to CameraRig configurations without specifically tying them to the underlying SDK CameraRig.
 
 This is useful if you want to support multiple SDK CameraRigs in your scene but don’t want to duplicate the same child GameObjects of all the relevant SDK CameraRigs.
-
-The outcome of this How-To Guide is to learn how to add the multiple supported CameraRig prefabs to the scene and utilize the Tracked Alias prefab to provide trackable aliases for the active SDK CameraRig.
 
 ## Prerequisites
 
@@ -38,15 +36,21 @@ Select the `CameraRigs.TrackedAlias` GameObject in the Unity Hierarchy window th
 
 ### Step 3
 
-Drag and drop the `CameraRigs.SpatialSimulator` GameObject from the Unity Hierarchy window into the newly displayed Element `0` field within the Elements parameter on the `Tracked Alias Facade` component.
+Drag and drop the `CameraRigs.SpatialSimulator` GameObject into the newly created `Element 0` property value within the `Camera Rigs` property on the `Tracked Alias Facade` component.
 
 ![Drag And Drop Spatial Simulator Into TrackedAlias](assets/images/DragAndDropSpatialSimulatorIntoTrackedAlias.png)
 
 ### Step 4
 
-Drag and drop the `CameraRigs.UnityXR` GameObject from the Unity Hierarchy window into the newly displayed Element `1` field within the Elements parameter on the `Tracked Alias Facade` component. Disable the `CameraRigs.UnityXR` GameObject so there is only one active CameraRig in the scene.
+Drag and drop the `CameraRigs.UnityXR` GameObject into the newly created `Element 1` property value  within the `Camera Rigs` property on the `Tracked Alias Facade` component.
 
 ![Drag And Drop UnityXR Into TrackedAlias](assets/images/DragAndDropUnityXRIntoTrackedAlias.png)
+
+### Step 5
+
+Disable the `CameraRigs.UnityXR` GameObject so there is only one active CameraRig in the scene.
+
+![Disable UnityXR GameObject](assets/images/DisableUnityXRGameObject.png)
 
 ### Done
 
