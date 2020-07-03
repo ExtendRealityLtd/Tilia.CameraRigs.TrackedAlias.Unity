@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.3.1...v1.4.0) (2020-07-03)
+
+#### Features
+
+* **API:** add auto-generated API documentation ([897fa18](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/897fa186d5c1fd4c2a53f4268ff97cda5a5608c3))
+  > The API documentation is auto generated with docfx and converted to markdown via turndown in a custom nodejs script.
+
+#### Bug Fixes
+
+* **package.json:** add docfx.json file ([eead73c](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/eead73c20a17aa38248634589b9fcbb13d0e97ca))
+  > The docfx.json file was missing from the package.json causing the build process to fail. It has now been added.
+
 ### [1.3.1](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.3.0...v1.3.1) (2020-06-21)
 
 #### Bug Fixes
