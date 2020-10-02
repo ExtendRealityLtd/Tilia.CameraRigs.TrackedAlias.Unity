@@ -9,9 +9,9 @@
     using UnityEngine.Events;
     using Zinnia.Data.Attribute;
     using Zinnia.Haptics;
+    using Zinnia.Haptics.Collection;
     using Zinnia.Tracking.CameraRig;
     using Zinnia.Tracking.CameraRig.Collection;
-    using Zinnia.Tracking.Collision.Active;
     using Zinnia.Tracking.Follow;
     using Zinnia.Tracking.Velocity;
 
@@ -94,6 +94,14 @@
         /// </summary>
         public HapticProcess ActiveLeftHapticProcess => GetFirstActiveHapticProcess(LeftControllerHapticProcesses);
         /// <summary>
+        /// Retrieves the active Left Controller Haptic Profiles that the TrackedAlias is using.
+        /// </summary>
+        public HapticProcessObservableList ActiveLeftHapticProfiles => GetFirstActiveHapticProfile(LeftControllerHapticProfiles);
+        /// <summary>
+        /// Retrieves the active Left Controller Haptic Profile that has been most recently used.
+        /// </summary>
+        public HapticProcess ActiveLeftHapticProfile { get; protected set; }
+        /// <summary>
         /// Retrieves the active Right Controller that the TrackedAlias is using.
         /// </summary>
         public GameObject ActiveRightController => GetFirstActiveGameObject(RightControllers);
@@ -105,6 +113,14 @@
         /// Retrieves the active Right Controller Haptic Process that the TrackedAlias is using.
         /// </summary>
         public HapticProcess ActiveRightHapticProcess => GetFirstActiveHapticProcess(RightControllerHapticProcesses);
+        /// <summary>
+        /// Retrieves the active Left Controller Haptic Profiles that the TrackedAlias is using.
+        /// </summary>
+        public HapticProcessObservableList ActiveRightHapticProfiles => GetFirstActiveHapticProfile(RightControllerHapticProfiles);
+        /// <summary>
+        /// Retrieves the active Right Controller Haptic Profile that has been most recently used.
+        /// </summary>
+        public HapticProcess ActiveRightHapticProfile { get; protected set; }
 
         /// <summary>
         /// Retrieves all of the linked CameraRig PlayAreas.
@@ -406,6 +422,60 @@
             }
         }
         /// <summary>
+        /// Retrieves all of the linked CameraRig Left Controller Haptic Profiles.
+        /// </summary>
+        public IEnumerable<HapticProcessObservableList> LeftControllerHapticProfiles
+        {
+            get
+            {
+                if (CameraRigs == null)
+                {
+                    yield break;
+                }
+
+                foreach (LinkedAliasAssociationCollection cameraRig in CameraRigs.NonSubscribableElements)
+                {
+                    if (cameraRig == null)
+                    {
+                        continue;
+                    }
+
+                    HapticProcessObservableList leftControllerHapticProfiles = cameraRig.LeftControllerHapticProfiles;
+                    if (leftControllerHapticProfiles != null)
+                    {
+                        yield return leftControllerHapticProfiles;
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// Retrieves all of the linked CameraRig Right Controller Haptic Processes.
+        /// </summary>
+        public IEnumerable<HapticProcessObservableList> RightControllerHapticProfiles
+        {
+            get
+            {
+                if (CameraRigs == null)
+                {
+                    yield break;
+                }
+
+                foreach (LinkedAliasAssociationCollection cameraRig in CameraRigs.NonSubscribableElements)
+                {
+                    if (cameraRig == null)
+                    {
+                        continue;
+                    }
+
+                    HapticProcessObservableList rightControllerHapticProfiles = cameraRig.RightControllerHapticProfiles;
+                    if (rightControllerHapticProfiles != null)
+                    {
+                        yield return rightControllerHapticProfiles;
+                    }
+                }
+            }
+        }
+        /// <summary>
         /// The alias follower for the PlayArea.
         /// </summary>
         public ObjectFollower PlayAreaAlias => Configuration.PlayArea;
@@ -425,6 +495,148 @@
         /// The alias follower for the RightController.
         /// </summary>
         public ObjectFollower RightControllerAlias => Configuration.RightController;
+
+        /// <summary>
+        /// Begins the haptic process on the Left Controller using the main <see cref="HapticProcess"/>.
+        /// </summary>
+        public virtual void BeginHapticProcessOnLeftController()
+        {
+            if (ActiveLeftHapticProcess == null)
+            {
+                return;
+            }
+
+            ActiveLeftHapticProcess.Begin();
+        }
+
+        /// <summary>
+        /// Begins a haptic process on the Left Controller using the given profile.
+        /// </summary>
+        /// <param name="profileIndex">The index of the haptic profile to use.</param>
+        public virtual void BeginHapticProcessOnLeftController(int profileIndex)
+        {
+            ActiveLeftHapticProfile = BeginHapticProfile(ActiveLeftHapticProfiles, profileIndex);
+        }
+
+        /// <summary>
+        /// Begins the haptic process on the Right Controller using the main <see cref="HapticProcess"/>.
+        /// </summary>
+        public virtual void BeginHapticProcessOnRightController()
+        {
+            if (ActiveRightHapticProcess == null)
+            {
+                return;
+            }
+
+            ActiveRightHapticProcess.Begin();
+        }
+
+        /// <summary>
+        /// Begins a haptic process on the Right Controller using the given profile.
+        /// </summary>
+        /// <param name="profileIndex">The index of the haptic profile to use.</param>
+        public virtual void BeginHapticProcessOnRightController(int profileIndex)
+        {
+            ActiveRightHapticProfile = BeginHapticProfile(ActiveRightHapticProfiles, profileIndex);
+        }
+
+        /// <summary>
+        /// Cancels all haptic process currently running on the Left Controller.
+        /// </summary>
+        public virtual void CancelAllHapticsOnLeftController()
+        {
+            CancelHapticProcessOnLeftController();
+            CancelActiveHapticProfileOnLeftController();
+            foreach (HapticProcess process in ActiveLeftHapticProfiles.NonSubscribableElements)
+            {
+                process.Cancel();
+            }
+        }
+
+        /// <summary>
+        /// Cancels any haptic process currently running on the Left Controller using the main <see cref="HapticProcess"/>.
+        /// </summary>
+        public virtual void CancelHapticProcessOnLeftController()
+        {
+            if (ActiveLeftHapticProcess == null)
+            {
+                return;
+            }
+
+            ActiveLeftHapticProcess.Cancel();
+        }
+
+        /// <summary>
+        /// Cancels the haptic process currently running on the Left Controller for the given profile.
+        /// </summary>
+        /// <param name="profileIndex">The index of the haptic profile to cancel.</param>
+        public virtual void CancelHapticProcessOnLeftController(int profileIndex)
+        {
+            CancelHapticProfile(ActiveLeftHapticProfiles, profileIndex);
+            ActiveLeftHapticProfile = null;
+        }
+
+        /// <summary>
+        /// Cancels the haptic process currently running on the Left Controller for the current haptic profile.
+        /// </summary>
+        public virtual void CancelActiveHapticProfileOnLeftController()
+        {
+            if (ActiveLeftHapticProfile == null)
+            {
+                return;
+            }
+
+            ActiveLeftHapticProfile.Cancel();
+        }
+
+        /// <summary>
+        /// Cancels all haptic process currently running on the Right Controller.
+        /// </summary>
+        public virtual void CancelAllHapticsOnRightController()
+        {
+            CancelHapticProcessOnRightController();
+            CancelActiveHapticProfileOnRightController();
+            foreach (HapticProcess process in ActiveRightHapticProfiles.NonSubscribableElements)
+            {
+                process.Cancel();
+            }
+        }
+
+        /// <summary>
+        /// Cancels any haptic process currently running on the Right Controller using the main <see cref="HapticProcess"/>.
+        /// </summary>
+        public virtual void CancelHapticProcessOnRightController()
+        {
+            if (ActiveRightHapticProcess == null)
+            {
+                return;
+            }
+
+            ActiveRightHapticProcess.Cancel();
+        }
+
+        /// <summary>
+        /// Cancels the haptic process currently running on the Right Controller for the current haptic profile.
+        /// </summary>
+        public virtual void CancelActiveHapticProfileOnRightController()
+        {
+            if (ActiveRightHapticProfile == null)
+            {
+                return;
+            }
+
+            ActiveRightHapticProfile.Cancel();
+        }
+
+        /// <summary>
+        /// Cancels the haptic process currently running on the Right Controller for the given profile.
+        /// </summary>
+        /// <param name="profileIndex">The index of the haptic profile to cancel.</param>
+        public virtual void CancelHapticProcessOnRightController(int profileIndex)
+        {
+            CancelHapticProfile(ActiveRightHapticProfiles, profileIndex);
+            ActiveRightHapticProfile = null;
+        }
 
         protected virtual void OnEnable()
         {
@@ -573,6 +785,71 @@
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Gets the first active profile found in the given haptic profile collection.
+        /// </summary>
+        /// <param name="collection">The collection to look for the first active in.</param>
+        /// <returns>The found first active profile collection in the collection.</returns>
+        protected virtual HapticProcessObservableList GetFirstActiveHapticProfile(IEnumerable<HapticProcessObservableList> collection)
+        {
+            foreach (HapticProcessObservableList list in collection)
+            {
+                foreach (HapticProcess element in list.NonSubscribableElements)
+                {
+                    if (element.gameObject.activeInHierarchy)
+                    {
+                        return list;
+                    }
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Begins the haptic process for the specified profile.
+        /// </summary>
+        /// <param name="processes">The processes to begin.</param>
+        /// <param name="profileIndex">The index of the process to use.</param>
+        /// <returns>The haptic process being accessed.</returns>
+        protected virtual HapticProcess BeginHapticProfile(HapticProcessObservableList processes, int profileIndex)
+        {
+            if (!IsValidHapticProfile(processes, profileIndex))
+            {
+                return null;
+            }
+
+            processes.NonSubscribableElements[profileIndex].Begin();
+            return processes.NonSubscribableElements[profileIndex];
+        }
+
+        /// <summary>
+        /// Cancels the haptic process for the specified profile.
+        /// </summary>
+        /// <param name="processes">The processes to cancel.</param>
+        /// <param name="profileIndex">The index of the process to use.</param>
+        /// <returns>The haptic process being accessed.</returns>
+        protected virtual HapticProcess CancelHapticProfile(HapticProcessObservableList processes, int profileIndex)
+        {
+            if (!IsValidHapticProfile(processes, profileIndex))
+            {
+                return null;
+            }
+
+            processes.NonSubscribableElements[profileIndex].Cancel();
+            return processes.NonSubscribableElements[profileIndex];
+        }
+
+        /// <summary>
+        /// Determines whether the haptic profile is valid for the given index.
+        /// </summary>
+        /// <param name="processes">The processes to check.</param>
+        /// <param name="profileIndex">The index of the process to check validity on.</param>
+        /// <returns>Whether the given index is a valid profile.</returns>
+        protected virtual bool IsValidHapticProfile(HapticProcessObservableList processes, int profileIndex)
+        {
+            return processes != null && profileIndex >= 0 && profileIndex < processes.NonSubscribableElements.Count;
         }
 
         /// <summary>
