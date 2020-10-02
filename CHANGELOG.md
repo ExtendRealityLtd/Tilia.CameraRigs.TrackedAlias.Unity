@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.5.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.4.5...v1.5.0) (2020-10-02)
+
+#### Features
+
+* **Haptics:** add ability to access haptic profiles on linked aliases ([30654c8](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/30654c801f8ce79ca46bb9c0f1b92f421d39d04a))
+  > The 1.25.0 version of Zinnia allows the LinkedAliasAssociationCollection to specify a collection of haptic profiles and this update allows the TrackedAliasFacade to directly call these profiles via simple public methods.
+  > 
+  > This allows for different haptic outputs to be described within the various CamerRigs and can be called for various situations.
+
 ### [1.4.5](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.4.4...v1.4.5) (2020-08-29)
 
 #### Miscellaneous Chores
