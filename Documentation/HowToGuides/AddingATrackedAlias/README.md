@@ -14,15 +14,15 @@ This is useful if you want to support multiple SDK CameraRigs in your scene but 
 
 ## Prerequisites
 
-* [Add the Tilia.CameraRigs.SpatialSimulator.Unity] prefab to the scene Hierarchy.
-* [Add the Tilia.CameraRigs.UnityXR] prefab to the scene Hierarchy.
+* [Add the Tilia.CameraRigs.SpatialSimulator.Unity -> CameraRigs.SpatialSimulator] prefab to the scene hierarchy.
+* [Add the Tilia.CameraRigs.UnityXR -> CameraRigs.UnityXR] prefab to the scene hierarchy.
 * [Install the Tilia.CameraRigs.TrackedAlias.Unity] package dependency in to your [Unity] project.
 
 ## Let's Start
 
 ### Step 1
 
-Expand the `Tilia CameraRigs TrackedAlias Unity` Package directory in the Unity Project window and select then `Packages -> Tilia CameraRigs TrackedAlias Unity -> Runtime -> Prefabs` directory then drag and drop the `CameraRigs.TrackedAlias` prefab into the Hierarchy window.
+Expand the `Tilia CameraRigs TrackedAlias Unity` package directory in the Unity Project window and select then `Packages -> Tilia CameraRigs TrackedAlias Unity -> Runtime -> Prefabs` directory then drag and drop the `CameraRigs.TrackedAlias` prefab into the Unity Hierarchy window.
 
 ![Adding Prefab To Scene](assets/images/AddingPrefabToScene.png)
 
@@ -64,7 +64,7 @@ You can now place other GameObjects in the TrackedAlias child GameObjects and th
 
 ![TrackedAlias In Scene With Example Avatar Objects](assets/images/TrackedAliasInSceneWithExampleAvatarObjects.png)
 
-[Add the Tilia.CameraRigs.SpatialSimulator.Unity]: https://github.com/ExtendRealityLtd/Tilia.CameraRigs.SpatialSimulator.Unity/blob/master/Documentation/HowToGuides/AddingASpatialSimulatorCameraRig/README.md
-[Add the Tilia.CameraRigs.UnityXR]: https://github.com/ExtendRealityLtd/Tilia.CameraRigs.UnityXR/blob/master/Documentation/HowToGuides/AddingAUnityXRCameraRig/README.md
+[Add the Tilia.CameraRigs.SpatialSimulator.Unity -> CameraRigs.SpatialSimulator]: https://github.com/ExtendRealityLtd/Tilia.CameraRigs.SpatialSimulator.Unity/blob/master/Documentation/HowToGuides/AddingASpatialSimulatorCameraRig/README.md
+[Add the Tilia.CameraRigs.UnityXR -> CameraRigs.UnityXR]: https://github.com/ExtendRealityLtd/Tilia.CameraRigs.UnityXR/blob/master/Documentation/HowToGuides/AddingAUnityXRCameraRig/README.md
 [Install the Tilia.CameraRigs.TrackedAlias.Unity]: ../Installation/README.md
 [Unity]: https://unity3d.com/
