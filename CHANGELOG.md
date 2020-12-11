@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.5.2](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.5.1...v1.5.2) (2020-12-11)
+
+#### Bug Fixes
+
+* **HowToGuides:** apply document styling guidelines ([2c4a99f](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/2c4a99f66a57e24fd3290d776c483864aad876c7))
+  > The document style guidelines have been updated and now have been applied to the guides in this repo.
+
 ### [1.5.1](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.5.0...v1.5.1) (2020-11-01)
 
 #### Miscellaneous Chores
