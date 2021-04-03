@@ -22,9 +22,7 @@ This is useful if you want to support multiple SDK CameraRigs in your scene but 
 
 ### Step 1
 
-Expand the `Tilia CameraRigs TrackedAlias Unity` package directory in the Unity Project window and select then `Packages -> Tilia CameraRigs TrackedAlias Unity -> Runtime -> Prefabs` directory then drag and drop the `CameraRigs.TrackedAlias` prefab into the Unity Hierarchy window.
-
-![Adding Prefab To Scene](assets/images/AddingPrefabToScene.png)
+Add a `CameraRigs.TrackedAlias` prefab to the Unity project hierarchy by selecting `GameObject -> Tilia -> Prefabs -> CameraRigs -> CameraRigs.TrackedAlias` from the Unity main top menu.
 
 ### Step 2
 
