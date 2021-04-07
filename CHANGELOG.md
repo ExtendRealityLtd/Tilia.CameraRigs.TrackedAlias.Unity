@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.6.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.5.10...v1.6.0) (2021-04-07)
+
+#### Features
+
+* **Utility:** add prefab creator ([059a55e](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/059a55ed82fe7b312b339906e3befac6452af8e8))
+  > The latest version of Zinnia has the basis of a prefab creator that can be used to enable easy adding of prefabs to a scene without needing to drag and drop from directories. Instead a new menu item is added for quickly adding prefabs. The guide has been updated to accommodate this and the FodyWeavers.xml is now located in the root to serve both the Runtime and Editor scripts.
+
+#### Bug Fixes
+
+* **package.json:** add missing reference to Editor directory ([c3dd4df](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/c3dd4df54940bbf114693c1a04b0f455963ba433))
+  > The build will fail without referencing this new Editor directory so it has now been added to the package.
+
 ### [1.5.10](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.5.9...v1.5.10) (2021-03-29)
 
 #### Miscellaneous Chores
