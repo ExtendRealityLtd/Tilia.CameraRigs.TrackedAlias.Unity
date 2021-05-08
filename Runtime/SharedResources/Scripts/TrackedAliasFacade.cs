@@ -547,6 +547,12 @@
         {
             CancelHapticProcessOnLeftController();
             CancelActiveHapticProfileOnLeftController();
+
+            if (ActiveLeftHapticProfiles == null)
+            {
+                return;
+            }
+
             foreach (HapticProcess process in ActiveLeftHapticProfiles.NonSubscribableElements)
             {
                 process.Cancel();
@@ -596,6 +602,12 @@
         {
             CancelHapticProcessOnRightController();
             CancelActiveHapticProfileOnRightController();
+
+            if (ActiveRightHapticProfiles == null)
+            {
+                return;
+            }
+
             foreach (HapticProcess process in ActiveRightHapticProfiles.NonSubscribableElements)
             {
                 process.Cancel();
