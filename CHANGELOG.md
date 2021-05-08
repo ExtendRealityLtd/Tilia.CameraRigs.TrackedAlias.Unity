@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.6.2](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.6.1...v1.6.2) (2021-05-08)
+
+#### Bug Fixes
+
+* **Facade:** prevent null exception with canceling haptic profiles ([1ae58c1](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/1ae58c1aa90908b33b369d48f85f977052a93268))
+  > There was an issue where calling cancel haptic profiles on a rig that had no profiles set up (like the simulator) would cause a null exception error because it would try to access the haptics list on an object that didn't exist.
+
 ### [1.6.1](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.6.0...v1.6.1) (2021-05-03)
 
 #### Miscellaneous Chores
