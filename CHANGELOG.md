@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.7.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.6.14...v1.7.0) (2022-01-17)
+
+#### Features
+
+* **Facade:** expose device details and provide new events ([57eda80](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/57eda80d82f588a1f123d2b422af7176ff3b383e))
+  > The DeviceDetailsRecord which can now be stored on a CameraRig is now exposed via the TrackedAliasFacade so it's possible to get the current CameraRig's device details as well as the current determined dominant controller.
+  > 
+  > There are also new events that have been added to the Facade that bubble up the events from the internal device records to make it easier to know when device statuses change.
+
 ### [1.6.14](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.6.13...v1.6.14) (2022-01-17)
 
 #### Miscellaneous Chores
