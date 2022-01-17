@@ -7,6 +7,34 @@ Sets up the Tracked Alias Prefab based on the provided user settings.
 * [Inheritance]
 * [Namespace]
 * [Syntax]
+* [Fields]
+  * [cachedCurrentDominantController]
+  * [cachedHeadsetBatteryChargeStatus]
+  * [cachedHeadsetConnectionStatus]
+  * [cachedHeadsetSpatialTrackingType]
+  * [cachedHeadsetTrackingBegun]
+  * [cachedLeftControllerBatteryChargeStatus]
+  * [cachedLeftControllerConnectionStatus]
+  * [cachedLeftControllerSpatialTrackingType]
+  * [cachedLeftControllerTrackingBegun]
+  * [cachedLinkedAlias]
+  * [cachedRightControllerBatteryChargeStatus]
+  * [cachedRightControllerConnectionStatus]
+  * [cachedRightControllerSpatialTrackingType]
+  * [cachedRightControllerTrackingBegun]
+  * [DominantControllerIsChangingEventHandler]
+  * [HeadsetBatteryChargeStatusChangedEventHandler]
+  * [HeadsetConnectionChangedEventHandler]
+  * [HeadsetTrackingBegunEventHandler]
+  * [HeadsetTrackingTypeChangedEventHandler]
+  * [LeftControllerBatteryChargeStatusChangedEventHandler]
+  * [LeftControllerConnectionChangedEventHandler]
+  * [LeftControllerTrackingBegunEventHandler]
+  * [LeftControllerTrackingTypeChangedEventHandler]
+  * [RightControllerBatteryChargeStatusChangedEventHandler]
+  * [RightControllerConnectionChangedEventHandler]
+  * [RightControllerTrackingBegunEventHandler]
+  * [RightControllerTrackingTypeChangedEventHandler]
 * [Properties]
   * [Facade]
   * [Headset]
@@ -20,12 +48,19 @@ Sets up the Tracked Alias Prefab based on the provided user settings.
   * [RightControllerVelocityTrackers]
   * [ValidCameras]
 * [Methods]
+  * [CacheAndRaiseEventWithoutPayload<TValue, TEvent>(TValue, ref TValue, TEvent)]
+  * [CacheAndRaiseEventWithPayload<TValue, TEvent>(TValue, ref TValue, TEvent)]
+  * [CheckAndRaiseEventWithoutPayload<TValue, TEvent>(ref TValue, TValue, TEvent)]
+  * [CheckAndRaiseEventWithPayload<TValue, TEvent>(ref TValue, TValue, TEvent)]
+  * [CheckExistingEventStatus()]
   * [NotifyHeadsetTrackingBegun()]
   * [NotifyLeftControllerTrackingBegun()]
   * [NotifyRightControllerTrackingBegun()]
   * [NotifyTrackedAliasChanged(GameObject)]
   * [OnEnable()]
   * [SetUpCameraRigsConfiguration()]
+  * [SubscribeToDetailsEvents()]
+  * [UnsubscribeToDetailsEvents()]
 
 ## Details
 
@@ -42,6 +77,278 @@ Sets up the Tracked Alias Prefab based on the provided user settings.
 
 ```
 public class TrackedAliasConfigurator : MonoBehaviour
+```
+
+### Fields
+
+#### cachedCurrentDominantController
+
+The current cached dominant controller.
+
+##### Declaration
+
+```
+protected DeviceDetailsRecord cachedCurrentDominantController
+```
+
+#### cachedHeadsetBatteryChargeStatus
+
+The current cached headset battery charge status.
+
+##### Declaration
+
+```
+protected BatteryStatus cachedHeadsetBatteryChargeStatus
+```
+
+#### cachedHeadsetConnectionStatus
+
+The current cached headset connection status.
+
+##### Declaration
+
+```
+protected bool cachedHeadsetConnectionStatus
+```
+
+#### cachedHeadsetSpatialTrackingType
+
+The current cached headset tracking type.
+
+##### Declaration
+
+```
+protected DeviceDetailsRecord.SpatialTrackingType cachedHeadsetSpatialTrackingType
+```
+
+#### cachedHeadsetTrackingBegun
+
+The current cached headset tracking begun status.
+
+##### Declaration
+
+```
+protected bool cachedHeadsetTrackingBegun
+```
+
+#### cachedLeftControllerBatteryChargeStatus
+
+The current cached left controller battery charge status.
+
+##### Declaration
+
+```
+protected BatteryStatus cachedLeftControllerBatteryChargeStatus
+```
+
+#### cachedLeftControllerConnectionStatus
+
+The current cached left controller connection status.
+
+##### Declaration
+
+```
+protected bool cachedLeftControllerConnectionStatus
+```
+
+#### cachedLeftControllerSpatialTrackingType
+
+The current cached left controller tracking type.
+
+##### Declaration
+
+```
+protected DeviceDetailsRecord.SpatialTrackingType cachedLeftControllerSpatialTrackingType
+```
+
+#### cachedLeftControllerTrackingBegun
+
+The current cached left controller tracking begun status.
+
+##### Declaration
+
+```
+protected bool cachedLeftControllerTrackingBegun
+```
+
+#### cachedLinkedAlias
+
+The current cached Linked Alias Association Collection.
+
+##### Declaration
+
+```
+protected LinkedAliasAssociationCollection cachedLinkedAlias
+```
+
+#### cachedRightControllerBatteryChargeStatus
+
+The current cached right controller battery charge status.
+
+##### Declaration
+
+```
+protected BatteryStatus cachedRightControllerBatteryChargeStatus
+```
+
+#### cachedRightControllerConnectionStatus
+
+The current cached right controller connection status.
+
+##### Declaration
+
+```
+protected bool cachedRightControllerConnectionStatus
+```
+
+#### cachedRightControllerSpatialTrackingType
+
+The current cached right controller tracking type.
+
+##### Declaration
+
+```
+protected DeviceDetailsRecord.SpatialTrackingType cachedRightControllerSpatialTrackingType
+```
+
+#### cachedRightControllerTrackingBegun
+
+The current cached right controller tracking begun status.
+
+##### Declaration
+
+```
+protected bool cachedRightControllerTrackingBegun
+```
+
+#### DominantControllerIsChangingEventHandler
+
+The event handler to run when the bubbled dominant controller is changing is raised.
+
+##### Declaration
+
+```
+protected UnityAction<DeviceDetailsRecord> DominantControllerIsChangingEventHandler
+```
+
+#### HeadsetBatteryChargeStatusChangedEventHandler
+
+The event handler to run when the bubbled headset event for battery charge status changed is raised.
+
+##### Declaration
+
+```
+protected UnityAction<BatteryStatus> HeadsetBatteryChargeStatusChangedEventHandler
+```
+
+#### HeadsetConnectionChangedEventHandler
+
+The event handler to run when the bubbled headset event for connection changed is raised.
+
+##### Declaration
+
+```
+protected UnityAction<bool> HeadsetConnectionChangedEventHandler
+```
+
+#### HeadsetTrackingBegunEventHandler
+
+The event handler to run when the bubbled headset event for tracking begun is raised.
+
+##### Declaration
+
+```
+protected UnityAction HeadsetTrackingBegunEventHandler
+```
+
+#### HeadsetTrackingTypeChangedEventHandler
+
+The event handler to run when the bubbled headset event for tracking type changed is raised.
+
+##### Declaration
+
+```
+protected UnityAction<DeviceDetailsRecord.SpatialTrackingType> HeadsetTrackingTypeChangedEventHandler
+```
+
+#### LeftControllerBatteryChargeStatusChangedEventHandler
+
+The event handler to run when the bubbled left controller event for battery charge status changed is raised.
+
+##### Declaration
+
+```
+protected UnityAction<BatteryStatus> LeftControllerBatteryChargeStatusChangedEventHandler
+```
+
+#### LeftControllerConnectionChangedEventHandler
+
+The event handler to run when the bubbled left controller event for connection changed is raised.
+
+##### Declaration
+
+```
+protected UnityAction<bool> LeftControllerConnectionChangedEventHandler
+```
+
+#### LeftControllerTrackingBegunEventHandler
+
+The event handler to run when the bubbled left controller event for tracking begun is raised.
+
+##### Declaration
+
+```
+protected UnityAction LeftControllerTrackingBegunEventHandler
+```
+
+#### LeftControllerTrackingTypeChangedEventHandler
+
+The event handler to run when the bubbled left controller event for tracking type changed is raised.
+
+##### Declaration
+
+```
+protected UnityAction<DeviceDetailsRecord.SpatialTrackingType> LeftControllerTrackingTypeChangedEventHandler
+```
+
+#### RightControllerBatteryChargeStatusChangedEventHandler
+
+The event handler to run when the bubbled right controller event for battery charge status changed is raised.
+
+##### Declaration
+
+```
+protected UnityAction<BatteryStatus> RightControllerBatteryChargeStatusChangedEventHandler
+```
+
+#### RightControllerConnectionChangedEventHandler
+
+The event handler to run when the bubbled right controller event for connection changed is raised.
+
+##### Declaration
+
+```
+protected UnityAction<bool> RightControllerConnectionChangedEventHandler
+```
+
+#### RightControllerTrackingBegunEventHandler
+
+The event handler to run when the bubbled right controller event for tracking begun is raised.
+
+##### Declaration
+
+```
+protected UnityAction RightControllerTrackingBegunEventHandler
+```
+
+#### RightControllerTrackingTypeChangedEventHandler
+
+The event handler to run when the bubbled right controller event for tracking type changed is raised.
+
+##### Declaration
+
+```
+protected UnityAction<DeviceDetailsRecord.SpatialTrackingType> RightControllerTrackingTypeChangedEventHandler
 ```
 
 ### Properties
@@ -158,6 +465,120 @@ public ListContainsRule ValidCameras { get; protected set; }
 
 ### Methods
 
+#### CacheAndRaiseEventWithoutPayload<TValue, TEvent>(TValue, ref TValue, TEvent)
+
+Caches the given new value and raises the given event.
+
+##### Declaration
+
+```
+protected virtual void CacheAndRaiseEventWithoutPayload<TValue, TEvent>(TValue newValue, ref TValue cachedValue, TEvent output)
+    where TEvent : UnityEvent, new()
+```
+
+##### Parameters
+
+| Type | Name | Description |
+| --- | --- | --- |
+| TValue | newValue | The new value to cache. |
+| TValue | cachedValue | The existing cached value. |
+| TEvent | output | The event to raise. |
+
+##### Type Parameters
+
+| Name | Description |
+| --- | --- |
+| TValue | The variable type of the given values. |
+| TEvent | The UnityEvent type to raise. |
+
+#### CacheAndRaiseEventWithPayload<TValue, TEvent>(TValue, ref TValue, TEvent)
+
+Caches the given new value and raises the given event with the new value as the payload.
+
+##### Declaration
+
+```
+protected virtual void CacheAndRaiseEventWithPayload<TValue, TEvent>(TValue newValue, ref TValue cachedValue, TEvent output)
+    where TEvent : UnityEvent<TValue>, new()
+```
+
+##### Parameters
+
+| Type | Name | Description |
+| --- | --- | --- |
+| TValue | newValue | The new value to cache. |
+| TValue | cachedValue | The existing cached value. |
+| TEvent | output | The event to raise. |
+
+##### Type Parameters
+
+| Name | Description |
+| --- | --- |
+| TValue | The variable type of the given values. |
+| TEvent | The UnityEvent type to raise. |
+
+#### CheckAndRaiseEventWithoutPayload<TValue, TEvent>(ref TValue, TValue, TEvent)
+
+Checks if the two given values equal and raises the given event if they are not.
+
+##### Declaration
+
+```
+protected virtual void CheckAndRaiseEventWithoutPayload<TValue, TEvent>(ref TValue comparer, TValue comparator, TEvent output)
+    where TEvent : UnityEvent, new()
+```
+
+##### Parameters
+
+| Type | Name | Description |
+| --- | --- | --- |
+| TValue | comparer | The source value to compare from. |
+| TValue | comparator | The target value to compare with. |
+| TEvent | output | The event to raise if the two values are not equal. |
+
+##### Type Parameters
+
+| Name | Description |
+| --- | --- |
+| TValue | The variable type to check equality with. |
+| TEvent | The UnityEvent type to raise. |
+
+#### CheckAndRaiseEventWithPayload<TValue, TEvent>(ref TValue, TValue, TEvent)
+
+Checks if the two given values equal and raises the given event with the relevant payload if they are not.
+
+##### Declaration
+
+```
+protected virtual void CheckAndRaiseEventWithPayload<TValue, TEvent>(ref TValue comparer, TValue comparator, TEvent output)
+    where TEvent : UnityEvent<TValue>, new()
+```
+
+##### Parameters
+
+| Type | Name | Description |
+| --- | --- | --- |
+| TValue | comparer | The source value to compare from. |
+| TValue | comparator | The target value to compare with. |
+| TEvent | output | The event to raise if the two values are not equal. |
+
+##### Type Parameters
+
+| Name | Description |
+| --- | --- |
+| TValue | The variable type to check equality with. |
+| TEvent | The UnityEvent type to raise. |
+
+#### CheckExistingEventStatus()
+
+Check the existing status of the event values and raise a new event if it has changed.
+
+##### Declaration
+
+```
+protected virtual void CheckExistingEventStatus()
+```
+
 #### NotifyHeadsetTrackingBegun()
 
 Notifies that the headset has started being tracked.
@@ -195,14 +616,14 @@ Notifies when the tracked alias source has changed.
 ##### Declaration
 
 ```
-public virtual void NotifyTrackedAliasChanged(GameObject newAlias)
+public virtual void NotifyTrackedAliasChanged(GameObject _)
 ```
 
 ##### Parameters
 
 | Type | Name | Description |
 | --- | --- | --- |
-| GameObject | newAlias | n/a |
+| GameObject | \_ | n/a |
 
 #### OnEnable()
 
@@ -222,12 +643,60 @@ Sets up the TrackedAlias prefab with the specified settings.
 public virtual void SetUpCameraRigsConfiguration()
 ```
 
+#### SubscribeToDetailsEvents()
+
+Subscribe to the events of each DeviceDetailsRecord.
+
+##### Declaration
+
+```
+protected virtual void SubscribeToDetailsEvents()
+```
+
+#### UnsubscribeToDetailsEvents()
+
+Unsubscribes from the events of each DeviceDetailsRecord.
+
+##### Declaration
+
+```
+protected virtual void UnsubscribeToDetailsEvents()
+```
+
 [Tilia.CameraRigs.TrackedAlias]: README.md
 [TrackedAliasFacade]: TrackedAliasFacade.md
 [ValidCameras]: TrackedAliasConfigurator.md#ValidCameras
 [Inheritance]: #Inheritance
 [Namespace]: #Namespace
 [Syntax]: #Syntax
+[Fields]: #Fields
+[cachedCurrentDominantController]: #cachedCurrentDominantController
+[cachedHeadsetBatteryChargeStatus]: #cachedHeadsetBatteryChargeStatus
+[cachedHeadsetConnectionStatus]: #cachedHeadsetConnectionStatus
+[cachedHeadsetSpatialTrackingType]: #cachedHeadsetSpatialTrackingType
+[cachedHeadsetTrackingBegun]: #cachedHeadsetTrackingBegun
+[cachedLeftControllerBatteryChargeStatus]: #cachedLeftControllerBatteryChargeStatus
+[cachedLeftControllerConnectionStatus]: #cachedLeftControllerConnectionStatus
+[cachedLeftControllerSpatialTrackingType]: #cachedLeftControllerSpatialTrackingType
+[cachedLeftControllerTrackingBegun]: #cachedLeftControllerTrackingBegun
+[cachedLinkedAlias]: #cachedLinkedAlias
+[cachedRightControllerBatteryChargeStatus]: #cachedRightControllerBatteryChargeStatus
+[cachedRightControllerConnectionStatus]: #cachedRightControllerConnectionStatus
+[cachedRightControllerSpatialTrackingType]: #cachedRightControllerSpatialTrackingType
+[cachedRightControllerTrackingBegun]: #cachedRightControllerTrackingBegun
+[DominantControllerIsChangingEventHandler]: #DominantControllerIsChangingEventHandler
+[HeadsetBatteryChargeStatusChangedEventHandler]: #HeadsetBatteryChargeStatusChangedEventHandler
+[HeadsetConnectionChangedEventHandler]: #HeadsetConnectionChangedEventHandler
+[HeadsetTrackingBegunEventHandler]: #HeadsetTrackingBegunEventHandler
+[HeadsetTrackingTypeChangedEventHandler]: #HeadsetTrackingTypeChangedEventHandler
+[LeftControllerBatteryChargeStatusChangedEventHandler]: #LeftControllerBatteryChargeStatusChangedEventHandler
+[LeftControllerConnectionChangedEventHandler]: #LeftControllerConnectionChangedEventHandler
+[LeftControllerTrackingBegunEventHandler]: #LeftControllerTrackingBegunEventHandler
+[LeftControllerTrackingTypeChangedEventHandler]: #LeftControllerTrackingTypeChangedEventHandler
+[RightControllerBatteryChargeStatusChangedEventHandler]: #RightControllerBatteryChargeStatusChangedEventHandler
+[RightControllerConnectionChangedEventHandler]: #RightControllerConnectionChangedEventHandler
+[RightControllerTrackingBegunEventHandler]: #RightControllerTrackingBegunEventHandler
+[RightControllerTrackingTypeChangedEventHandler]: #RightControllerTrackingTypeChangedEventHandler
 [Properties]: #Properties
 [Facade]: #Facade
 [Headset]: #Headset
@@ -241,9 +710,16 @@ public virtual void SetUpCameraRigsConfiguration()
 [RightControllerVelocityTrackers]: #RightControllerVelocityTrackers
 [ValidCameras]: #ValidCameras
 [Methods]: #Methods
+[CacheAndRaiseEventWithoutPayload<TValue, TEvent>(TValue, ref TValue, TEvent)]: #CacheAndRaiseEventWithoutPayload<TValue-TEvent>TValue-ref TValue-TEvent
+[CacheAndRaiseEventWithPayload<TValue, TEvent>(TValue, ref TValue, TEvent)]: #CacheAndRaiseEventWithPayload<TValue-TEvent>TValue-ref TValue-TEvent
+[CheckAndRaiseEventWithoutPayload<TValue, TEvent>(ref TValue, TValue, TEvent)]: #CheckAndRaiseEventWithoutPayload<TValue-TEvent>ref TValue-TValue-TEvent
+[CheckAndRaiseEventWithPayload<TValue, TEvent>(ref TValue, TValue, TEvent)]: #CheckAndRaiseEventWithPayload<TValue-TEvent>ref TValue-TValue-TEvent
+[CheckExistingEventStatus()]: #CheckExistingEventStatus
 [NotifyHeadsetTrackingBegun()]: #NotifyHeadsetTrackingBegun
 [NotifyLeftControllerTrackingBegun()]: #NotifyLeftControllerTrackingBegun
 [NotifyRightControllerTrackingBegun()]: #NotifyRightControllerTrackingBegun
 [NotifyTrackedAliasChanged(GameObject)]: #NotifyTrackedAliasChangedGameObject
 [OnEnable()]: #OnEnable
 [SetUpCameraRigsConfiguration()]: #SetUpCameraRigsConfiguration
+[SubscribeToDetailsEvents()]: #SubscribeToDetailsEvents
+[UnsubscribeToDetailsEvents()]: #UnsubscribeToDetailsEvents
