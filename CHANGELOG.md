@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.7.2...v1.8.0) (2022-03-02)
+
+#### Features
+
+* **package.json:** add information urls to package ([b9ac848](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/b9ac848987d12cc36be6bb5124607ef8e1e01b7f))
+  > The changelog, documentation and license url has been added to the package.json as these are used within the Unity package manager.
+
 ### [1.7.2](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.7.1...v1.7.2) (2022-02-14)
 
 #### Miscellaneous Chores
