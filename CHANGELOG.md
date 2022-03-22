@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.9.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.8.2...v1.9.0) (2022-03-22)
+
+#### Features
+
+* **prefab:** provide dominant controller alias ([71ddef5](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/71ddef595c75a6cfae537b536d174ba2792b33a5))
+  > The dominant controller alias is now part of the TrackedAlias Aliases collection and will track the position/orientation of whatever the current dominant controller is.
+  > 
+  > This can be used to set up tracking objects to whatever the dominant controller is rather than having to always use the left/right controller.
+  > 
+  > There are also new events that are raised when the left/right controller become dominant or when the headset becomes the dominant controller.
+  > 
+  > Additional Facade properties for dominant controller data has also been added for completeness.
+
 ### [1.8.2](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.8.1...v1.8.2) (2022-03-15)
 
 #### Miscellaneous Chores
