@@ -55,6 +55,10 @@
         [Header("Headset Events")]
         public UnityEvent HeadsetTrackingBegun = new UnityEvent();
         /// <summary>
+        /// Emitted when the headset becomes the dominant controller.
+        /// </summary>
+        public UnityEvent HeadsetBecameDominantController = new UnityEvent();
+        /// <summary>
         /// Emitted when the headset connection status changes.
         /// </summary>
         public DeviceDetailsRecord.BoolUnityEvent HeadsetConnectionStatusChanged = new DeviceDetailsRecord.BoolUnityEvent();
@@ -75,6 +79,10 @@
         [Header("Left Controller Events")]
         public UnityEvent LeftControllerTrackingBegun = new UnityEvent();
         /// <summary>
+        /// Emitted when the left controller becomes the dominant controller.
+        /// </summary>
+        public UnityEvent LeftControllerBecameDominantController = new UnityEvent();
+        /// <summary>
         /// Emitted when the left controller connection status changes.
         /// </summary>
         public DeviceDetailsRecord.BoolUnityEvent LeftControllerConnectionStatusChanged = new DeviceDetailsRecord.BoolUnityEvent();
@@ -94,6 +102,10 @@
         /// </summary>
         [Header("Right Controller Events")]
         public UnityEvent RightControllerTrackingBegun = new UnityEvent();
+        /// <summary>
+        /// Emitted when the right controller becomes the dominant controller.
+        /// </summary>
+        public UnityEvent RightControllerBecameDominantController = new UnityEvent();
         /// <summary>
         /// Emitted when the right controller connection status changes.
         /// </summary>
@@ -125,6 +137,8 @@
         /// <summary>
         /// Retrieves the active Headset that the TrackedAlias is using.
         /// </summary>
+
+        #region Headset Properties
         public GameObject ActiveHeadset => GetFirstActiveGameObject(Headsets);
         /// <summary>
         /// Retrieves the active Headset Camera that the TrackedAlias is using.
@@ -166,22 +180,80 @@
         /// Retrieves the active Headset Detail Battery Charge status that the TrackedAlias is using.
         /// </summary>
         public BatteryStatus ActiveHeadsetBatteryChargeStatus => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).BatteryChargeStatus;
+        #endregion
+
+        #region Dominant Controller Properties
         /// <summary>
         /// Retrieves the active Headset Detail Record that the TrackedAlias is using.
         /// </summary>
         public DominantControllerObserver ActiveDominantControllerObserver => GetFirstActiveDominantControllerObserver(DominantControllerObservers);
         /// <summary>
+        /// Retrieves the active Dominant Controller <see cref="GameObject"/> that the TrackedAlias is using.
+        /// </summary>
+        public GameObject ActiveDominantController => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.gameObject : null;
+        /// <summary>
         /// Retrieves the dominant connected controller node.
         /// </summary>
         public XRNode ActiveDominantControllerNode => ActiveDominantControllerObserver != null ? ActiveDominantControllerObserver.DominantController : XRNode.Head;
         /// <summary>
-        /// Retrieves the dominant connected controller node.
+        /// Retrieves the active Dominant Controller Velocity Tracker that the TrackedAlias is using.
+        /// </summary>
+        public VelocityTracker ActiveDominantControllerVelocity => Configuration.DominantControllerVelocityTrackers;
+        /// <summary>
+        /// Retrieves the active Dominant Controller Haptic Process that the TrackedAlias is using.
+        /// </summary>
+        public HapticProcess ActiveDominantHapticProcess => ActiveDominantControllerObserver != null ? GetFirstActiveHapticProcess(ActiveDominantControllerObserver.DominantController == XRNode.LeftHand ? LeftControllerHapticProcesses : RightControllerHapticProcesses) : null;
+        /// <summary>
+        /// Retrieves the active Dominant Controller Haptic Profiles that the TrackedAlias is using.
+        /// </summary>
+        public HapticProcessObservableList ActiveDominantHapticProfiles => ActiveDominantControllerObserver != null ? GetFirstActiveHapticProfile(ActiveDominantControllerObserver.DominantController == XRNode.LeftHand ? LeftControllerHapticProfiles : RightControllerHapticProfiles) : null;
+        /// <summary>
+        /// Retrieves the active Dominant Controller Haptic Profile that has been most recently used.
+        /// </summary>
+        public HapticProcess ActiveDominantHapticProfile { get; protected set; }
+        /// <summary>
+        /// Retrieves the active Dominant Controller Detail Record that the TrackedAlias is using.
         /// </summary>
         public DeviceDetailsRecord ActiveDominantControllerRecord => ActiveDominantControllerObserver != null ? ActiveDominantControllerObserver.DominantControllerDetails : null;
         /// <summary>
-        /// Retrieves the active Left Controller that the TrackedAlias is using.
+        /// Retrieves the active Dominant Controller Detail Tracking Begun status that the TrackedAlias is using.
+        /// </summary>
+        public bool ActiveDominantControllerTrackingHasBegun => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.TrackingHasBegun : false;
+        /// <summary>
+        /// Retrieves the active Dominant Controller Detail Is Connected status that the TrackedAlias is using.
+        /// </summary>
+        public bool ActiveDominantControllerIsConnected => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.IsConnected : false;
+        /// <summary>
+        /// Retrieves the active Dominant Controller Detail Manufacturer status that the TrackedAlias is using.
+        /// </summary>
+        public string ActiveDominantControllerManufacturer => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.Manufacturer : null;
+        /// <summary>
+        /// Retrieves the active Dominant Controller Detail Model status that the TrackedAlias is using.
+        /// </summary>
+        public string ActiveDominantControllerModel => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.Model : null;
+        /// <summary>
+        /// Retrieves the active Dominant Controller Detail Tracking Type status that the TrackedAlias is using.
+        /// </summary>
+        public DeviceDetailsRecord.SpatialTrackingType ActiveDominantControllerTrackingType => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.TrackingType : DeviceDetailsRecord.SpatialTrackingType.Unknown;
+        /// <summary>
+        /// Retrieves the active Dominant Controller Detail Battery Level status that the TrackedAlias is using.
+        /// </summary>
+        public float ActiveDominantControllerBatteryLevel => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.BatteryLevel : -1f;
+        /// <summary>
+        /// Retrieves the active Dominant Controller Detail Battery Charge status that the TrackedAlias is using.
+        /// </summary>
+        public BatteryStatus ActiveDominantControllerBatteryChargeStatus => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.BatteryChargeStatus : BatteryStatus.Unknown;
+        #endregion
+
+        #region Left Controller Properties
+        /// <summary>
+        /// Retrieves the active Left Controller <see cref="GameObject"/> that the TrackedAlias is using.
         /// </summary>
         public GameObject ActiveLeftController => GetFirstActiveGameObject(LeftControllers);
+        /// <summary>
+        /// Retrieves the left connected controller node.
+        /// </summary>
+        public XRNode ActiveLeftControllerNode => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).XRNodeType;
         /// <summary>
         /// Retrieves the active Left Controller Velocity Tracker that the TrackedAlias is using.
         /// </summary>
@@ -199,41 +271,48 @@
         /// </summary>
         public HapticProcess ActiveLeftHapticProfile { get; protected set; }
         /// <summary>
-        /// Retrieves the active LeftController Detail Record that the TrackedAlias is using.
+        /// Retrieves the active Left Controller Detail Record that the TrackedAlias is using.
         /// </summary>
         public DeviceDetailsRecord ActiveLeftControllerDetails => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords);
         /// <summary>
-        /// Retrieves the active LeftController Detail Tracking Begun status that the TrackedAlias is using.
+        /// Retrieves the active Left Controller Detail Tracking Begun status that the TrackedAlias is using.
         /// </summary>
         public bool ActiveLeftControllerTrackingHasBegun => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).TrackingHasBegun;
         /// <summary>
-        /// Retrieves the active LeftController Detail Is Connected status that the TrackedAlias is using.
+        /// Retrieves the active Left Controller Detail Is Connected status that the TrackedAlias is using.
         /// </summary>
         public bool ActiveLeftControllerIsConnected => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).IsConnected;
         /// <summary>
-        /// Retrieves the active LeftController Detail Manufacturer status that the TrackedAlias is using.
+        /// Retrieves the active Left Controller Detail Manufacturer status that the TrackedAlias is using.
         /// </summary>
         public string ActiveLeftControllerManufacturer => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).Manufacturer;
         /// <summary>
-        /// Retrieves the active LeftController Detail Model status that the TrackedAlias is using.
+        /// Retrieves the active Left Controller Detail Model status that the TrackedAlias is using.
         /// </summary>
         public string ActiveLeftControllerModel => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).Model;
         /// <summary>
-        /// Retrieves the active LeftController Detail Tracking Type status that the TrackedAlias is using.
+        /// Retrieves the active Left Controller Detail Tracking Type status that the TrackedAlias is using.
         /// </summary>
         public DeviceDetailsRecord.SpatialTrackingType ActiveLeftControllerTrackingType => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).TrackingType;
         /// <summary>
-        /// Retrieves the active LeftController Detail Battery Level status that the TrackedAlias is using.
+        /// Retrieves the active Left Controller Detail Battery Level status that the TrackedAlias is using.
         /// </summary>
         public float ActiveLeftControllerBatteryLevel => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).BatteryLevel;
         /// <summary>
-        /// Retrieves the active LeftController Detail Battery Charge status that the TrackedAlias is using.
+        /// Retrieves the active Left Controller Detail Battery Charge status that the TrackedAlias is using.
         /// </summary>
         public BatteryStatus ActiveLeftControllerBatteryChargeStatus => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).BatteryChargeStatus;
+        #endregion
+
+        #region Right Controller Properties
         /// <summary>
-        /// Retrieves the active Right Controller that the TrackedAlias is using.
+        /// Retrieves the active Right Controller <see cref="GameObject"/> that the TrackedAlias is using.
         /// </summary>
         public GameObject ActiveRightController => GetFirstActiveGameObject(RightControllers);
+        /// <summary>
+        /// Retrieves the right connected controller node.
+        /// </summary>
+        public XRNode ActiveRightControllerNode => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).XRNodeType;
         /// <summary>
         /// Retrieves the active Right Controller Velocity Tracker that the TrackedAlias is using.
         /// </summary>
@@ -243,7 +322,7 @@
         /// </summary>
         public HapticProcess ActiveRightHapticProcess => GetFirstActiveHapticProcess(RightControllerHapticProcesses);
         /// <summary>
-        /// Retrieves the active Left Controller Haptic Profiles that the TrackedAlias is using.
+        /// Retrieves the active Right Controller Haptic Profiles that the TrackedAlias is using.
         /// </summary>
         public HapticProcessObservableList ActiveRightHapticProfiles => GetFirstActiveHapticProfile(RightControllerHapticProfiles);
         /// <summary>
@@ -251,38 +330,40 @@
         /// </summary>
         public HapticProcess ActiveRightHapticProfile { get; protected set; }
         /// <summary>
-        /// Retrieves the active RightController Detail Record that the TrackedAlias is using.
+        /// Retrieves the active Right Controller Detail Record that the TrackedAlias is using.
         /// </summary>
         public DeviceDetailsRecord ActiveRightControllerDetails => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords);
         /// <summary>
-        /// Retrieves the active RightController Detail Tracking Begun status that the TrackedAlias is using.
+        /// Retrieves the active Right Controller Detail Tracking Begun status that the TrackedAlias is using.
         /// </summary>
         public bool ActiveRightControllerTrackingHasBegun => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).TrackingHasBegun;
         /// <summary>
-        /// Retrieves the active RightController Detail Is Connected status that the TrackedAlias is using.
+        /// Retrieves the active Right Controller Detail Is Connected status that the TrackedAlias is using.
         /// </summary>
         public bool ActiveRightControllerIsConnected => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).IsConnected;
         /// <summary>
-        /// Retrieves the active RightController Detail Manufacturer status that the TrackedAlias is using.
+        /// Retrieves the active Right Controller Detail Manufacturer status that the TrackedAlias is using.
         /// </summary>
         public string ActiveRightControllerManufacturer => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).Manufacturer;
         /// <summary>
-        /// Retrieves the active RightController Detail Model status that the TrackedAlias is using.
+        /// Retrieves the active Right Controller Detail Model status that the TrackedAlias is using.
         /// </summary>
         public string ActiveRightControllerModel => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).Model;
         /// <summary>
-        /// Retrieves the active RightController Detail Tracking Type status that the TrackedAlias is using.
+        /// Retrieves the active Right Controller Detail Tracking Type status that the TrackedAlias is using.
         /// </summary>
         public DeviceDetailsRecord.SpatialTrackingType ActiveRightControllerTrackingType => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).TrackingType;
         /// <summary>
-        /// Retrieves the active RightController Detail Battery Level status that the TrackedAlias is using.
+        /// Retrieves the active Right Controller Detail Battery Level status that the TrackedAlias is using.
         /// </summary>
         public float ActiveRightControllerBatteryLevel => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).BatteryLevel;
         /// <summary>
-        /// Retrieves the active RightController Detail Battery Charge status that the TrackedAlias is using.
+        /// Retrieves the active Right Controller Detail Battery Charge status that the TrackedAlias is using.
         /// </summary>
         public BatteryStatus ActiveRightControllerBatteryChargeStatus => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).BatteryChargeStatus;
+        #endregion
 
+        #region Enumerables
         /// <summary>
         /// Retrieves all of the linked CameraRig PlayAreas.
         /// </summary>
@@ -744,6 +825,9 @@
                 }
             }
         }
+        #endregion
+
+        #region Object Follower Properties
         /// <summary>
         /// The alias follower for the PlayArea.
         /// </summary>
@@ -757,25 +841,26 @@
         /// </summary>
         public ObjectFollower HeadsetOriginAlias => Configuration.HeadsetOrigin;
         /// <summary>
-        /// The alias follower for the LeftController.
+        /// The alias follower for the Left Controller.
         /// </summary>
         public ObjectFollower LeftControllerAlias => Configuration.LeftController;
         /// <summary>
-        /// The alias follower for the RightController.
+        /// The alias follower for the Right Controller.
         /// </summary>
         public ObjectFollower RightControllerAlias => Configuration.RightController;
+        /// <summary>
+        /// The alias follower for the Dominant Controller.
+        /// </summary>
+        public ObjectFollower DominantControllerAlias => Configuration.DominantController;
+        #endregion
 
+        #region Haptic Methods
         /// <summary>
         /// Begins the haptic process on the Left Controller using the main <see cref="HapticProcess"/>.
         /// </summary>
         public virtual void BeginHapticProcessOnLeftController()
         {
-            if (ActiveLeftHapticProcess == null)
-            {
-                return;
-            }
-
-            ActiveLeftHapticProcess.Begin();
+            BeginHapticProcessOnController(ActiveLeftHapticProcess);
         }
 
         /// <summary>
@@ -785,6 +870,10 @@
         public virtual void BeginHapticProcessOnLeftController(int profileIndex)
         {
             ActiveLeftHapticProfile = BeginHapticProfile(ActiveLeftHapticProfiles, profileIndex);
+            if (ActiveDominantControllerNode == ActiveLeftControllerNode)
+            {
+                ActiveDominantHapticProfile = ActiveLeftHapticProfile;
+            }
         }
 
         /// <summary>
@@ -792,12 +881,7 @@
         /// </summary>
         public virtual void BeginHapticProcessOnRightController()
         {
-            if (ActiveRightHapticProcess == null)
-            {
-                return;
-            }
-
-            ActiveRightHapticProcess.Begin();
+            BeginHapticProcessOnController(ActiveRightHapticProcess);
         }
 
         /// <summary>
@@ -807,6 +891,27 @@
         public virtual void BeginHapticProcessOnRightController(int profileIndex)
         {
             ActiveRightHapticProfile = BeginHapticProfile(ActiveRightHapticProfiles, profileIndex);
+            if (ActiveDominantControllerNode == ActiveRightControllerNode)
+            {
+                ActiveDominantHapticProfile = ActiveRightHapticProfile;
+            }
+        }
+
+        /// <summary>
+        /// Begins the haptic process on the Dominant Controller using the main <see cref="HapticProcess"/>.
+        /// </summary>
+        public virtual void BeginHapticProcessOnDominantController()
+        {
+            BeginHapticProcessOnController(ActiveDominantHapticProcess);
+        }
+
+        /// <summary>
+        /// Begins a haptic process on the Dominant Controller using the given profile.
+        /// </summary>
+        /// <param name="profileIndex">The index of the haptic profile to use.</param>
+        public virtual void BeginHapticProcessOnDominantController(int profileIndex)
+        {
+            ActiveDominantHapticProfile = BeginHapticProfile(ActiveDominantHapticProfiles, profileIndex);
         }
 
         /// <summary>
@@ -814,18 +919,15 @@
         /// </summary>
         public virtual void CancelAllHapticsOnLeftController()
         {
-            CancelHapticProcessOnLeftController();
-            CancelActiveHapticProfileOnLeftController();
+            CancelAllHapticsOnController(ActiveLeftHapticProfiles, ActiveLeftHapticProcess, ActiveLeftHapticProfile);
+        }
 
-            if (ActiveLeftHapticProfiles == null)
-            {
-                return;
-            }
-
-            foreach (HapticProcess process in ActiveLeftHapticProfiles.NonSubscribableElements)
-            {
-                process.Cancel();
-            }
+        /// <summary>
+        /// Cancels the haptic process currently running on the Left Controller for the current haptic profile.
+        /// </summary>
+        public virtual void CancelActiveHapticProfileOnLeftController()
+        {
+            CancelHapticProcessOnController(ActiveLeftHapticProfile);
         }
 
         /// <summary>
@@ -833,12 +935,7 @@
         /// </summary>
         public virtual void CancelHapticProcessOnLeftController()
         {
-            if (ActiveLeftHapticProcess == null)
-            {
-                return;
-            }
-
-            ActiveLeftHapticProcess.Cancel();
+            CancelHapticProcessOnController(ActiveLeftHapticProcess);
         }
 
         /// <summary>
@@ -852,48 +949,11 @@
         }
 
         /// <summary>
-        /// Cancels the haptic process currently running on the Left Controller for the current haptic profile.
-        /// </summary>
-        public virtual void CancelActiveHapticProfileOnLeftController()
-        {
-            if (ActiveLeftHapticProfile == null)
-            {
-                return;
-            }
-
-            ActiveLeftHapticProfile.Cancel();
-        }
-
-        /// <summary>
         /// Cancels all haptic process currently running on the Right Controller.
         /// </summary>
         public virtual void CancelAllHapticsOnRightController()
         {
-            CancelHapticProcessOnRightController();
-            CancelActiveHapticProfileOnRightController();
-
-            if (ActiveRightHapticProfiles == null)
-            {
-                return;
-            }
-
-            foreach (HapticProcess process in ActiveRightHapticProfiles.NonSubscribableElements)
-            {
-                process.Cancel();
-            }
-        }
-
-        /// <summary>
-        /// Cancels any haptic process currently running on the Right Controller using the main <see cref="HapticProcess"/>.
-        /// </summary>
-        public virtual void CancelHapticProcessOnRightController()
-        {
-            if (ActiveRightHapticProcess == null)
-            {
-                return;
-            }
-
-            ActiveRightHapticProcess.Cancel();
+            CancelAllHapticsOnController(ActiveRightHapticProfiles, ActiveRightHapticProcess, ActiveRightHapticProfile);
         }
 
         /// <summary>
@@ -901,12 +961,15 @@
         /// </summary>
         public virtual void CancelActiveHapticProfileOnRightController()
         {
-            if (ActiveRightHapticProfile == null)
-            {
-                return;
-            }
+            CancelHapticProcessOnController(ActiveRightHapticProfile);
+        }
 
-            ActiveRightHapticProfile.Cancel();
+        /// <summary>
+        /// Cancels any haptic process currently running on the Right Controller using the main <see cref="HapticProcess"/>.
+        /// </summary>
+        public virtual void CancelHapticProcessOnRightController()
+        {
+            CancelHapticProcessOnController(ActiveRightHapticProcess);
         }
 
         /// <summary>
@@ -918,6 +981,41 @@
             CancelHapticProfile(ActiveRightHapticProfiles, profileIndex);
             ActiveRightHapticProfile = null;
         }
+
+        /// <summary>
+        /// Cancels all haptic process currently running on the Dominant Controller.
+        /// </summary>
+        public virtual void CancelAllHapticsOnDominantController()
+        {
+            CancelAllHapticsOnController(ActiveDominantHapticProfiles, ActiveDominantHapticProcess, ActiveDominantHapticProfile);
+        }
+
+        /// <summary>
+        /// Cancels the haptic process currently running on the Left Controller for the current haptic profile.
+        /// </summary>
+        public virtual void CancelActiveHapticProfileOnDominantController()
+        {
+            CancelHapticProcessOnController(ActiveDominantHapticProfile);
+        }
+
+        /// <summary>
+        /// Cancels any haptic process currently running on the Dominant Controller using the main <see cref="HapticProcess"/>.
+        /// </summary>
+        public virtual void CancelHapticProcessOnDominantController()
+        {
+            CancelHapticProcessOnController(ActiveDominantHapticProcess);
+        }
+
+        /// <summary>
+        /// Cancels the haptic process currently running on the Dominant Controller for the given profile.
+        /// </summary>
+        /// <param name="profileIndex">The index of the haptic profile to cancel.</param>
+        public virtual void CancelHapticProcessOnDominantController(int profileIndex)
+        {
+            CancelHapticProfile(ActiveDominantHapticProfiles, profileIndex);
+            ActiveDominantHapticProfile = null;
+        }
+        #endregion
 
         protected virtual void OnEnable()
         {
@@ -1165,6 +1263,56 @@
         protected virtual bool IsValidHapticProfile(HapticProcessObservableList processes, int profileIndex)
         {
             return processes != null && profileIndex >= 0 && profileIndex < processes.NonSubscribableElements.Count;
+        }
+
+        /// <summary>
+        /// Begins the haptic process on the given <see cref="HapticProcess"/>.
+        /// </summary>
+        /// <param name="process">The process to begin.</param>
+        protected virtual void BeginHapticProcessOnController(HapticProcess process)
+        {
+            if (process == null)
+            {
+                return;
+            }
+
+            process.Begin();
+        }
+
+        /// <summary>
+        /// Cancels all haptic process currently running on the specified Controller data.
+        /// </summary>
+        /// <param name="profileList">The profile list to cancel.</param>
+        /// <param name="hapticProcess">The specific process to cancel.</param>
+        /// <param name="hapticProfile">The specific profile to cancel.</param>
+        protected virtual void CancelAllHapticsOnController(HapticProcessObservableList profileList, HapticProcess hapticProcess, HapticProcess hapticProfile)
+        {
+            CancelHapticProcessOnController(hapticProcess);
+            CancelHapticProcessOnController(hapticProfile);
+
+            if (profileList == null)
+            {
+                return;
+            }
+
+            foreach (HapticProcess process in profileList.NonSubscribableElements)
+            {
+                process.Cancel();
+            }
+        }
+
+        /// <summary>
+        /// Cancels any haptic process currently running on the specified <see cref="HapticProcess"/>.
+        /// </summary>
+        /// <param name="process">The process to cancel.</param>
+        protected virtual void CancelHapticProcessOnController(HapticProcess process)
+        {
+            if (process == null)
+            {
+                return;
+            }
+
+            process.Cancel();
         }
 
         /// <summary>

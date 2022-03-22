@@ -36,6 +36,8 @@ Sets up the Tracked Alias Prefab based on the provided user settings.
   * [RightControllerTrackingBegunEventHandler]
   * [RightControllerTrackingTypeChangedEventHandler]
 * [Properties]
+  * [DominantController]
+  * [DominantControllerVelocityTrackers]
   * [Facade]
   * [Headset]
   * [HeadsetOrigin]
@@ -57,8 +59,10 @@ Sets up the Tracked Alias Prefab based on the provided user settings.
   * [NotifyLeftControllerTrackingBegun()]
   * [NotifyRightControllerTrackingBegun()]
   * [NotifyTrackedAliasChanged(GameObject)]
+  * [OnDisable()]
   * [OnEnable()]
   * [SetUpCameraRigsConfiguration()]
+  * [SetUpDominantTracking(DeviceDetailsRecord)]
   * [SubscribeToDetailsEvents()]
   * [UnsubscribeToDetailsEvents()]
 
@@ -353,6 +357,26 @@ protected UnityAction<DeviceDetailsRecord.SpatialTrackingType> RightControllerTr
 
 ### Properties
 
+#### DominantController
+
+The ObjectFollower component for the current Dominant Controller.
+
+##### Declaration
+
+```
+public ObjectFollower DominantController { get; protected set; }
+```
+
+#### DominantControllerVelocityTrackers
+
+The VelocityTrackerProcessor component containing the current Dominant Controller Velocity Trackers.
+
+##### Declaration
+
+```
+public VelocityTrackerProcessor DominantControllerVelocityTrackers { get; protected set; }
+```
+
 #### Facade
 
 The public facade.
@@ -625,6 +649,14 @@ public virtual void NotifyTrackedAliasChanged(GameObject _)
 | --- | --- | --- |
 | GameObject | \_ | n/a |
 
+#### OnDisable()
+
+##### Declaration
+
+```
+protected virtual void OnDisable()
+```
+
 #### OnEnable()
 
 ##### Declaration
@@ -642,6 +674,22 @@ Sets up the TrackedAlias prefab with the specified settings.
 ```
 public virtual void SetUpCameraRigsConfiguration()
 ```
+
+#### SetUpDominantTracking(DeviceDetailsRecord)
+
+Sets up the dominant controller alias tracking.
+
+##### Declaration
+
+```
+public virtual void SetUpDominantTracking(DeviceDetailsRecord dominantRecord)
+```
+
+##### Parameters
+
+| Type | Name | Description |
+| --- | --- | --- |
+| DeviceDetailsRecord | dominantRecord | The current dominant controller record. |
 
 #### SubscribeToDetailsEvents()
 
@@ -698,6 +746,8 @@ protected virtual void UnsubscribeToDetailsEvents()
 [RightControllerTrackingBegunEventHandler]: #RightControllerTrackingBegunEventHandler
 [RightControllerTrackingTypeChangedEventHandler]: #RightControllerTrackingTypeChangedEventHandler
 [Properties]: #Properties
+[DominantController]: #DominantController
+[DominantControllerVelocityTrackers]: #DominantControllerVelocityTrackers
 [Facade]: #Facade
 [Headset]: #Headset
 [HeadsetOrigin]: #HeadsetOrigin
@@ -719,7 +769,9 @@ protected virtual void UnsubscribeToDetailsEvents()
 [NotifyLeftControllerTrackingBegun()]: #NotifyLeftControllerTrackingBegun
 [NotifyRightControllerTrackingBegun()]: #NotifyRightControllerTrackingBegun
 [NotifyTrackedAliasChanged(GameObject)]: #NotifyTrackedAliasChangedGameObject
+[OnDisable()]: #OnDisable
 [OnEnable()]: #OnEnable
 [SetUpCameraRigsConfiguration()]: #SetUpCameraRigsConfiguration
+[SetUpDominantTracking(DeviceDetailsRecord)]: #SetUpDominantTrackingDeviceDetailsRecord
 [SubscribeToDetailsEvents()]: #SubscribeToDetailsEvents
 [UnsubscribeToDetailsEvents()]: #UnsubscribeToDetailsEvents

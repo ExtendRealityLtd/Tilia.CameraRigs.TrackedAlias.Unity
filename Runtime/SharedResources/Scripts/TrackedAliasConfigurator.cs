@@ -60,6 +60,12 @@
         [Serialized]
         [field: DocumentedByXml, Restricted]
         public ObjectFollower RightController { get; protected set; }
+        /// <summary>
+        /// The <see cref="ObjectFollower"/> component for the current Dominant Controller.
+        /// </summary>
+        [Serialized]
+        [field: DocumentedByXml, Restricted]
+        public ObjectFollower DominantController { get; protected set; }
         #endregion
 
         #region Velocity Tracker Settings
@@ -81,6 +87,12 @@
         [Serialized]
         [field: DocumentedByXml, Restricted]
         public VelocityTrackerProcessor RightControllerVelocityTrackers { get; protected set; }
+        /// <summary>
+        /// The <see cref="VelocityTrackerProcessor"/> component containing the current Dominant Controller Velocity Trackers.
+        /// </summary>
+        [Serialized]
+        [field: DocumentedByXml, Restricted]
+        public VelocityTrackerProcessor DominantControllerVelocityTrackers { get; protected set; }
         #endregion
 
         #region Other Settings
@@ -281,6 +293,37 @@
             {
                 RightControllerVelocityTrackers.VelocityTrackers.RunWhenActiveAndEnabled(() => RightControllerVelocityTrackers.VelocityTrackers.Add(velocityTracker));
             }
+
+            SetUpDominantTracking(Facade.ActiveDominantControllerRecord);
+        }
+
+        /// <summary>
+        /// Sets up the dominant controller alias tracking.
+        /// </summary>
+        /// <param name="dominantRecord">The current dominant controller record.</param>
+        public virtual void SetUpDominantTracking(DeviceDetailsRecord dominantRecord)
+        {
+            DominantController.Sources.RunWhenActiveAndEnabled(() => DominantController.Sources.Clear());
+            DominantControllerVelocityTrackers.VelocityTrackers.RunWhenActiveAndEnabled(() => DominantControllerVelocityTrackers.VelocityTrackers.Clear());
+
+            if (dominantRecord == null || (dominantRecord.XRNodeType != Facade.ActiveLeftControllerNode && dominantRecord.XRNodeType != Facade.ActiveRightControllerNode))
+            {
+                DominantController.Sources.RunWhenActiveAndEnabled(() => DominantController.Sources.Add(Facade.ActiveHeadset));
+                DominantControllerVelocityTrackers.VelocityTrackers.RunWhenActiveAndEnabled(() => DominantControllerVelocityTrackers.VelocityTrackers.Add(Facade.ActiveHeadsetVelocity));
+                Facade.HeadsetBecameDominantController?.Invoke();
+            }
+            else if (dominantRecord.XRNodeType == Facade.ActiveLeftControllerNode)
+            {
+                DominantController.Sources.RunWhenActiveAndEnabled(() => DominantController.Sources.Add(Facade.ActiveLeftController));
+                DominantControllerVelocityTrackers.VelocityTrackers.RunWhenActiveAndEnabled(() => DominantControllerVelocityTrackers.VelocityTrackers.Add(Facade.ActiveLeftControllerVelocity));
+                Facade.LeftControllerBecameDominantController?.Invoke();
+            }
+            else if (dominantRecord.XRNodeType == Facade.ActiveRightControllerNode)
+            {
+                DominantController.Sources.RunWhenActiveAndEnabled(() => DominantController.Sources.Add(Facade.ActiveRightController));
+                DominantControllerVelocityTrackers.VelocityTrackers.RunWhenActiveAndEnabled(() => DominantControllerVelocityTrackers.VelocityTrackers.Add(Facade.ActiveRightControllerVelocity));
+                Facade.RightControllerBecameDominantController?.Invoke();
+            }
         }
 
         /// <summary>
@@ -324,6 +367,12 @@
         protected virtual void OnEnable()
         {
             SetUpCameraRigsConfiguration();
+            Facade.DominantControllerIsChanging?.AddListener(SetUpDominantTracking);
+        }
+
+        protected virtual void OnDisable()
+        {
+            Facade.DominantControllerIsChanging?.RemoveListener(SetUpDominantTracking);
         }
 
         /// <summary>

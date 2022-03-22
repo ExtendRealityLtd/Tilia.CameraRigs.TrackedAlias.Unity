@@ -10,22 +10,37 @@ The public interface into the Tracked Alias Prefab.
 * [Fields]
   * [DominantControllerIsChanging]
   * [HeadsetBatteryChargeStatusChanged]
+  * [HeadsetBecameDominantController]
   * [HeadsetConnectionStatusChanged]
   * [HeadsetTrackingBegun]
   * [HeadsetTrackingTypeChanged]
   * [LeftControllerBatteryChargeStatusChanged]
+  * [LeftControllerBecameDominantController]
   * [LeftControllerConnectionStatusChanged]
   * [LeftControllerTrackingBegun]
   * [LeftControllerTrackingTypeChanged]
   * [RightControllerBatteryChargeStatusChanged]
+  * [RightControllerBecameDominantController]
   * [RightControllerConnectionStatusChanged]
   * [RightControllerTrackingBegun]
   * [RightControllerTrackingTypeChanged]
   * [TrackedAliasChanged]
 * [Properties]
+  * [ActiveDominantController]
+  * [ActiveDominantControllerBatteryChargeStatus]
+  * [ActiveDominantControllerBatteryLevel]
+  * [ActiveDominantControllerIsConnected]
+  * [ActiveDominantControllerManufacturer]
+  * [ActiveDominantControllerModel]
   * [ActiveDominantControllerNode]
   * [ActiveDominantControllerObserver]
   * [ActiveDominantControllerRecord]
+  * [ActiveDominantControllerTrackingHasBegun]
+  * [ActiveDominantControllerTrackingType]
+  * [ActiveDominantControllerVelocity]
+  * [ActiveDominantHapticProcess]
+  * [ActiveDominantHapticProfile]
+  * [ActiveDominantHapticProfiles]
   * [ActiveHeadset]
   * [ActiveHeadsetBatteryChargeStatus]
   * [ActiveHeadsetBatteryLevel]
@@ -44,6 +59,7 @@ The public interface into the Tracked Alias Prefab.
   * [ActiveLeftControllerIsConnected]
   * [ActiveLeftControllerManufacturer]
   * [ActiveLeftControllerModel]
+  * [ActiveLeftControllerNode]
   * [ActiveLeftControllerTrackingHasBegun]
   * [ActiveLeftControllerTrackingType]
   * [ActiveLeftControllerVelocity]
@@ -59,6 +75,7 @@ The public interface into the Tracked Alias Prefab.
   * [ActiveRightControllerIsConnected]
   * [ActiveRightControllerManufacturer]
   * [ActiveRightControllerModel]
+  * [ActiveRightControllerNode]
   * [ActiveRightControllerTrackingHasBegun]
   * [ActiveRightControllerTrackingType]
   * [ActiveRightControllerVelocity]
@@ -67,6 +84,7 @@ The public interface into the Tracked Alias Prefab.
   * [ActiveRightHapticProfiles]
   * [CameraRigs]
   * [Configuration]
+  * [DominantControllerAlias]
   * [DominantControllerObservers]
   * [HeadsetAlias]
   * [HeadsetCameras]
@@ -90,15 +108,24 @@ The public interface into the Tracked Alias Prefab.
   * [RightControllers]
   * [RightControllerVelocityTrackers]
 * [Methods]
+  * [BeginHapticProcessOnController(HapticProcess)]
+  * [BeginHapticProcessOnDominantController()]
+  * [BeginHapticProcessOnDominantController(Int32)]
   * [BeginHapticProcessOnLeftController()]
   * [BeginHapticProcessOnLeftController(Int32)]
   * [BeginHapticProcessOnRightController()]
   * [BeginHapticProcessOnRightController(Int32)]
   * [BeginHapticProfile(HapticProcessObservableList, Int32)]
+  * [CancelActiveHapticProfileOnDominantController()]
   * [CancelActiveHapticProfileOnLeftController()]
   * [CancelActiveHapticProfileOnRightController()]
+  * [CancelAllHapticsOnController(HapticProcessObservableList, HapticProcess, HapticProcess)]
+  * [CancelAllHapticsOnDominantController()]
   * [CancelAllHapticsOnLeftController()]
   * [CancelAllHapticsOnRightController()]
+  * [CancelHapticProcessOnController(HapticProcess)]
+  * [CancelHapticProcessOnDominantController()]
+  * [CancelHapticProcessOnDominantController(Int32)]
   * [CancelHapticProcessOnLeftController()]
   * [CancelHapticProcessOnLeftController(Int32)]
   * [CancelHapticProcessOnRightController()]
@@ -162,6 +189,16 @@ Emitted when the headset battery charge status changes.
 public DeviceDetailsRecord.BatteryStatusUnityEvent HeadsetBatteryChargeStatusChanged
 ```
 
+#### HeadsetBecameDominantController
+
+Emitted when the headset becomes the dominant controller.
+
+##### Declaration
+
+```
+public UnityEvent HeadsetBecameDominantController
+```
+
 #### HeadsetConnectionStatusChanged
 
 Emitted when the headset connection status changes.
@@ -202,6 +239,16 @@ Emitted when the left controller battery charge status changes.
 public DeviceDetailsRecord.BatteryStatusUnityEvent LeftControllerBatteryChargeStatusChanged
 ```
 
+#### LeftControllerBecameDominantController
+
+Emitted when the left controller becomes the dominant controller.
+
+##### Declaration
+
+```
+public UnityEvent LeftControllerBecameDominantController
+```
+
 #### LeftControllerConnectionStatusChanged
 
 Emitted when the left controller connection status changes.
@@ -240,6 +287,16 @@ Emitted when the right controller battery charge status changes.
 
 ```
 public DeviceDetailsRecord.BatteryStatusUnityEvent RightControllerBatteryChargeStatusChanged
+```
+
+#### RightControllerBecameDominantController
+
+Emitted when the right controller becomes the dominant controller.
+
+##### Declaration
+
+```
+public UnityEvent RightControllerBecameDominantController
 ```
 
 #### RightControllerConnectionStatusChanged
@@ -284,6 +341,66 @@ public TrackedAliasFacade.LinkedAliasAssociationCollectionUnityEvent TrackedAlia
 
 ### Properties
 
+#### ActiveDominantController
+
+Retrieves the active Dominant Controller GameObject that the TrackedAlias is using.
+
+##### Declaration
+
+```
+public GameObject ActiveDominantController { get; }
+```
+
+#### ActiveDominantControllerBatteryChargeStatus
+
+Retrieves the active Dominant Controller Detail Battery Charge status that the TrackedAlias is using.
+
+##### Declaration
+
+```
+public BatteryStatus ActiveDominantControllerBatteryChargeStatus { get; }
+```
+
+#### ActiveDominantControllerBatteryLevel
+
+Retrieves the active Dominant Controller Detail Battery Level status that the TrackedAlias is using.
+
+##### Declaration
+
+```
+public float ActiveDominantControllerBatteryLevel { get; }
+```
+
+#### ActiveDominantControllerIsConnected
+
+Retrieves the active Dominant Controller Detail Is Connected status that the TrackedAlias is using.
+
+##### Declaration
+
+```
+public bool ActiveDominantControllerIsConnected { get; }
+```
+
+#### ActiveDominantControllerManufacturer
+
+Retrieves the active Dominant Controller Detail Manufacturer status that the TrackedAlias is using.
+
+##### Declaration
+
+```
+public string ActiveDominantControllerManufacturer { get; }
+```
+
+#### ActiveDominantControllerModel
+
+Retrieves the active Dominant Controller Detail Model status that the TrackedAlias is using.
+
+##### Declaration
+
+```
+public string ActiveDominantControllerModel { get; }
+```
+
 #### ActiveDominantControllerNode
 
 Retrieves the dominant connected controller node.
@@ -306,12 +423,72 @@ public DominantControllerObserver ActiveDominantControllerObserver { get; }
 
 #### ActiveDominantControllerRecord
 
-Retrieves the dominant connected controller node.
+Retrieves the active Dominant Controller Detail Record that the TrackedAlias is using.
 
 ##### Declaration
 
 ```
 public DeviceDetailsRecord ActiveDominantControllerRecord { get; }
+```
+
+#### ActiveDominantControllerTrackingHasBegun
+
+Retrieves the active Dominant Controller Detail Tracking Begun status that the TrackedAlias is using.
+
+##### Declaration
+
+```
+public bool ActiveDominantControllerTrackingHasBegun { get; }
+```
+
+#### ActiveDominantControllerTrackingType
+
+Retrieves the active Dominant Controller Detail Tracking Type status that the TrackedAlias is using.
+
+##### Declaration
+
+```
+public DeviceDetailsRecord.SpatialTrackingType ActiveDominantControllerTrackingType { get; }
+```
+
+#### ActiveDominantControllerVelocity
+
+Retrieves the active Dominant Controller Velocity Tracker that the TrackedAlias is using.
+
+##### Declaration
+
+```
+public VelocityTracker ActiveDominantControllerVelocity { get; }
+```
+
+#### ActiveDominantHapticProcess
+
+Retrieves the active Dominant Controller Haptic Process that the TrackedAlias is using.
+
+##### Declaration
+
+```
+public HapticProcess ActiveDominantHapticProcess { get; }
+```
+
+#### ActiveDominantHapticProfile
+
+Retrieves the active Dominant Controller Haptic Profile that has been most recently used.
+
+##### Declaration
+
+```
+public HapticProcess ActiveDominantHapticProfile { get; protected set; }
+```
+
+#### ActiveDominantHapticProfiles
+
+Retrieves the active Dominant Controller Haptic Profiles that the TrackedAlias is using.
+
+##### Declaration
+
+```
+public HapticProcessObservableList ActiveDominantHapticProfiles { get; }
 ```
 
 #### ActiveHeadset
@@ -426,7 +603,7 @@ public VelocityTracker ActiveHeadsetVelocity { get; }
 
 #### ActiveLeftController
 
-Retrieves the active Left Controller that the TrackedAlias is using.
+Retrieves the active Left Controller GameObject that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -436,7 +613,7 @@ public GameObject ActiveLeftController { get; }
 
 #### ActiveLeftControllerBatteryChargeStatus
 
-Retrieves the active LeftController Detail Battery Charge status that the TrackedAlias is using.
+Retrieves the active Left Controller Detail Battery Charge status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -446,7 +623,7 @@ public BatteryStatus ActiveLeftControllerBatteryChargeStatus { get; }
 
 #### ActiveLeftControllerBatteryLevel
 
-Retrieves the active LeftController Detail Battery Level status that the TrackedAlias is using.
+Retrieves the active Left Controller Detail Battery Level status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -456,7 +633,7 @@ public float ActiveLeftControllerBatteryLevel { get; }
 
 #### ActiveLeftControllerDetails
 
-Retrieves the active LeftController Detail Record that the TrackedAlias is using.
+Retrieves the active Left Controller Detail Record that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -466,7 +643,7 @@ public DeviceDetailsRecord ActiveLeftControllerDetails { get; }
 
 #### ActiveLeftControllerIsConnected
 
-Retrieves the active LeftController Detail Is Connected status that the TrackedAlias is using.
+Retrieves the active Left Controller Detail Is Connected status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -476,7 +653,7 @@ public bool ActiveLeftControllerIsConnected { get; }
 
 #### ActiveLeftControllerManufacturer
 
-Retrieves the active LeftController Detail Manufacturer status that the TrackedAlias is using.
+Retrieves the active Left Controller Detail Manufacturer status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -486,7 +663,7 @@ public string ActiveLeftControllerManufacturer { get; }
 
 #### ActiveLeftControllerModel
 
-Retrieves the active LeftController Detail Model status that the TrackedAlias is using.
+Retrieves the active Left Controller Detail Model status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -494,9 +671,19 @@ Retrieves the active LeftController Detail Model status that the TrackedAlias is
 public string ActiveLeftControllerModel { get; }
 ```
 
+#### ActiveLeftControllerNode
+
+Retrieves the left connected controller node.
+
+##### Declaration
+
+```
+public XRNode ActiveLeftControllerNode { get; }
+```
+
 #### ActiveLeftControllerTrackingHasBegun
 
-Retrieves the active LeftController Detail Tracking Begun status that the TrackedAlias is using.
+Retrieves the active Left Controller Detail Tracking Begun status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -506,7 +693,7 @@ public bool ActiveLeftControllerTrackingHasBegun { get; }
 
 #### ActiveLeftControllerTrackingType
 
-Retrieves the active LeftController Detail Tracking Type status that the TrackedAlias is using.
+Retrieves the active Left Controller Detail Tracking Type status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -574,7 +761,7 @@ public GameObject ActivePlayArea { get; }
 
 #### ActiveRightController
 
-Retrieves the active Right Controller that the TrackedAlias is using.
+Retrieves the active Right Controller GameObject that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -584,7 +771,7 @@ public GameObject ActiveRightController { get; }
 
 #### ActiveRightControllerBatteryChargeStatus
 
-Retrieves the active RightController Detail Battery Charge status that the TrackedAlias is using.
+Retrieves the active Right Controller Detail Battery Charge status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -594,7 +781,7 @@ public BatteryStatus ActiveRightControllerBatteryChargeStatus { get; }
 
 #### ActiveRightControllerBatteryLevel
 
-Retrieves the active RightController Detail Battery Level status that the TrackedAlias is using.
+Retrieves the active Right Controller Detail Battery Level status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -604,7 +791,7 @@ public float ActiveRightControllerBatteryLevel { get; }
 
 #### ActiveRightControllerDetails
 
-Retrieves the active RightController Detail Record that the TrackedAlias is using.
+Retrieves the active Right Controller Detail Record that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -614,7 +801,7 @@ public DeviceDetailsRecord ActiveRightControllerDetails { get; }
 
 #### ActiveRightControllerIsConnected
 
-Retrieves the active RightController Detail Is Connected status that the TrackedAlias is using.
+Retrieves the active Right Controller Detail Is Connected status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -624,7 +811,7 @@ public bool ActiveRightControllerIsConnected { get; }
 
 #### ActiveRightControllerManufacturer
 
-Retrieves the active RightController Detail Manufacturer status that the TrackedAlias is using.
+Retrieves the active Right Controller Detail Manufacturer status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -634,7 +821,7 @@ public string ActiveRightControllerManufacturer { get; }
 
 #### ActiveRightControllerModel
 
-Retrieves the active RightController Detail Model status that the TrackedAlias is using.
+Retrieves the active Right Controller Detail Model status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -642,9 +829,19 @@ Retrieves the active RightController Detail Model status that the TrackedAlias i
 public string ActiveRightControllerModel { get; }
 ```
 
+#### ActiveRightControllerNode
+
+Retrieves the right connected controller node.
+
+##### Declaration
+
+```
+public XRNode ActiveRightControllerNode { get; }
+```
+
 #### ActiveRightControllerTrackingHasBegun
 
-Retrieves the active RightController Detail Tracking Begun status that the TrackedAlias is using.
+Retrieves the active Right Controller Detail Tracking Begun status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -654,7 +851,7 @@ public bool ActiveRightControllerTrackingHasBegun { get; }
 
 #### ActiveRightControllerTrackingType
 
-Retrieves the active RightController Detail Tracking Type status that the TrackedAlias is using.
+Retrieves the active Right Controller Detail Tracking Type status that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -694,7 +891,7 @@ public HapticProcess ActiveRightHapticProfile { get; protected set; }
 
 #### ActiveRightHapticProfiles
 
-Retrieves the active Left Controller Haptic Profiles that the TrackedAlias is using.
+Retrieves the active Right Controller Haptic Profiles that the TrackedAlias is using.
 
 ##### Declaration
 
@@ -720,6 +917,16 @@ The linked Internal Setup.
 
 ```
 public TrackedAliasConfigurator Configuration { get; protected set; }
+```
+
+#### DominantControllerAlias
+
+The alias follower for the Dominant Controller.
+
+##### Declaration
+
+```
+public ObjectFollower DominantControllerAlias { get; }
 ```
 
 #### DominantControllerObservers
@@ -804,7 +1011,7 @@ public IEnumerable<VelocityTracker> HeadsetVelocityTrackers { get; }
 
 #### LeftControllerAlias
 
-The alias follower for the LeftController.
+The alias follower for the Left Controller.
 
 ##### Declaration
 
@@ -884,7 +1091,7 @@ public IEnumerable<GameObject> PlayAreas { get; }
 
 #### RightControllerAlias
 
-The alias follower for the RightController.
+The alias follower for the Right Controller.
 
 ##### Declaration
 
@@ -943,6 +1150,48 @@ public IEnumerable<VelocityTracker> RightControllerVelocityTrackers { get; }
 ```
 
 ### Methods
+
+#### BeginHapticProcessOnController(HapticProcess)
+
+Begins the haptic process on the given HapticProcess.
+
+##### Declaration
+
+```
+protected virtual void BeginHapticProcessOnController(HapticProcess process)
+```
+
+##### Parameters
+
+| Type | Name | Description |
+| --- | --- | --- |
+| HapticProcess | process | The process to begin. |
+
+#### BeginHapticProcessOnDominantController()
+
+Begins the haptic process on the Dominant Controller using the main HapticProcess.
+
+##### Declaration
+
+```
+public virtual void BeginHapticProcessOnDominantController()
+```
+
+#### BeginHapticProcessOnDominantController(Int32)
+
+Begins a haptic process on the Dominant Controller using the given profile.
+
+##### Declaration
+
+```
+public virtual void BeginHapticProcessOnDominantController(int profileIndex)
+```
+
+##### Parameters
+
+| Type | Name | Description |
+| --- | --- | --- |
+| System.Int32 | profileIndex | The index of the haptic profile to use. |
 
 #### BeginHapticProcessOnLeftController()
 
@@ -1019,6 +1268,16 @@ protected virtual HapticProcess BeginHapticProfile(HapticProcessObservableList p
 | --- | --- |
 | HapticProcess | The haptic process being accessed. |
 
+#### CancelActiveHapticProfileOnDominantController()
+
+Cancels the haptic process currently running on the Left Controller for the current haptic profile.
+
+##### Declaration
+
+```
+public virtual void CancelActiveHapticProfileOnDominantController()
+```
+
 #### CancelActiveHapticProfileOnLeftController()
 
 Cancels the haptic process currently running on the Left Controller for the current haptic profile.
@@ -1037,6 +1296,34 @@ Cancels the haptic process currently running on the Right Controller for the cur
 
 ```
 public virtual void CancelActiveHapticProfileOnRightController()
+```
+
+#### CancelAllHapticsOnController(HapticProcessObservableList, HapticProcess, HapticProcess)
+
+Cancels all haptic process currently running on the specified Controller data.
+
+##### Declaration
+
+```
+protected virtual void CancelAllHapticsOnController(HapticProcessObservableList profileList, HapticProcess hapticProcess, HapticProcess hapticProfile)
+```
+
+##### Parameters
+
+| Type | Name | Description |
+| --- | --- | --- |
+| HapticProcessObservableList | profileList | The profile list to cancel. |
+| HapticProcess | hapticProcess | The specific process to cancel. |
+| HapticProcess | hapticProfile | The specific profile to cancel. |
+
+#### CancelAllHapticsOnDominantController()
+
+Cancels all haptic process currently running on the Dominant Controller.
+
+##### Declaration
+
+```
+public virtual void CancelAllHapticsOnDominantController()
 ```
 
 #### CancelAllHapticsOnLeftController()
@@ -1058,6 +1345,48 @@ Cancels all haptic process currently running on the Right Controller.
 ```
 public virtual void CancelAllHapticsOnRightController()
 ```
+
+#### CancelHapticProcessOnController(HapticProcess)
+
+Cancels any haptic process currently running on the specified HapticProcess.
+
+##### Declaration
+
+```
+protected virtual void CancelHapticProcessOnController(HapticProcess process)
+```
+
+##### Parameters
+
+| Type | Name | Description |
+| --- | --- | --- |
+| HapticProcess | process | The process to cancel. |
+
+#### CancelHapticProcessOnDominantController()
+
+Cancels any haptic process currently running on the Dominant Controller using the main HapticProcess.
+
+##### Declaration
+
+```
+public virtual void CancelHapticProcessOnDominantController()
+```
+
+#### CancelHapticProcessOnDominantController(Int32)
+
+Cancels the haptic process currently running on the Dominant Controller for the given profile.
+
+##### Declaration
+
+```
+public virtual void CancelHapticProcessOnDominantController(int profileIndex)
+```
+
+##### Parameters
+
+| Type | Name | Description |
+| --- | --- | --- |
+| System.Int32 | profileIndex | The index of the haptic profile to cancel. |
 
 #### CancelHapticProcessOnLeftController()
 
@@ -1448,22 +1777,37 @@ protected virtual void UnsubscribeFromCameraRigsEvents()
 [Fields]: #Fields
 [DominantControllerIsChanging]: #DominantControllerIsChanging
 [HeadsetBatteryChargeStatusChanged]: #HeadsetBatteryChargeStatusChanged
+[HeadsetBecameDominantController]: #HeadsetBecameDominantController
 [HeadsetConnectionStatusChanged]: #HeadsetConnectionStatusChanged
 [HeadsetTrackingBegun]: #HeadsetTrackingBegun
 [HeadsetTrackingTypeChanged]: #HeadsetTrackingTypeChanged
 [LeftControllerBatteryChargeStatusChanged]: #LeftControllerBatteryChargeStatusChanged
+[LeftControllerBecameDominantController]: #LeftControllerBecameDominantController
 [LeftControllerConnectionStatusChanged]: #LeftControllerConnectionStatusChanged
 [LeftControllerTrackingBegun]: #LeftControllerTrackingBegun
 [LeftControllerTrackingTypeChanged]: #LeftControllerTrackingTypeChanged
 [RightControllerBatteryChargeStatusChanged]: #RightControllerBatteryChargeStatusChanged
+[RightControllerBecameDominantController]: #RightControllerBecameDominantController
 [RightControllerConnectionStatusChanged]: #RightControllerConnectionStatusChanged
 [RightControllerTrackingBegun]: #RightControllerTrackingBegun
 [RightControllerTrackingTypeChanged]: #RightControllerTrackingTypeChanged
 [TrackedAliasChanged]: #TrackedAliasChanged
 [Properties]: #Properties
+[ActiveDominantController]: #ActiveDominantController
+[ActiveDominantControllerBatteryChargeStatus]: #ActiveDominantControllerBatteryChargeStatus
+[ActiveDominantControllerBatteryLevel]: #ActiveDominantControllerBatteryLevel
+[ActiveDominantControllerIsConnected]: #ActiveDominantControllerIsConnected
+[ActiveDominantControllerManufacturer]: #ActiveDominantControllerManufacturer
+[ActiveDominantControllerModel]: #ActiveDominantControllerModel
 [ActiveDominantControllerNode]: #ActiveDominantControllerNode
 [ActiveDominantControllerObserver]: #ActiveDominantControllerObserver
 [ActiveDominantControllerRecord]: #ActiveDominantControllerRecord
+[ActiveDominantControllerTrackingHasBegun]: #ActiveDominantControllerTrackingHasBegun
+[ActiveDominantControllerTrackingType]: #ActiveDominantControllerTrackingType
+[ActiveDominantControllerVelocity]: #ActiveDominantControllerVelocity
+[ActiveDominantHapticProcess]: #ActiveDominantHapticProcess
+[ActiveDominantHapticProfile]: #ActiveDominantHapticProfile
+[ActiveDominantHapticProfiles]: #ActiveDominantHapticProfiles
 [ActiveHeadset]: #ActiveHeadset
 [ActiveHeadsetBatteryChargeStatus]: #ActiveHeadsetBatteryChargeStatus
 [ActiveHeadsetBatteryLevel]: #ActiveHeadsetBatteryLevel
@@ -1482,6 +1826,7 @@ protected virtual void UnsubscribeFromCameraRigsEvents()
 [ActiveLeftControllerIsConnected]: #ActiveLeftControllerIsConnected
 [ActiveLeftControllerManufacturer]: #ActiveLeftControllerManufacturer
 [ActiveLeftControllerModel]: #ActiveLeftControllerModel
+[ActiveLeftControllerNode]: #ActiveLeftControllerNode
 [ActiveLeftControllerTrackingHasBegun]: #ActiveLeftControllerTrackingHasBegun
 [ActiveLeftControllerTrackingType]: #ActiveLeftControllerTrackingType
 [ActiveLeftControllerVelocity]: #ActiveLeftControllerVelocity
@@ -1497,6 +1842,7 @@ protected virtual void UnsubscribeFromCameraRigsEvents()
 [ActiveRightControllerIsConnected]: #ActiveRightControllerIsConnected
 [ActiveRightControllerManufacturer]: #ActiveRightControllerManufacturer
 [ActiveRightControllerModel]: #ActiveRightControllerModel
+[ActiveRightControllerNode]: #ActiveRightControllerNode
 [ActiveRightControllerTrackingHasBegun]: #ActiveRightControllerTrackingHasBegun
 [ActiveRightControllerTrackingType]: #ActiveRightControllerTrackingType
 [ActiveRightControllerVelocity]: #ActiveRightControllerVelocity
@@ -1505,6 +1851,7 @@ protected virtual void UnsubscribeFromCameraRigsEvents()
 [ActiveRightHapticProfiles]: #ActiveRightHapticProfiles
 [CameraRigs]: #CameraRigs
 [Configuration]: #Configuration
+[DominantControllerAlias]: #DominantControllerAlias
 [DominantControllerObservers]: #DominantControllerObservers
 [HeadsetAlias]: #HeadsetAlias
 [HeadsetCameras]: #HeadsetCameras
@@ -1528,15 +1875,24 @@ protected virtual void UnsubscribeFromCameraRigsEvents()
 [RightControllers]: #RightControllers
 [RightControllerVelocityTrackers]: #RightControllerVelocityTrackers
 [Methods]: #Methods
+[BeginHapticProcessOnController(HapticProcess)]: #BeginHapticProcessOnControllerHapticProcess
+[BeginHapticProcessOnDominantController()]: #BeginHapticProcessOnDominantController
+[BeginHapticProcessOnDominantController(Int32)]: #BeginHapticProcessOnDominantControllerInt32
 [BeginHapticProcessOnLeftController()]: #BeginHapticProcessOnLeftController
 [BeginHapticProcessOnLeftController(Int32)]: #BeginHapticProcessOnLeftControllerInt32
 [BeginHapticProcessOnRightController()]: #BeginHapticProcessOnRightController
 [BeginHapticProcessOnRightController(Int32)]: #BeginHapticProcessOnRightControllerInt32
 [BeginHapticProfile(HapticProcessObservableList, Int32)]: #BeginHapticProfileHapticProcessObservableList-Int32
+[CancelActiveHapticProfileOnDominantController()]: #CancelActiveHapticProfileOnDominantController
 [CancelActiveHapticProfileOnLeftController()]: #CancelActiveHapticProfileOnLeftController
 [CancelActiveHapticProfileOnRightController()]: #CancelActiveHapticProfileOnRightController
+[CancelAllHapticsOnController(HapticProcessObservableList, HapticProcess, HapticProcess)]: #CancelAllHapticsOnControllerHapticProcessObservableList-HapticProcess-HapticProcess
+[CancelAllHapticsOnDominantController()]: #CancelAllHapticsOnDominantController
 [CancelAllHapticsOnLeftController()]: #CancelAllHapticsOnLeftController
 [CancelAllHapticsOnRightController()]: #CancelAllHapticsOnRightController
+[CancelHapticProcessOnController(HapticProcess)]: #CancelHapticProcessOnControllerHapticProcess
+[CancelHapticProcessOnDominantController()]: #CancelHapticProcessOnDominantController
+[CancelHapticProcessOnDominantController(Int32)]: #CancelHapticProcessOnDominantControllerInt32
 [CancelHapticProcessOnLeftController()]: #CancelHapticProcessOnLeftController
 [CancelHapticProcessOnLeftController(Int32)]: #CancelHapticProcessOnLeftControllerInt32
 [CancelHapticProcessOnRightController()]: #CancelHapticProcessOnRightController
