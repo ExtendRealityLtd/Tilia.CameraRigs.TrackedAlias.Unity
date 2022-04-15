@@ -1,14 +1,12 @@
 ﻿namespace Tilia.CameraRigs.TrackedAlias
 {
-    using Malimbe.MemberChangeMethod;
-    using Malimbe.PropertySerializationAttribute;
-    using Malimbe.XmlDocumentationAttribute;
     using System;
     using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.Events;
     using UnityEngine.XR;
     using Zinnia.Data.Attribute;
+    using Zinnia.Extension;
     using Zinnia.Haptics;
     using Zinnia.Haptics.Collection;
     using Zinnia.Tracking.CameraRig;
@@ -28,12 +26,32 @@
         public class LinkedAliasAssociationCollectionUnityEvent : UnityEvent<LinkedAliasAssociationCollection> { }
 
         #region Tracked Alias Settings
+        [Header("Tracked Alias Settings")]
+        [Tooltip("The associated CameraRigs to track.")]
+        [SerializeField]
+        private LinkedAliasAssociationCollectionObservableList cameraRigs;
         /// <summary>
         /// The associated CameraRigs to track.
         /// </summary>
-        [Serialized]
-        [field: Header("Tracked Alias Settings"), DocumentedByXml]
-        public LinkedAliasAssociationCollectionObservableList CameraRigs { get; set; }
+        public LinkedAliasAssociationCollectionObservableList CameraRigs
+        {
+            get
+            {
+                return cameraRigs;
+            }
+            set
+            {
+                if (this.IsMemberChangeAllowed())
+                {
+                    OnBeforeCameraRigsChange();
+                }
+                cameraRigs = value;
+                if (this.IsMemberChangeAllowed())
+                {
+                    OnAfterCameraRigsChange();
+                }
+            }
+        }
         #endregion
 
         #region Tracking Events
@@ -121,253 +139,266 @@
         #endregion
 
         #region Reference Settings
+        [Header("Reference Settings")]
+        [Tooltip("The linked Internal Setup.")]
+        [SerializeField]
+        [Restricted]
+        private TrackedAliasConfigurator configuration;
         /// <summary>
         /// The linked Internal Setup.
         /// </summary>
-        [Serialized]
-        [field: Header("Reference Settings"), DocumentedByXml, Restricted]
-        public TrackedAliasConfigurator Configuration { get; protected set; }
+        public TrackedAliasConfigurator Configuration
+        {
+            get
+            {
+                return configuration;
+            }
+            protected set
+            {
+                configuration = value;
+            }
+        }
         #endregion
 
-        public LinkedAliasAssociationCollection ActiveLinkedAliasAssociation => GetFirstActiveLinkedAliasAssociationCollection(CameraRigs.NonSubscribableElements);
+        public virtual LinkedAliasAssociationCollection ActiveLinkedAliasAssociation => GetFirstActiveLinkedAliasAssociationCollection(CameraRigs.NonSubscribableElements);
         /// <summary>
         /// Retrieves the active PlayArea that the TrackedAlias is using.
         /// </summary>
-        public GameObject ActivePlayArea => GetFirstActiveGameObject(PlayAreas);
+        public virtual GameObject ActivePlayArea => GetFirstActiveGameObject(PlayAreas);
         /// <summary>
         /// Retrieves the active Headset that the TrackedAlias is using.
         /// </summary>
 
         #region Headset Properties
-        public GameObject ActiveHeadset => GetFirstActiveGameObject(Headsets);
+        public virtual GameObject ActiveHeadset => GetFirstActiveGameObject(Headsets);
         /// <summary>
         /// Retrieves the active Headset Camera that the TrackedAlias is using.
         /// </summary>
-        public Camera ActiveHeadsetCamera => GetFirstActiveCamera(HeadsetCameras);
+        public virtual Camera ActiveHeadsetCamera => GetFirstActiveCamera(HeadsetCameras);
         /// <summary>
         /// Retrieves the active Headset Velocity Tracker that the TrackedAlias is using.
         /// </summary>
-        public VelocityTracker ActiveHeadsetVelocity => GetFirstActiveVelocityTracker(HeadsetVelocityTrackers);
+        public virtual VelocityTracker ActiveHeadsetVelocity => GetFirstActiveVelocityTracker(HeadsetVelocityTrackers);
         /// <summary>
         /// Retrieves the active Headset Detail Record that the TrackedAlias is using.
         /// </summary>
-        public DeviceDetailsRecord ActiveHeadsetDetails => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords);
+        public virtual DeviceDetailsRecord ActiveHeadsetDetails => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords);
         /// <summary>
         /// Retrieves the active Headset Detail Tracking Begun status that the TrackedAlias is using.
         /// </summary>
-        public bool ActiveHeadsetTrackingHasBegun => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).TrackingHasBegun;
+        public virtual bool ActiveHeadsetTrackingHasBegun => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).TrackingHasBegun;
         /// <summary>
         /// Retrieves the active Headset Detail Is Connected status that the TrackedAlias is using.
         /// </summary>
-        public bool ActiveHeadsetIsConnected => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).IsConnected;
+        public virtual bool ActiveHeadsetIsConnected => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).IsConnected;
         /// <summary>
         /// Retrieves the active Headset Detail Manufacturer status that the TrackedAlias is using.
         /// </summary>
-        public string ActiveHeadsetManufacturer => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).Manufacturer;
+        public virtual string ActiveHeadsetManufacturer => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).Manufacturer;
         /// <summary>
         /// Retrieves the active Headset Detail Model status that the TrackedAlias is using.
         /// </summary>
-        public string ActiveHeadsetModel => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).Model;
+        public virtual string ActiveHeadsetModel => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).Model;
         /// <summary>
         /// Retrieves the active Headset Detail Tracking Type status that the TrackedAlias is using.
         /// </summary>
-        public DeviceDetailsRecord.SpatialTrackingType ActiveHeadsetTrackingType => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).TrackingType;
+        public virtual DeviceDetailsRecord.SpatialTrackingType ActiveHeadsetTrackingType => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).TrackingType;
         /// <summary>
         /// Retrieves the active Headset Detail Battery Level status that the TrackedAlias is using.
         /// </summary>
-        public float ActiveHeadsetBatteryLevel => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).BatteryLevel;
+        public virtual float ActiveHeadsetBatteryLevel => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).BatteryLevel;
         /// <summary>
         /// Retrieves the active Headset Detail Battery Charge status that the TrackedAlias is using.
         /// </summary>
-        public BatteryStatus ActiveHeadsetBatteryChargeStatus => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).BatteryChargeStatus;
+        public virtual BatteryStatus ActiveHeadsetBatteryChargeStatus => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).BatteryChargeStatus;
         #endregion
 
         #region Dominant Controller Properties
         /// <summary>
         /// Retrieves the active Headset Detail Record that the TrackedAlias is using.
         /// </summary>
-        public DominantControllerObserver ActiveDominantControllerObserver => GetFirstActiveDominantControllerObserver(DominantControllerObservers);
+        public virtual DominantControllerObserver ActiveDominantControllerObserver => GetFirstActiveDominantControllerObserver(DominantControllerObservers);
         /// <summary>
         /// Retrieves the active Dominant Controller <see cref="GameObject"/> that the TrackedAlias is using.
         /// </summary>
-        public GameObject ActiveDominantController => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.gameObject : null;
+        public virtual GameObject ActiveDominantController => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.gameObject : null;
         /// <summary>
         /// Retrieves the dominant connected controller node.
         /// </summary>
-        public XRNode ActiveDominantControllerNode => ActiveDominantControllerObserver != null ? ActiveDominantControllerObserver.DominantController : XRNode.Head;
+        public virtual XRNode ActiveDominantControllerNode => ActiveDominantControllerObserver != null ? ActiveDominantControllerObserver.DominantController : XRNode.Head;
         /// <summary>
         /// Retrieves the active Dominant Controller Velocity Tracker that the TrackedAlias is using.
         /// </summary>
-        public VelocityTracker ActiveDominantControllerVelocity => Configuration.DominantControllerVelocityTrackers;
+        public virtual VelocityTracker ActiveDominantControllerVelocity => Configuration.DominantControllerVelocityTrackers;
         /// <summary>
         /// Retrieves the active Dominant Controller Haptic Process that the TrackedAlias is using.
         /// </summary>
-        public HapticProcess ActiveDominantHapticProcess => ActiveDominantControllerObserver != null ? GetFirstActiveHapticProcess(ActiveDominantControllerObserver.DominantController == XRNode.LeftHand ? LeftControllerHapticProcesses : RightControllerHapticProcesses) : null;
+        public virtual HapticProcess ActiveDominantHapticProcess => ActiveDominantControllerObserver != null ? GetFirstActiveHapticProcess(ActiveDominantControllerObserver.DominantController == XRNode.LeftHand ? LeftControllerHapticProcesses : RightControllerHapticProcesses) : null;
         /// <summary>
         /// Retrieves the active Dominant Controller Haptic Profiles that the TrackedAlias is using.
         /// </summary>
-        public HapticProcessObservableList ActiveDominantHapticProfiles => ActiveDominantControllerObserver != null ? GetFirstActiveHapticProfile(ActiveDominantControllerObserver.DominantController == XRNode.LeftHand ? LeftControllerHapticProfiles : RightControllerHapticProfiles) : null;
+        public virtual HapticProcessObservableList ActiveDominantHapticProfiles => ActiveDominantControllerObserver != null ? GetFirstActiveHapticProfile(ActiveDominantControllerObserver.DominantController == XRNode.LeftHand ? LeftControllerHapticProfiles : RightControllerHapticProfiles) : null;
         /// <summary>
         /// Retrieves the active Dominant Controller Haptic Profile that has been most recently used.
         /// </summary>
-        public HapticProcess ActiveDominantHapticProfile { get; protected set; }
+        public virtual HapticProcess ActiveDominantHapticProfile { get; protected set; }
         /// <summary>
         /// Retrieves the active Dominant Controller Detail Record that the TrackedAlias is using.
         /// </summary>
-        public DeviceDetailsRecord ActiveDominantControllerRecord => ActiveDominantControllerObserver != null ? ActiveDominantControllerObserver.DominantControllerDetails : null;
+        public virtual DeviceDetailsRecord ActiveDominantControllerRecord => ActiveDominantControllerObserver != null ? ActiveDominantControllerObserver.DominantControllerDetails : null;
         /// <summary>
         /// Retrieves the active Dominant Controller Detail Tracking Begun status that the TrackedAlias is using.
         /// </summary>
-        public bool ActiveDominantControllerTrackingHasBegun => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.TrackingHasBegun : false;
+        public virtual bool ActiveDominantControllerTrackingHasBegun => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.TrackingHasBegun : false;
         /// <summary>
         /// Retrieves the active Dominant Controller Detail Is Connected status that the TrackedAlias is using.
         /// </summary>
-        public bool ActiveDominantControllerIsConnected => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.IsConnected : false;
+        public virtual bool ActiveDominantControllerIsConnected => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.IsConnected : false;
         /// <summary>
         /// Retrieves the active Dominant Controller Detail Manufacturer status that the TrackedAlias is using.
         /// </summary>
-        public string ActiveDominantControllerManufacturer => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.Manufacturer : null;
+        public virtual string ActiveDominantControllerManufacturer => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.Manufacturer : null;
         /// <summary>
         /// Retrieves the active Dominant Controller Detail Model status that the TrackedAlias is using.
         /// </summary>
-        public string ActiveDominantControllerModel => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.Model : null;
+        public virtual string ActiveDominantControllerModel => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.Model : null;
         /// <summary>
         /// Retrieves the active Dominant Controller Detail Tracking Type status that the TrackedAlias is using.
         /// </summary>
-        public DeviceDetailsRecord.SpatialTrackingType ActiveDominantControllerTrackingType => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.TrackingType : DeviceDetailsRecord.SpatialTrackingType.Unknown;
+        public virtual DeviceDetailsRecord.SpatialTrackingType ActiveDominantControllerTrackingType => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.TrackingType : DeviceDetailsRecord.SpatialTrackingType.Unknown;
         /// <summary>
         /// Retrieves the active Dominant Controller Detail Battery Level status that the TrackedAlias is using.
         /// </summary>
-        public float ActiveDominantControllerBatteryLevel => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.BatteryLevel : -1f;
+        public virtual float ActiveDominantControllerBatteryLevel => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.BatteryLevel : -1f;
         /// <summary>
         /// Retrieves the active Dominant Controller Detail Battery Charge status that the TrackedAlias is using.
         /// </summary>
-        public BatteryStatus ActiveDominantControllerBatteryChargeStatus => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.BatteryChargeStatus : BatteryStatus.Unknown;
+        public virtual BatteryStatus ActiveDominantControllerBatteryChargeStatus => ActiveDominantControllerRecord != null ? ActiveDominantControllerRecord.BatteryChargeStatus : BatteryStatus.Unknown;
         #endregion
 
         #region Left Controller Properties
         /// <summary>
         /// Retrieves the active Left Controller <see cref="GameObject"/> that the TrackedAlias is using.
         /// </summary>
-        public GameObject ActiveLeftController => GetFirstActiveGameObject(LeftControllers);
+        public virtual GameObject ActiveLeftController => GetFirstActiveGameObject(LeftControllers);
         /// <summary>
         /// Retrieves the left connected controller node.
         /// </summary>
-        public XRNode ActiveLeftControllerNode => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).XRNodeType;
+        public virtual XRNode ActiveLeftControllerNode => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).XRNodeType;
         /// <summary>
         /// Retrieves the active Left Controller Velocity Tracker that the TrackedAlias is using.
         /// </summary>
-        public VelocityTracker ActiveLeftControllerVelocity => GetFirstActiveVelocityTracker(LeftControllerVelocityTrackers);
+        public virtual VelocityTracker ActiveLeftControllerVelocity => GetFirstActiveVelocityTracker(LeftControllerVelocityTrackers);
         /// <summary>
         /// Retrieves the active Left Controller Haptic Process that the TrackedAlias is using.
         /// </summary>
-        public HapticProcess ActiveLeftHapticProcess => GetFirstActiveHapticProcess(LeftControllerHapticProcesses);
+        public virtual HapticProcess ActiveLeftHapticProcess => GetFirstActiveHapticProcess(LeftControllerHapticProcesses);
         /// <summary>
         /// Retrieves the active Left Controller Haptic Profiles that the TrackedAlias is using.
         /// </summary>
-        public HapticProcessObservableList ActiveLeftHapticProfiles => GetFirstActiveHapticProfile(LeftControllerHapticProfiles);
+        public virtual HapticProcessObservableList ActiveLeftHapticProfiles => GetFirstActiveHapticProfile(LeftControllerHapticProfiles);
         /// <summary>
         /// Retrieves the active Left Controller Haptic Profile that has been most recently used.
         /// </summary>
-        public HapticProcess ActiveLeftHapticProfile { get; protected set; }
+        public virtual HapticProcess ActiveLeftHapticProfile { get; protected set; }
         /// <summary>
         /// Retrieves the active Left Controller Detail Record that the TrackedAlias is using.
         /// </summary>
-        public DeviceDetailsRecord ActiveLeftControllerDetails => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords);
+        public virtual DeviceDetailsRecord ActiveLeftControllerDetails => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords);
         /// <summary>
         /// Retrieves the active Left Controller Detail Tracking Begun status that the TrackedAlias is using.
         /// </summary>
-        public bool ActiveLeftControllerTrackingHasBegun => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).TrackingHasBegun;
+        public virtual bool ActiveLeftControllerTrackingHasBegun => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).TrackingHasBegun;
         /// <summary>
         /// Retrieves the active Left Controller Detail Is Connected status that the TrackedAlias is using.
         /// </summary>
-        public bool ActiveLeftControllerIsConnected => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).IsConnected;
+        public virtual bool ActiveLeftControllerIsConnected => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).IsConnected;
         /// <summary>
         /// Retrieves the active Left Controller Detail Manufacturer status that the TrackedAlias is using.
         /// </summary>
-        public string ActiveLeftControllerManufacturer => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).Manufacturer;
+        public virtual string ActiveLeftControllerManufacturer => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).Manufacturer;
         /// <summary>
         /// Retrieves the active Left Controller Detail Model status that the TrackedAlias is using.
         /// </summary>
-        public string ActiveLeftControllerModel => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).Model;
+        public virtual string ActiveLeftControllerModel => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).Model;
         /// <summary>
         /// Retrieves the active Left Controller Detail Tracking Type status that the TrackedAlias is using.
         /// </summary>
-        public DeviceDetailsRecord.SpatialTrackingType ActiveLeftControllerTrackingType => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).TrackingType;
+        public virtual DeviceDetailsRecord.SpatialTrackingType ActiveLeftControllerTrackingType => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).TrackingType;
         /// <summary>
         /// Retrieves the active Left Controller Detail Battery Level status that the TrackedAlias is using.
         /// </summary>
-        public float ActiveLeftControllerBatteryLevel => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).BatteryLevel;
+        public virtual float ActiveLeftControllerBatteryLevel => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).BatteryLevel;
         /// <summary>
         /// Retrieves the active Left Controller Detail Battery Charge status that the TrackedAlias is using.
         /// </summary>
-        public BatteryStatus ActiveLeftControllerBatteryChargeStatus => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).BatteryChargeStatus;
+        public virtual BatteryStatus ActiveLeftControllerBatteryChargeStatus => GetFirstActiveDeviceRecord(LeftControllerDeviceDetailRecords).BatteryChargeStatus;
         #endregion
 
         #region Right Controller Properties
         /// <summary>
         /// Retrieves the active Right Controller <see cref="GameObject"/> that the TrackedAlias is using.
         /// </summary>
-        public GameObject ActiveRightController => GetFirstActiveGameObject(RightControllers);
+        public virtual GameObject ActiveRightController => GetFirstActiveGameObject(RightControllers);
         /// <summary>
         /// Retrieves the right connected controller node.
         /// </summary>
-        public XRNode ActiveRightControllerNode => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).XRNodeType;
+        public virtual XRNode ActiveRightControllerNode => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).XRNodeType;
         /// <summary>
         /// Retrieves the active Right Controller Velocity Tracker that the TrackedAlias is using.
         /// </summary>
-        public VelocityTracker ActiveRightControllerVelocity => GetFirstActiveVelocityTracker(RightControllerVelocityTrackers);
+        public virtual VelocityTracker ActiveRightControllerVelocity => GetFirstActiveVelocityTracker(RightControllerVelocityTrackers);
         /// <summary>
         /// Retrieves the active Right Controller Haptic Process that the TrackedAlias is using.
         /// </summary>
-        public HapticProcess ActiveRightHapticProcess => GetFirstActiveHapticProcess(RightControllerHapticProcesses);
+        public virtual HapticProcess ActiveRightHapticProcess => GetFirstActiveHapticProcess(RightControllerHapticProcesses);
         /// <summary>
         /// Retrieves the active Right Controller Haptic Profiles that the TrackedAlias is using.
         /// </summary>
-        public HapticProcessObservableList ActiveRightHapticProfiles => GetFirstActiveHapticProfile(RightControllerHapticProfiles);
+        public virtual HapticProcessObservableList ActiveRightHapticProfiles => GetFirstActiveHapticProfile(RightControllerHapticProfiles);
         /// <summary>
         /// Retrieves the active Right Controller Haptic Profile that has been most recently used.
         /// </summary>
-        public HapticProcess ActiveRightHapticProfile { get; protected set; }
+        public virtual HapticProcess ActiveRightHapticProfile { get; protected set; }
         /// <summary>
         /// Retrieves the active Right Controller Detail Record that the TrackedAlias is using.
         /// </summary>
-        public DeviceDetailsRecord ActiveRightControllerDetails => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords);
+        public virtual DeviceDetailsRecord ActiveRightControllerDetails => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords);
         /// <summary>
         /// Retrieves the active Right Controller Detail Tracking Begun status that the TrackedAlias is using.
         /// </summary>
-        public bool ActiveRightControllerTrackingHasBegun => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).TrackingHasBegun;
+        public virtual bool ActiveRightControllerTrackingHasBegun => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).TrackingHasBegun;
         /// <summary>
         /// Retrieves the active Right Controller Detail Is Connected status that the TrackedAlias is using.
         /// </summary>
-        public bool ActiveRightControllerIsConnected => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).IsConnected;
+        public virtual bool ActiveRightControllerIsConnected => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).IsConnected;
         /// <summary>
         /// Retrieves the active Right Controller Detail Manufacturer status that the TrackedAlias is using.
         /// </summary>
-        public string ActiveRightControllerManufacturer => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).Manufacturer;
+        public virtual string ActiveRightControllerManufacturer => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).Manufacturer;
         /// <summary>
         /// Retrieves the active Right Controller Detail Model status that the TrackedAlias is using.
         /// </summary>
-        public string ActiveRightControllerModel => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).Model;
+        public virtual string ActiveRightControllerModel => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).Model;
         /// <summary>
         /// Retrieves the active Right Controller Detail Tracking Type status that the TrackedAlias is using.
         /// </summary>
-        public DeviceDetailsRecord.SpatialTrackingType ActiveRightControllerTrackingType => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).TrackingType;
+        public virtual DeviceDetailsRecord.SpatialTrackingType ActiveRightControllerTrackingType => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).TrackingType;
         /// <summary>
         /// Retrieves the active Right Controller Detail Battery Level status that the TrackedAlias is using.
         /// </summary>
-        public float ActiveRightControllerBatteryLevel => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).BatteryLevel;
+        public virtual float ActiveRightControllerBatteryLevel => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).BatteryLevel;
         /// <summary>
         /// Retrieves the active Right Controller Detail Battery Charge status that the TrackedAlias is using.
         /// </summary>
-        public BatteryStatus ActiveRightControllerBatteryChargeStatus => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).BatteryChargeStatus;
+        public virtual BatteryStatus ActiveRightControllerBatteryChargeStatus => GetFirstActiveDeviceRecord(RightControllerDeviceDetailRecords).BatteryChargeStatus;
         #endregion
 
         #region Enumerables
         /// <summary>
         /// Retrieves all of the linked CameraRig PlayAreas.
         /// </summary>
-        public IEnumerable<GameObject> PlayAreas
+        public virtual IEnumerable<GameObject> PlayAreas
         {
             get
             {
@@ -394,7 +425,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Headsets.
         /// </summary>
-        public IEnumerable<GameObject> Headsets
+        public virtual IEnumerable<GameObject> Headsets
         {
             get
             {
@@ -421,7 +452,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Headset Cameras.
         /// </summary>
-        public IEnumerable<Camera> HeadsetCameras
+        public virtual IEnumerable<Camera> HeadsetCameras
         {
             get
             {
@@ -448,7 +479,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Headset Velocity Trackers.
         /// </summary>
-        public IEnumerable<VelocityTracker> HeadsetVelocityTrackers
+        public virtual IEnumerable<VelocityTracker> HeadsetVelocityTrackers
         {
             get
             {
@@ -475,7 +506,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Supplement Headset Camera.
         /// </summary>
-        public IEnumerable<Camera> HeadsetSupplementCameras
+        public virtual IEnumerable<Camera> HeadsetSupplementCameras
         {
             get
             {
@@ -504,7 +535,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Headset Device Detail Record.
         /// </summary>
-        public IEnumerable<DeviceDetailsRecord> HeadsetDeviceDetailRecords
+        public virtual IEnumerable<DeviceDetailsRecord> HeadsetDeviceDetailRecords
         {
             get
             {
@@ -531,7 +562,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Dominant Controller Observers.
         /// </summary>
-        public IEnumerable<DominantControllerObserver> DominantControllerObservers
+        public virtual IEnumerable<DominantControllerObserver> DominantControllerObservers
         {
             get
             {
@@ -558,7 +589,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Left Controllers.
         /// </summary>
-        public IEnumerable<GameObject> LeftControllers
+        public virtual IEnumerable<GameObject> LeftControllers
         {
             get
             {
@@ -585,7 +616,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Right Controllers.
         /// </summary>
-        public IEnumerable<GameObject> RightControllers
+        public virtual IEnumerable<GameObject> RightControllers
         {
             get
             {
@@ -612,7 +643,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Left Controller Velocity Trackers.
         /// </summary>
-        public IEnumerable<VelocityTracker> LeftControllerVelocityTrackers
+        public virtual IEnumerable<VelocityTracker> LeftControllerVelocityTrackers
         {
             get
             {
@@ -639,7 +670,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Right Controller Velocity Trackers.
         /// </summary>
-        public IEnumerable<VelocityTracker> RightControllerVelocityTrackers
+        public virtual IEnumerable<VelocityTracker> RightControllerVelocityTrackers
         {
             get
             {
@@ -666,7 +697,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Left Controller Haptic Processes.
         /// </summary>
-        public IEnumerable<HapticProcess> LeftControllerHapticProcesses
+        public virtual IEnumerable<HapticProcess> LeftControllerHapticProcesses
         {
             get
             {
@@ -693,7 +724,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Right Controller Haptic Processes.
         /// </summary>
-        public IEnumerable<HapticProcess> RightControllerHapticProcesses
+        public virtual IEnumerable<HapticProcess> RightControllerHapticProcesses
         {
             get
             {
@@ -720,7 +751,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Left Controller Haptic Profiles.
         /// </summary>
-        public IEnumerable<HapticProcessObservableList> LeftControllerHapticProfiles
+        public virtual IEnumerable<HapticProcessObservableList> LeftControllerHapticProfiles
         {
             get
             {
@@ -747,7 +778,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Right Controller Haptic Processes.
         /// </summary>
-        public IEnumerable<HapticProcessObservableList> RightControllerHapticProfiles
+        public virtual IEnumerable<HapticProcessObservableList> RightControllerHapticProfiles
         {
             get
             {
@@ -774,7 +805,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Left Controller Device Detail Record.
         /// </summary>
-        public IEnumerable<DeviceDetailsRecord> LeftControllerDeviceDetailRecords
+        public virtual IEnumerable<DeviceDetailsRecord> LeftControllerDeviceDetailRecords
         {
             get
             {
@@ -801,7 +832,7 @@
         /// <summary>
         /// Retrieves all of the linked CameraRig Right Controller Device Detail Record.
         /// </summary>
-        public IEnumerable<DeviceDetailsRecord> RightControllerDeviceDetailRecords
+        public virtual IEnumerable<DeviceDetailsRecord> RightControllerDeviceDetailRecords
         {
             get
             {
@@ -831,27 +862,27 @@
         /// <summary>
         /// The alias follower for the PlayArea.
         /// </summary>
-        public ObjectFollower PlayAreaAlias => Configuration.PlayArea;
+        public virtual ObjectFollower PlayAreaAlias => Configuration.PlayArea;
         /// <summary>
         /// The alias follower for the Headset.
         /// </summary>
-        public ObjectFollower HeadsetAlias => Configuration.Headset;
+        public virtual ObjectFollower HeadsetAlias => Configuration.Headset;
         /// <summary>
         /// The alias follower for the Headset Origin within the <see cref="PlayAreaAlias"/>.
         /// </summary>
-        public ObjectFollower HeadsetOriginAlias => Configuration.HeadsetOrigin;
+        public virtual ObjectFollower HeadsetOriginAlias => Configuration.HeadsetOrigin;
         /// <summary>
         /// The alias follower for the Left Controller.
         /// </summary>
-        public ObjectFollower LeftControllerAlias => Configuration.LeftController;
+        public virtual ObjectFollower LeftControllerAlias => Configuration.LeftController;
         /// <summary>
         /// The alias follower for the Right Controller.
         /// </summary>
-        public ObjectFollower RightControllerAlias => Configuration.RightController;
+        public virtual ObjectFollower RightControllerAlias => Configuration.RightController;
         /// <summary>
         /// The alias follower for the Dominant Controller.
         /// </summary>
-        public ObjectFollower DominantControllerAlias => Configuration.DominantController;
+        public virtual ObjectFollower DominantControllerAlias => Configuration.DominantController;
         #endregion
 
         #region Haptic Methods
@@ -1318,7 +1349,6 @@
         /// <summary>
         /// Called before <see cref="CameraRigs"/> has been changed.
         /// </summary>
-        [CalledBeforeChangeOf(nameof(CameraRigs))]
         protected virtual void OnBeforeCameraRigsChange()
         {
             UnsubscribeFromCameraRigsEvents();
@@ -1327,7 +1357,6 @@
         /// <summary>
         /// Called after <see cref="CameraRigs"/> has been changed.
         /// </summary>
-        [CalledAfterChangeOf(nameof(CameraRigs))]
         protected virtual void OnAfterCameraRigsChange()
         {
             SubscribeToCameraRigsEvents();

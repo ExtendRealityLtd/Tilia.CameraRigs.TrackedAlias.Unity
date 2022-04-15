@@ -424,7 +424,7 @@ Determines whether to include the CameraRig HeadsetSupplementCameras in the [Val
 ##### Declaration
 
 ```
-public bool IncludeHeadsetSupplementCameras { get; set; }
+public bool IncludeHeadsetSupplementCameras { get; protected set; }
 ```
 
 #### LeftController
