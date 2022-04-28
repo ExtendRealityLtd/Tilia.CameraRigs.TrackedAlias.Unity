@@ -1,7 +1,5 @@
 ﻿namespace Tilia.CameraRigs.TrackedAlias
 {
-    using Malimbe.PropertySerializationAttribute;
-    using Malimbe.XmlDocumentationAttribute;
     using UnityEngine;
     using UnityEngine.Events;
     using Zinnia.Data.Attribute;
@@ -17,97 +15,253 @@
     public class TrackedAliasConfigurator : MonoBehaviour
     {
         #region Facade Settings
+        [Header("Facade Settings")]
+        [Tooltip("The public facade.")]
+        [SerializeField]
+        [Restricted]
+        private TrackedAliasFacade facade;
         /// <summary>
         /// The public facade.
         /// </summary>
-        [Serialized]
-        [field: Header("Facade Settings"), DocumentedByXml, Restricted]
-        public TrackedAliasFacade Facade { get; protected set; }
+        public TrackedAliasFacade Facade
+        {
+            get
+            {
+                return facade;
+            }
+            protected set
+            {
+                facade = value;
+            }
+        }
         #endregion
 
         #region Object Follow Settings
+        [Header("Object Follow Settings")]
+        [Tooltip("The ObjectFollower component for the PlayArea.")]
+        [SerializeField]
+        [Restricted]
+        private ObjectFollower playArea;
         /// <summary>
         /// The <see cref="ObjectFollower"/> component for the PlayArea.
         /// </summary>
-        [Serialized]
-        [field: Header("Object Follow Settings"), DocumentedByXml, Restricted]
-        public ObjectFollower PlayArea { get; protected set; }
-
+        public ObjectFollower PlayArea
+        {
+            get
+            {
+                return playArea;
+            }
+            protected set
+            {
+                playArea = value;
+            }
+        }
+        [Tooltip("The ObjectFollower component for the Headset.")]
+        [SerializeField]
+        [Restricted]
+        private ObjectFollower headset;
         /// <summary>
         /// The <see cref="ObjectFollower"/> component for the Headset.
         /// </summary>
-        [Serialized]
-        [field: DocumentedByXml, Restricted]
-        public ObjectFollower Headset { get; protected set; }
-
+        public ObjectFollower Headset
+        {
+            get
+            {
+                return headset;
+            }
+            protected set
+            {
+                headset = value;
+            }
+        }
+        [Tooltip("The ObjectFollower component for the HeadsetOrigin within the PlayArea Alias.")]
+        [SerializeField]
+        [Restricted]
+        private ObjectFollower headsetOrigin;
         /// <summary>
         /// The <see cref="ObjectFollower"/> component for the HeadsetOrigin within the PlayArea Alias.
         /// </summary>
-        [Serialized]
-        [field: DocumentedByXml, Restricted]
-        public ObjectFollower HeadsetOrigin { get; protected set; }
-
+        public ObjectFollower HeadsetOrigin
+        {
+            get
+            {
+                return headsetOrigin;
+            }
+            protected set
+            {
+                headsetOrigin = value;
+            }
+        }
+        [Tooltip("The ObjectFollower component for the Left Controller.")]
+        [SerializeField]
+        [Restricted]
+        private ObjectFollower leftController;
         /// <summary>
         /// The <see cref="ObjectFollower"/> component for the Left Controller.
         /// </summary>
-        [Serialized]
-        [field: DocumentedByXml, Restricted]
-        public ObjectFollower LeftController { get; protected set; }
-
+        public ObjectFollower LeftController
+        {
+            get
+            {
+                return leftController;
+            }
+            protected set
+            {
+                leftController = value;
+            }
+        }
+        [Tooltip("The ObjectFollower component for the Right Controller.")]
+        [SerializeField]
+        [Restricted]
+        private ObjectFollower rightController;
         /// <summary>
         /// The <see cref="ObjectFollower"/> component for the Right Controller.
         /// </summary>
-        [Serialized]
-        [field: DocumentedByXml, Restricted]
-        public ObjectFollower RightController { get; protected set; }
+        public ObjectFollower RightController
+        {
+            get
+            {
+                return rightController;
+            }
+            protected set
+            {
+                rightController = value;
+            }
+        }
+        [Tooltip("The ObjectFollower component for the current Dominant Controller.")]
+        [SerializeField]
+        [Restricted]
+        private ObjectFollower dominantController;
         /// <summary>
         /// The <see cref="ObjectFollower"/> component for the current Dominant Controller.
         /// </summary>
-        [Serialized]
-        [field: DocumentedByXml, Restricted]
-        public ObjectFollower DominantController { get; protected set; }
+        public ObjectFollower DominantController
+        {
+            get
+            {
+                return dominantController;
+            }
+            protected set
+            {
+                dominantController = value;
+            }
+        }
         #endregion
 
         #region Velocity Tracker Settings
+        [Header("Velocity Tracker Settings")]
+        [Tooltip("The VelocityTrackerProcessor component containing the Headset Velocity Trackers.")]
+        [SerializeField]
+        [Restricted]
+        private VelocityTrackerProcessor headsetVelocityTrackers;
         /// <summary>
         /// The <see cref="VelocityTrackerProcessor"/> component containing the Headset Velocity Trackers.
         /// </summary>
-        [Serialized]
-        [field: Header("Velocity Tracker Settings"), DocumentedByXml, Restricted]
-        public VelocityTrackerProcessor HeadsetVelocityTrackers { get; protected set; }
+        public VelocityTrackerProcessor HeadsetVelocityTrackers
+        {
+            get
+            {
+                return headsetVelocityTrackers;
+            }
+            protected set
+            {
+                headsetVelocityTrackers = value;
+            }
+        }
+        [Tooltip("The VelocityTrackerProcessor component containing the Left Controller Velocity Trackers.")]
+        [SerializeField]
+        [Restricted]
+        private VelocityTrackerProcessor leftControllerVelocityTrackers;
         /// <summary>
         /// The <see cref="VelocityTrackerProcessor"/> component containing the Left Controller Velocity Trackers.
         /// </summary>
-        [Serialized]
-        [field: DocumentedByXml, Restricted]
-        public VelocityTrackerProcessor LeftControllerVelocityTrackers { get; protected set; }
+        public VelocityTrackerProcessor LeftControllerVelocityTrackers
+        {
+            get
+            {
+                return leftControllerVelocityTrackers;
+            }
+            protected set
+            {
+                leftControllerVelocityTrackers = value;
+            }
+        }
+        [Tooltip("The VelocityTrackerProcessor component containing the Right Controller Velocity Trackers.")]
+        [SerializeField]
+        [Restricted]
+        private VelocityTrackerProcessor rightControllerVelocityTrackers;
         /// <summary>
         /// The <see cref="VelocityTrackerProcessor"/> component containing the Right Controller Velocity Trackers.
         /// </summary>
-        [Serialized]
-        [field: DocumentedByXml, Restricted]
-        public VelocityTrackerProcessor RightControllerVelocityTrackers { get; protected set; }
+        public VelocityTrackerProcessor RightControllerVelocityTrackers
+        {
+            get
+            {
+                return rightControllerVelocityTrackers;
+            }
+            protected set
+            {
+                rightControllerVelocityTrackers = value;
+            }
+        }
+        [Tooltip("The VelocityTrackerProcessor component containing the current Dominant Controller Velocity Trackers.")]
+        [SerializeField]
+        [Restricted]
+        private VelocityTrackerProcessor dominantControllerVelocityTrackers;
         /// <summary>
         /// The <see cref="VelocityTrackerProcessor"/> component containing the current Dominant Controller Velocity Trackers.
         /// </summary>
-        [Serialized]
-        [field: DocumentedByXml, Restricted]
-        public VelocityTrackerProcessor DominantControllerVelocityTrackers { get; protected set; }
+        public VelocityTrackerProcessor DominantControllerVelocityTrackers
+        {
+            get
+            {
+                return dominantControllerVelocityTrackers;
+            }
+            protected set
+            {
+                dominantControllerVelocityTrackers = value;
+            }
+        }
         #endregion
 
         #region Other Settings
+        [Header("Other Settings")]
+        [Tooltip("The ListContainsRule for defining the valid Camera collection.")]
+        [SerializeField]
+        [Restricted]
+        private ListContainsRule validCameras;
         /// <summary>
         /// The <see cref="ListContainsRule"/> for defining the valid <see cref="Camera"/> collection.
         /// </summary>
-        [Serialized]
-        [field: Header("Other Settings"), DocumentedByXml, Restricted]
-        public ListContainsRule ValidCameras { get; protected set; }
+        public ListContainsRule ValidCameras
+        {
+            get
+            {
+                return validCameras;
+            }
+            protected set
+            {
+                validCameras = value;
+            }
+        }
+        [Tooltip("Determines whether to include the CameraRig HeadsetSupplementCameras in the ValidCameras collection.")]
+        [SerializeField]
+        [Restricted]
+        private bool includeHeadsetSupplementCameras = true;
         /// <summary>
         /// Determines whether to include the CameraRig HeadsetSupplementCameras in the <see cref="ValidCameras"/> collection.
         /// </summary>
-        [Serialized]
-        [field: DocumentedByXml]
-        public bool IncludeHeadsetSupplementCameras { get; set; } = true;
+        public bool IncludeHeadsetSupplementCameras
+        {
+            get
+            {
+                return includeHeadsetSupplementCameras;
+            }
+            protected set
+            {
+                includeHeadsetSupplementCameras = value;
+            }
+        }
         #endregion
 
         #region Main Data Cache

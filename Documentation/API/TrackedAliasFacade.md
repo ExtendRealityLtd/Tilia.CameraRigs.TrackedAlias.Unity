@@ -348,7 +348,7 @@ Retrieves the active Dominant Controller GameObject that the TrackedAlias is usi
 ##### Declaration
 
 ```
-public GameObject ActiveDominantController { get; }
+public virtual GameObject ActiveDominantController { get; }
 ```
 
 #### ActiveDominantControllerBatteryChargeStatus
@@ -358,7 +358,7 @@ Retrieves the active Dominant Controller Detail Battery Charge status that the T
 ##### Declaration
 
 ```
-public BatteryStatus ActiveDominantControllerBatteryChargeStatus { get; }
+public virtual BatteryStatus ActiveDominantControllerBatteryChargeStatus { get; }
 ```
 
 #### ActiveDominantControllerBatteryLevel
@@ -368,7 +368,7 @@ Retrieves the active Dominant Controller Detail Battery Level status that the Tr
 ##### Declaration
 
 ```
-public float ActiveDominantControllerBatteryLevel { get; }
+public virtual float ActiveDominantControllerBatteryLevel { get; }
 ```
 
 #### ActiveDominantControllerIsConnected
@@ -378,7 +378,7 @@ Retrieves the active Dominant Controller Detail Is Connected status that the Tra
 ##### Declaration
 
 ```
-public bool ActiveDominantControllerIsConnected { get; }
+public virtual bool ActiveDominantControllerIsConnected { get; }
 ```
 
 #### ActiveDominantControllerManufacturer
@@ -388,7 +388,7 @@ Retrieves the active Dominant Controller Detail Manufacturer status that the Tra
 ##### Declaration
 
 ```
-public string ActiveDominantControllerManufacturer { get; }
+public virtual string ActiveDominantControllerManufacturer { get; }
 ```
 
 #### ActiveDominantControllerModel
@@ -398,7 +398,7 @@ Retrieves the active Dominant Controller Detail Model status that the TrackedAli
 ##### Declaration
 
 ```
-public string ActiveDominantControllerModel { get; }
+public virtual string ActiveDominantControllerModel { get; }
 ```
 
 #### ActiveDominantControllerNode
@@ -408,7 +408,7 @@ Retrieves the dominant connected controller node.
 ##### Declaration
 
 ```
-public XRNode ActiveDominantControllerNode { get; }
+public virtual XRNode ActiveDominantControllerNode { get; }
 ```
 
 #### ActiveDominantControllerObserver
@@ -418,7 +418,7 @@ Retrieves the active Headset Detail Record that the TrackedAlias is using.
 ##### Declaration
 
 ```
-public DominantControllerObserver ActiveDominantControllerObserver { get; }
+public virtual DominantControllerObserver ActiveDominantControllerObserver { get; }
 ```
 
 #### ActiveDominantControllerRecord
@@ -428,7 +428,7 @@ Retrieves the active Dominant Controller Detail Record that the TrackedAlias is 
 ##### Declaration
 
 ```
-public DeviceDetailsRecord ActiveDominantControllerRecord { get; }
+public virtual DeviceDetailsRecord ActiveDominantControllerRecord { get; }
 ```
 
 #### ActiveDominantControllerTrackingHasBegun
@@ -438,7 +438,7 @@ Retrieves the active Dominant Controller Detail Tracking Begun status that the T
 ##### Declaration
 
 ```
-public bool ActiveDominantControllerTrackingHasBegun { get; }
+public virtual bool ActiveDominantControllerTrackingHasBegun { get; }
 ```
 
 #### ActiveDominantControllerTrackingType
@@ -448,7 +448,7 @@ Retrieves the active Dominant Controller Detail Tracking Type status that the Tr
 ##### Declaration
 
 ```
-public DeviceDetailsRecord.SpatialTrackingType ActiveDominantControllerTrackingType { get; }
+public virtual DeviceDetailsRecord.SpatialTrackingType ActiveDominantControllerTrackingType { get; }
 ```
 
 #### ActiveDominantControllerVelocity
@@ -458,7 +458,7 @@ Retrieves the active Dominant Controller Velocity Tracker that the TrackedAlias 
 ##### Declaration
 
 ```
-public VelocityTracker ActiveDominantControllerVelocity { get; }
+public virtual VelocityTracker ActiveDominantControllerVelocity { get; }
 ```
 
 #### ActiveDominantHapticProcess
@@ -468,7 +468,7 @@ Retrieves the active Dominant Controller Haptic Process that the TrackedAlias is
 ##### Declaration
 
 ```
-public HapticProcess ActiveDominantHapticProcess { get; }
+public virtual HapticProcess ActiveDominantHapticProcess { get; }
 ```
 
 #### ActiveDominantHapticProfile
@@ -478,7 +478,7 @@ Retrieves the active Dominant Controller Haptic Profile that has been most recen
 ##### Declaration
 
 ```
-public HapticProcess ActiveDominantHapticProfile { get; protected set; }
+public virtual HapticProcess ActiveDominantHapticProfile { get; protected set; }
 ```
 
 #### ActiveDominantHapticProfiles
@@ -488,7 +488,7 @@ Retrieves the active Dominant Controller Haptic Profiles that the TrackedAlias i
 ##### Declaration
 
 ```
-public HapticProcessObservableList ActiveDominantHapticProfiles { get; }
+public virtual HapticProcessObservableList ActiveDominantHapticProfiles { get; }
 ```
 
 #### ActiveHeadset
@@ -498,7 +498,7 @@ Retrieves the active Headset that the TrackedAlias is using.
 ##### Declaration
 
 ```
-public GameObject ActiveHeadset { get; }
+public virtual GameObject ActiveHeadset { get; }
 ```
 
 #### ActiveHeadsetBatteryChargeStatus
@@ -508,7 +508,7 @@ Retrieves the active Headset Detail Battery Charge status that the TrackedAlias 
 ##### Declaration
 
 ```
-public BatteryStatus ActiveHeadsetBatteryChargeStatus { get; }
+public virtual BatteryStatus ActiveHeadsetBatteryChargeStatus { get; }
 ```
 
 #### ActiveHeadsetBatteryLevel
@@ -518,7 +518,7 @@ Retrieves the active Headset Detail Battery Level status that the TrackedAlias i
 ##### Declaration
 
 ```
-public float ActiveHeadsetBatteryLevel { get; }
+public virtual float ActiveHeadsetBatteryLevel { get; }
 ```
 
 #### ActiveHeadsetCamera
@@ -528,7 +528,7 @@ Retrieves the active Headset Camera that the TrackedAlias is using.
 ##### Declaration
 
 ```
-public Camera ActiveHeadsetCamera { get; }
+public virtual Camera ActiveHeadsetCamera { get; }
 ```
 
 #### ActiveHeadsetDetails
@@ -538,7 +538,7 @@ Retrieves the active Headset Detail Record that the TrackedAlias is using.
 ##### Declaration
 
 ```
-public DeviceDetailsRecord ActiveHeadsetDetails { get; }
+public virtual DeviceDetailsRecord ActiveHeadsetDetails { get; }
 ```
 
 #### ActiveHeadsetIsConnected
@@ -548,7 +548,7 @@ Retrieves the active Headset Detail Is Connected status that the TrackedAlias is
 ##### Declaration
 
 ```
-public bool ActiveHeadsetIsConnected { get; }
+public virtual bool ActiveHeadsetIsConnected { get; }
 ```
 
 #### ActiveHeadsetManufacturer
@@ -558,7 +558,7 @@ Retrieves the active Headset Detail Manufacturer status that the TrackedAlias is
 ##### Declaration
 
 ```
-public string ActiveHeadsetManufacturer { get; }
+public virtual string ActiveHeadsetManufacturer { get; }
 ```
 
 #### ActiveHeadsetModel
@@ -568,7 +568,7 @@ Retrieves the active Headset Detail Model status that the TrackedAlias is using.
 ##### Declaration
 
 ```
-public string ActiveHeadsetModel { get; }
+public virtual string ActiveHeadsetModel { get; }
 ```
 
 #### ActiveHeadsetTrackingHasBegun
@@ -578,7 +578,7 @@ Retrieves the active Headset Detail Tracking Begun status that the TrackedAlias 
 ##### Declaration
 
 ```
-public bool ActiveHeadsetTrackingHasBegun { get; }
+public virtual bool ActiveHeadsetTrackingHasBegun { get; }
 ```
 
 #### ActiveHeadsetTrackingType
@@ -588,7 +588,7 @@ Retrieves the active Headset Detail Tracking Type status that the TrackedAlias i
 ##### Declaration
 
 ```
-public DeviceDetailsRecord.SpatialTrackingType ActiveHeadsetTrackingType { get; }
+public virtual DeviceDetailsRecord.SpatialTrackingType ActiveHeadsetTrackingType { get; }
 ```
 
 #### ActiveHeadsetVelocity
@@ -598,7 +598,7 @@ Retrieves the active Headset Velocity Tracker that the TrackedAlias is using.
 ##### Declaration
 
 ```
-public VelocityTracker ActiveHeadsetVelocity { get; }
+public virtual VelocityTracker ActiveHeadsetVelocity { get; }
 ```
 
 #### ActiveLeftController
@@ -608,7 +608,7 @@ Retrieves the active Left Controller GameObject that the TrackedAlias is using.
 ##### Declaration
 
 ```
-public GameObject ActiveLeftController { get; }
+public virtual GameObject ActiveLeftController { get; }
 ```
 
 #### ActiveLeftControllerBatteryChargeStatus
@@ -618,7 +618,7 @@ Retrieves the active Left Controller Detail Battery Charge status that the Track
 ##### Declaration
 
 ```
-public BatteryStatus ActiveLeftControllerBatteryChargeStatus { get; }
+public virtual BatteryStatus ActiveLeftControllerBatteryChargeStatus { get; }
 ```
 
 #### ActiveLeftControllerBatteryLevel
@@ -628,7 +628,7 @@ Retrieves the active Left Controller Detail Battery Level status that the Tracke
 ##### Declaration
 
 ```
-public float ActiveLeftControllerBatteryLevel { get; }
+public virtual float ActiveLeftControllerBatteryLevel { get; }
 ```
 
 #### ActiveLeftControllerDetails
@@ -638,7 +638,7 @@ Retrieves the active Left Controller Detail Record that the TrackedAlias is usin
 ##### Declaration
 
 ```
-public DeviceDetailsRecord ActiveLeftControllerDetails { get; }
+public virtual DeviceDetailsRecord ActiveLeftControllerDetails { get; }
 ```
 
 #### ActiveLeftControllerIsConnected
@@ -648,7 +648,7 @@ Retrieves the active Left Controller Detail Is Connected status that the Tracked
 ##### Declaration
 
 ```
-public bool ActiveLeftControllerIsConnected { get; }
+public virtual bool ActiveLeftControllerIsConnected { get; }
 ```
 
 #### ActiveLeftControllerManufacturer
@@ -658,7 +658,7 @@ Retrieves the active Left Controller Detail Manufacturer status that the Tracked
 ##### Declaration
 
 ```
-public string ActiveLeftControllerManufacturer { get; }
+public virtual string ActiveLeftControllerManufacturer { get; }
 ```
 
 #### ActiveLeftControllerModel
@@ -668,7 +668,7 @@ Retrieves the active Left Controller Detail Model status that the TrackedAlias i
 ##### Declaration
 
 ```
-public string ActiveLeftControllerModel { get; }
+public virtual string ActiveLeftControllerModel { get; }
 ```
 
 #### ActiveLeftControllerNode
@@ -678,7 +678,7 @@ Retrieves the left connected controller node.
 ##### Declaration
 
 ```
-public XRNode ActiveLeftControllerNode { get; }
+public virtual XRNode ActiveLeftControllerNode { get; }
 ```
 
 #### ActiveLeftControllerTrackingHasBegun
@@ -688,7 +688,7 @@ Retrieves the active Left Controller Detail Tracking Begun status that the Track
 ##### Declaration
 
 ```
-public bool ActiveLeftControllerTrackingHasBegun { get; }
+public virtual bool ActiveLeftControllerTrackingHasBegun { get; }
 ```
 
 #### ActiveLeftControllerTrackingType
@@ -698,7 +698,7 @@ Retrieves the active Left Controller Detail Tracking Type status that the Tracke
 ##### Declaration
 
 ```
-public DeviceDetailsRecord.SpatialTrackingType ActiveLeftControllerTrackingType { get; }
+public virtual DeviceDetailsRecord.SpatialTrackingType ActiveLeftControllerTrackingType { get; }
 ```
 
 #### ActiveLeftControllerVelocity
@@ -708,7 +708,7 @@ Retrieves the active Left Controller Velocity Tracker that the TrackedAlias is u
 ##### Declaration
 
 ```
-public VelocityTracker ActiveLeftControllerVelocity { get; }
+public virtual VelocityTracker ActiveLeftControllerVelocity { get; }
 ```
 
 #### ActiveLeftHapticProcess
@@ -718,7 +718,7 @@ Retrieves the active Left Controller Haptic Process that the TrackedAlias is usi
 ##### Declaration
 
 ```
-public HapticProcess ActiveLeftHapticProcess { get; }
+public virtual HapticProcess ActiveLeftHapticProcess { get; }
 ```
 
 #### ActiveLeftHapticProfile
@@ -728,7 +728,7 @@ Retrieves the active Left Controller Haptic Profile that has been most recently 
 ##### Declaration
 
 ```
-public HapticProcess ActiveLeftHapticProfile { get; protected set; }
+public virtual HapticProcess ActiveLeftHapticProfile { get; protected set; }
 ```
 
 #### ActiveLeftHapticProfiles
@@ -738,7 +738,7 @@ Retrieves the active Left Controller Haptic Profiles that the TrackedAlias is us
 ##### Declaration
 
 ```
-public HapticProcessObservableList ActiveLeftHapticProfiles { get; }
+public virtual HapticProcessObservableList ActiveLeftHapticProfiles { get; }
 ```
 
 #### ActiveLinkedAliasAssociation
@@ -746,7 +746,7 @@ public HapticProcessObservableList ActiveLeftHapticProfiles { get; }
 ##### Declaration
 
 ```
-public LinkedAliasAssociationCollection ActiveLinkedAliasAssociation { get; }
+public virtual LinkedAliasAssociationCollection ActiveLinkedAliasAssociation { get; }
 ```
 
 #### ActivePlayArea
@@ -756,7 +756,7 @@ Retrieves the active PlayArea that the TrackedAlias is using.
 ##### Declaration
 
 ```
-public GameObject ActivePlayArea { get; }
+public virtual GameObject ActivePlayArea { get; }
 ```
 
 #### ActiveRightController
@@ -766,7 +766,7 @@ Retrieves the active Right Controller GameObject that the TrackedAlias is using.
 ##### Declaration
 
 ```
-public GameObject ActiveRightController { get; }
+public virtual GameObject ActiveRightController { get; }
 ```
 
 #### ActiveRightControllerBatteryChargeStatus
@@ -776,7 +776,7 @@ Retrieves the active Right Controller Detail Battery Charge status that the Trac
 ##### Declaration
 
 ```
-public BatteryStatus ActiveRightControllerBatteryChargeStatus { get; }
+public virtual BatteryStatus ActiveRightControllerBatteryChargeStatus { get; }
 ```
 
 #### ActiveRightControllerBatteryLevel
@@ -786,7 +786,7 @@ Retrieves the active Right Controller Detail Battery Level status that the Track
 ##### Declaration
 
 ```
-public float ActiveRightControllerBatteryLevel { get; }
+public virtual float ActiveRightControllerBatteryLevel { get; }
 ```
 
 #### ActiveRightControllerDetails
@@ -796,7 +796,7 @@ Retrieves the active Right Controller Detail Record that the TrackedAlias is usi
 ##### Declaration
 
 ```
-public DeviceDetailsRecord ActiveRightControllerDetails { get; }
+public virtual DeviceDetailsRecord ActiveRightControllerDetails { get; }
 ```
 
 #### ActiveRightControllerIsConnected
@@ -806,7 +806,7 @@ Retrieves the active Right Controller Detail Is Connected status that the Tracke
 ##### Declaration
 
 ```
-public bool ActiveRightControllerIsConnected { get; }
+public virtual bool ActiveRightControllerIsConnected { get; }
 ```
 
 #### ActiveRightControllerManufacturer
@@ -816,7 +816,7 @@ Retrieves the active Right Controller Detail Manufacturer status that the Tracke
 ##### Declaration
 
 ```
-public string ActiveRightControllerManufacturer { get; }
+public virtual string ActiveRightControllerManufacturer { get; }
 ```
 
 #### ActiveRightControllerModel
@@ -826,7 +826,7 @@ Retrieves the active Right Controller Detail Model status that the TrackedAlias 
 ##### Declaration
 
 ```
-public string ActiveRightControllerModel { get; }
+public virtual string ActiveRightControllerModel { get; }
 ```
 
 #### ActiveRightControllerNode
@@ -836,7 +836,7 @@ Retrieves the right connected controller node.
 ##### Declaration
 
 ```
-public XRNode ActiveRightControllerNode { get; }
+public virtual XRNode ActiveRightControllerNode { get; }
 ```
 
 #### ActiveRightControllerTrackingHasBegun
@@ -846,7 +846,7 @@ Retrieves the active Right Controller Detail Tracking Begun status that the Trac
 ##### Declaration
 
 ```
-public bool ActiveRightControllerTrackingHasBegun { get; }
+public virtual bool ActiveRightControllerTrackingHasBegun { get; }
 ```
 
 #### ActiveRightControllerTrackingType
@@ -856,7 +856,7 @@ Retrieves the active Right Controller Detail Tracking Type status that the Track
 ##### Declaration
 
 ```
-public DeviceDetailsRecord.SpatialTrackingType ActiveRightControllerTrackingType { get; }
+public virtual DeviceDetailsRecord.SpatialTrackingType ActiveRightControllerTrackingType { get; }
 ```
 
 #### ActiveRightControllerVelocity
@@ -866,7 +866,7 @@ Retrieves the active Right Controller Velocity Tracker that the TrackedAlias is 
 ##### Declaration
 
 ```
-public VelocityTracker ActiveRightControllerVelocity { get; }
+public virtual VelocityTracker ActiveRightControllerVelocity { get; }
 ```
 
 #### ActiveRightHapticProcess
@@ -876,7 +876,7 @@ Retrieves the active Right Controller Haptic Process that the TrackedAlias is us
 ##### Declaration
 
 ```
-public HapticProcess ActiveRightHapticProcess { get; }
+public virtual HapticProcess ActiveRightHapticProcess { get; }
 ```
 
 #### ActiveRightHapticProfile
@@ -886,7 +886,7 @@ Retrieves the active Right Controller Haptic Profile that has been most recently
 ##### Declaration
 
 ```
-public HapticProcess ActiveRightHapticProfile { get; protected set; }
+public virtual HapticProcess ActiveRightHapticProfile { get; protected set; }
 ```
 
 #### ActiveRightHapticProfiles
@@ -896,7 +896,7 @@ Retrieves the active Right Controller Haptic Profiles that the TrackedAlias is u
 ##### Declaration
 
 ```
-public HapticProcessObservableList ActiveRightHapticProfiles { get; }
+public virtual HapticProcessObservableList ActiveRightHapticProfiles { get; }
 ```
 
 #### CameraRigs
@@ -926,7 +926,7 @@ The alias follower for the Dominant Controller.
 ##### Declaration
 
 ```
-public ObjectFollower DominantControllerAlias { get; }
+public virtual ObjectFollower DominantControllerAlias { get; }
 ```
 
 #### DominantControllerObservers
@@ -936,7 +936,7 @@ Retrieves all of the linked CameraRig Dominant Controller Observers.
 ##### Declaration
 
 ```
-public IEnumerable<DominantControllerObserver> DominantControllerObservers { get; }
+public virtual IEnumerable<DominantControllerObserver> DominantControllerObservers { get; }
 ```
 
 #### HeadsetAlias
@@ -946,7 +946,7 @@ The alias follower for the Headset.
 ##### Declaration
 
 ```
-public ObjectFollower HeadsetAlias { get; }
+public virtual ObjectFollower HeadsetAlias { get; }
 ```
 
 #### HeadsetCameras
@@ -956,7 +956,7 @@ Retrieves all of the linked CameraRig Headset Cameras.
 ##### Declaration
 
 ```
-public IEnumerable<Camera> HeadsetCameras { get; }
+public virtual IEnumerable<Camera> HeadsetCameras { get; }
 ```
 
 #### HeadsetDeviceDetailRecords
@@ -966,7 +966,7 @@ Retrieves all of the linked CameraRig Headset Device Detail Record.
 ##### Declaration
 
 ```
-public IEnumerable<DeviceDetailsRecord> HeadsetDeviceDetailRecords { get; }
+public virtual IEnumerable<DeviceDetailsRecord> HeadsetDeviceDetailRecords { get; }
 ```
 
 #### HeadsetOriginAlias
@@ -976,7 +976,7 @@ The alias follower for the Headset Origin within the [PlayAreaAlias].
 ##### Declaration
 
 ```
-public ObjectFollower HeadsetOriginAlias { get; }
+public virtual ObjectFollower HeadsetOriginAlias { get; }
 ```
 
 #### Headsets
@@ -986,7 +986,7 @@ Retrieves all of the linked CameraRig Headsets.
 ##### Declaration
 
 ```
-public IEnumerable<GameObject> Headsets { get; }
+public virtual IEnumerable<GameObject> Headsets { get; }
 ```
 
 #### HeadsetSupplementCameras
@@ -996,7 +996,7 @@ Retrieves all of the linked CameraRig Supplement Headset Camera.
 ##### Declaration
 
 ```
-public IEnumerable<Camera> HeadsetSupplementCameras { get; }
+public virtual IEnumerable<Camera> HeadsetSupplementCameras { get; }
 ```
 
 #### HeadsetVelocityTrackers
@@ -1006,7 +1006,7 @@ Retrieves all of the linked CameraRig Headset Velocity Trackers.
 ##### Declaration
 
 ```
-public IEnumerable<VelocityTracker> HeadsetVelocityTrackers { get; }
+public virtual IEnumerable<VelocityTracker> HeadsetVelocityTrackers { get; }
 ```
 
 #### LeftControllerAlias
@@ -1016,7 +1016,7 @@ The alias follower for the Left Controller.
 ##### Declaration
 
 ```
-public ObjectFollower LeftControllerAlias { get; }
+public virtual ObjectFollower LeftControllerAlias { get; }
 ```
 
 #### LeftControllerDeviceDetailRecords
@@ -1026,7 +1026,7 @@ Retrieves all of the linked CameraRig Left Controller Device Detail Record.
 ##### Declaration
 
 ```
-public IEnumerable<DeviceDetailsRecord> LeftControllerDeviceDetailRecords { get; }
+public virtual IEnumerable<DeviceDetailsRecord> LeftControllerDeviceDetailRecords { get; }
 ```
 
 #### LeftControllerHapticProcesses
@@ -1036,7 +1036,7 @@ Retrieves all of the linked CameraRig Left Controller Haptic Processes.
 ##### Declaration
 
 ```
-public IEnumerable<HapticProcess> LeftControllerHapticProcesses { get; }
+public virtual IEnumerable<HapticProcess> LeftControllerHapticProcesses { get; }
 ```
 
 #### LeftControllerHapticProfiles
@@ -1046,7 +1046,7 @@ Retrieves all of the linked CameraRig Left Controller Haptic Profiles.
 ##### Declaration
 
 ```
-public IEnumerable<HapticProcessObservableList> LeftControllerHapticProfiles { get; }
+public virtual IEnumerable<HapticProcessObservableList> LeftControllerHapticProfiles { get; }
 ```
 
 #### LeftControllers
@@ -1056,7 +1056,7 @@ Retrieves all of the linked CameraRig Left Controllers.
 ##### Declaration
 
 ```
-public IEnumerable<GameObject> LeftControllers { get; }
+public virtual IEnumerable<GameObject> LeftControllers { get; }
 ```
 
 #### LeftControllerVelocityTrackers
@@ -1066,7 +1066,7 @@ Retrieves all of the linked CameraRig Left Controller Velocity Trackers.
 ##### Declaration
 
 ```
-public IEnumerable<VelocityTracker> LeftControllerVelocityTrackers { get; }
+public virtual IEnumerable<VelocityTracker> LeftControllerVelocityTrackers { get; }
 ```
 
 #### PlayAreaAlias
@@ -1076,7 +1076,7 @@ The alias follower for the PlayArea.
 ##### Declaration
 
 ```
-public ObjectFollower PlayAreaAlias { get; }
+public virtual ObjectFollower PlayAreaAlias { get; }
 ```
 
 #### PlayAreas
@@ -1086,7 +1086,7 @@ Retrieves all of the linked CameraRig PlayAreas.
 ##### Declaration
 
 ```
-public IEnumerable<GameObject> PlayAreas { get; }
+public virtual IEnumerable<GameObject> PlayAreas { get; }
 ```
 
 #### RightControllerAlias
@@ -1096,7 +1096,7 @@ The alias follower for the Right Controller.
 ##### Declaration
 
 ```
-public ObjectFollower RightControllerAlias { get; }
+public virtual ObjectFollower RightControllerAlias { get; }
 ```
 
 #### RightControllerDeviceDetailRecords
@@ -1106,7 +1106,7 @@ Retrieves all of the linked CameraRig Right Controller Device Detail Record.
 ##### Declaration
 
 ```
-public IEnumerable<DeviceDetailsRecord> RightControllerDeviceDetailRecords { get; }
+public virtual IEnumerable<DeviceDetailsRecord> RightControllerDeviceDetailRecords { get; }
 ```
 
 #### RightControllerHapticProcesses
@@ -1116,7 +1116,7 @@ Retrieves all of the linked CameraRig Right Controller Haptic Processes.
 ##### Declaration
 
 ```
-public IEnumerable<HapticProcess> RightControllerHapticProcesses { get; }
+public virtual IEnumerable<HapticProcess> RightControllerHapticProcesses { get; }
 ```
 
 #### RightControllerHapticProfiles
@@ -1126,7 +1126,7 @@ Retrieves all of the linked CameraRig Right Controller Haptic Processes.
 ##### Declaration
 
 ```
-public IEnumerable<HapticProcessObservableList> RightControllerHapticProfiles { get; }
+public virtual IEnumerable<HapticProcessObservableList> RightControllerHapticProfiles { get; }
 ```
 
 #### RightControllers
@@ -1136,7 +1136,7 @@ Retrieves all of the linked CameraRig Right Controllers.
 ##### Declaration
 
 ```
-public IEnumerable<GameObject> RightControllers { get; }
+public virtual IEnumerable<GameObject> RightControllers { get; }
 ```
 
 #### RightControllerVelocityTrackers
@@ -1146,7 +1146,7 @@ Retrieves all of the linked CameraRig Right Controller Velocity Trackers.
 ##### Declaration
 
 ```
-public IEnumerable<VelocityTracker> RightControllerVelocityTrackers { get; }
+public virtual IEnumerable<VelocityTracker> RightControllerVelocityTrackers { get; }
 ```
 
 ### Methods
