@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.9.0...v2.0.0) (2022-04-28)
+
+#### :warning: BREAKING CHANGES :warning:
+
+* **Malimbe:** This removes the last remaining elements of Malimbe and whilst it does not cause any breaking changes within this package, it removes Malimbe as a dependency which other projects that rely on this package may piggy back off this Malimbe dependency so it will break any project like that.
+
+All of the previous functionality from Malimbe has been replicated in standard code without the need for it to be weaved by the Malimbe helper tags. ([05de5b1](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/05de5b11f1eab22498a494f6530b791086d62d40))
+
+#### Features
+
+* **Malimbe:** remove malimbe dependency ([05de5b1](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/05de5b11f1eab22498a494f6530b791086d62d40))
+
 ## [1.9.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v1.8.2...v1.9.0) (2022-03-22)
 
 #### Features
