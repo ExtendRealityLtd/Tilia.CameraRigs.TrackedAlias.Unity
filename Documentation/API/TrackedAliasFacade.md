@@ -12,6 +12,8 @@ The public interface into the Tracked Alias Prefab.
   * [HeadsetBatteryChargeStatusChanged]
   * [HeadsetBecameDominantController]
   * [HeadsetConnectionStatusChanged]
+  * [HeadsetPassThroughCameraWasDisabled]
+  * [HeadsetPassThroughCameraWasEnabled]
   * [HeadsetTrackingBegun]
   * [HeadsetTrackingTypeChanged]
   * [LeftControllerBatteryChargeStatusChanged]
@@ -46,9 +48,11 @@ The public interface into the Tracked Alias Prefab.
   * [ActiveHeadsetBatteryLevel]
   * [ActiveHeadsetCamera]
   * [ActiveHeadsetDetails]
+  * [ActiveHeadsetHasPassThroughCamera]
   * [ActiveHeadsetIsConnected]
   * [ActiveHeadsetManufacturer]
   * [ActiveHeadsetModel]
+  * [ActiveHeadsetPassThroughCameraEnabled]
   * [ActiveHeadsetTrackingHasBegun]
   * [ActiveHeadsetTrackingType]
   * [ActiveHeadsetVelocity]
@@ -207,6 +211,26 @@ Emitted when the headset connection status changes.
 
 ```
 public DeviceDetailsRecord.BoolUnityEvent HeadsetConnectionStatusChanged
+```
+
+#### HeadsetPassThroughCameraWasDisabled
+
+Emitted when the pass through camera is disabled.
+
+##### Declaration
+
+```
+public UnityEvent HeadsetPassThroughCameraWasDisabled
+```
+
+#### HeadsetPassThroughCameraWasEnabled
+
+Emitted when the pass through camera is enabled.
+
+##### Declaration
+
+```
+public UnityEvent HeadsetPassThroughCameraWasEnabled
 ```
 
 #### HeadsetTrackingBegun
@@ -541,6 +565,16 @@ Retrieves the active Headset Detail Record that the TrackedAlias is using.
 public virtual DeviceDetailsRecord ActiveHeadsetDetails { get; }
 ```
 
+#### ActiveHeadsetHasPassThroughCamera
+
+Retrieves the active Headset Detail of whether it has a PassThrough Camera that the TrackedAlias is using.
+
+##### Declaration
+
+```
+public virtual bool ActiveHeadsetHasPassThroughCamera { get; }
+```
+
 #### ActiveHeadsetIsConnected
 
 Retrieves the active Headset Detail Is Connected status that the TrackedAlias is using.
@@ -569,6 +603,16 @@ Retrieves the active Headset Detail Model status that the TrackedAlias is using.
 
 ```
 public virtual string ActiveHeadsetModel { get; }
+```
+
+#### ActiveHeadsetPassThroughCameraEnabled
+
+Gets or Sets the active Headset Passthrough Camera Enabled status that the TrackedAlias is using.
+
+##### Declaration
+
+```
+public virtual bool ActiveHeadsetPassThroughCameraEnabled { get; set; }
 ```
 
 #### ActiveHeadsetTrackingHasBegun
@@ -1779,6 +1823,8 @@ protected virtual void UnsubscribeFromCameraRigsEvents()
 [HeadsetBatteryChargeStatusChanged]: #HeadsetBatteryChargeStatusChanged
 [HeadsetBecameDominantController]: #HeadsetBecameDominantController
 [HeadsetConnectionStatusChanged]: #HeadsetConnectionStatusChanged
+[HeadsetPassThroughCameraWasDisabled]: #HeadsetPassThroughCameraWasDisabled
+[HeadsetPassThroughCameraWasEnabled]: #HeadsetPassThroughCameraWasEnabled
 [HeadsetTrackingBegun]: #HeadsetTrackingBegun
 [HeadsetTrackingTypeChanged]: #HeadsetTrackingTypeChanged
 [LeftControllerBatteryChargeStatusChanged]: #LeftControllerBatteryChargeStatusChanged
@@ -1813,9 +1859,11 @@ protected virtual void UnsubscribeFromCameraRigsEvents()
 [ActiveHeadsetBatteryLevel]: #ActiveHeadsetBatteryLevel
 [ActiveHeadsetCamera]: #ActiveHeadsetCamera
 [ActiveHeadsetDetails]: #ActiveHeadsetDetails
+[ActiveHeadsetHasPassThroughCamera]: #ActiveHeadsetHasPassThroughCamera
 [ActiveHeadsetIsConnected]: #ActiveHeadsetIsConnected
 [ActiveHeadsetManufacturer]: #ActiveHeadsetManufacturer
 [ActiveHeadsetModel]: #ActiveHeadsetModel
+[ActiveHeadsetPassThroughCameraEnabled]: #ActiveHeadsetPassThroughCameraEnabled
 [ActiveHeadsetTrackingHasBegun]: #ActiveHeadsetTrackingHasBegun
 [ActiveHeadsetTrackingType]: #ActiveHeadsetTrackingType
 [ActiveHeadsetVelocity]: #ActiveHeadsetVelocity

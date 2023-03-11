@@ -88,6 +88,14 @@
         /// Emitted when the headset battery charge status changes.
         /// </summary>
         public DeviceDetailsRecord.BatteryStatusUnityEvent HeadsetBatteryChargeStatusChanged = new DeviceDetailsRecord.BatteryStatusUnityEvent();
+        /// <summary>
+        /// Emitted when the pass through camera is enabled.
+        /// </summary>
+        public UnityEvent HeadsetPassThroughCameraWasEnabled = new UnityEvent();
+        /// <summary>
+        /// Emitted when the pass through camera is disabled.
+        /// </summary>
+        public UnityEvent HeadsetPassThroughCameraWasDisabled = new UnityEvent();
         #endregion
 
         #region Left Controller Events
@@ -211,6 +219,18 @@
         /// Retrieves the active Headset Detail Battery Charge status that the TrackedAlias is using.
         /// </summary>
         public virtual BatteryStatus ActiveHeadsetBatteryChargeStatus => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).BatteryChargeStatus;
+        /// <summary>
+        /// Retrieves the active Headset Detail of whether it has a PassThrough Camera that the TrackedAlias is using.
+        /// </summary>
+        public virtual bool ActiveHeadsetHasPassThroughCamera => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).HasPassThroughCamera;
+        /// <summary>
+        /// Gets or Sets the active Headset Passthrough Camera Enabled status that the TrackedAlias is using.
+        /// </summary>
+        public virtual bool ActiveHeadsetPassThroughCameraEnabled
+        {
+            get => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).PassThroughCameraEnabled;
+            set => GetFirstActiveDeviceRecord(HeadsetDeviceDetailRecords).PassThroughCameraEnabled = value;
+        }
         #endregion
 
         #region Dominant Controller Properties
