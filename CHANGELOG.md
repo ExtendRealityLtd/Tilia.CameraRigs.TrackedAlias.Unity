@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v2.0.7...v2.1.0) (2023-03-11)
+
+#### Features
+
+* **DeviceDetails:** add endpoints for camera passthrough logic ([2d78cd2](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/2d78cd2b20c2adf55fe64c8ea884cc97369be47b))
+  > The DeviceDetails record now supports passthrough camera options so the TrackedAlias now provides endpoints for calling this logic on the tracked alias for the underlying SDK camerarig.
+
 ### [2.0.7](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v2.0.6...v2.0.7) (2023-02-22)
 
 #### Miscellaneous Chores
