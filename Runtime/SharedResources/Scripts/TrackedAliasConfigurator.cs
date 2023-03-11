@@ -313,6 +313,14 @@
         /// The event handler to run when the bubbled headset event for battery charge status changed is raised.
         /// </summary>
         protected UnityAction<BatteryStatus> HeadsetBatteryChargeStatusChangedEventHandler;
+        /// <summary>
+        /// The event handler to run when the bubbled headset event for passtrhrough camera enabled is raised.
+        /// </summary>
+        protected UnityAction HeadsetPassThroughCameraWasEnabledEventHandler;
+        /// <summary>
+        /// The event handler to run when the bubbled headset event for passtrhrough camera disabled is raised.
+        /// </summary>
+        protected UnityAction HeadsetPassThroughCameraWasDisabledEventHandler;
         #endregion
 
         #region Left Controller Data Cache
@@ -665,11 +673,15 @@
                 HeadsetConnectionChangedEventHandler = (newValue) => CacheAndRaiseEventWithPayload(newValue, ref cachedHeadsetConnectionStatus, Facade.HeadsetConnectionStatusChanged);
                 HeadsetTrackingTypeChangedEventHandler = (newValue) => CacheAndRaiseEventWithPayload(newValue, ref cachedHeadsetSpatialTrackingType, Facade.HeadsetTrackingTypeChanged);
                 HeadsetBatteryChargeStatusChangedEventHandler = (newValue) => CacheAndRaiseEventWithPayload(newValue, ref cachedHeadsetBatteryChargeStatus, Facade.HeadsetBatteryChargeStatusChanged);
+                HeadsetPassThroughCameraWasEnabledEventHandler = () => Facade.HeadsetPassThroughCameraWasEnabled?.Invoke();
+                HeadsetPassThroughCameraWasDisabledEventHandler = () => Facade.HeadsetPassThroughCameraWasDisabled?.Invoke();
 
                 Facade.ActiveLinkedAliasAssociation.HeadsetDeviceDetails.TrackingBegun.AddListener(HeadsetTrackingBegunEventHandler);
                 Facade.ActiveLinkedAliasAssociation.HeadsetDeviceDetails.ConnectionStatusChanged.AddListener(HeadsetConnectionChangedEventHandler);
                 Facade.ActiveLinkedAliasAssociation.HeadsetDeviceDetails.TrackingTypeChanged.AddListener(HeadsetTrackingTypeChangedEventHandler);
                 Facade.ActiveLinkedAliasAssociation.HeadsetDeviceDetails.BatteryChargeStatusChanged.AddListener(HeadsetBatteryChargeStatusChangedEventHandler);
+                Facade.ActiveLinkedAliasAssociation.HeadsetDeviceDetails.PassThroughCameraWasEnabled.AddListener(HeadsetPassThroughCameraWasEnabledEventHandler);
+                Facade.ActiveLinkedAliasAssociation.HeadsetDeviceDetails.PassThroughCameraWasDisabled.AddListener(HeadsetPassThroughCameraWasDisabledEventHandler);
             }
 
             if (Facade.ActiveLinkedAliasAssociation != null && Facade.ActiveLinkedAliasAssociation.LeftControllerDeviceDetails != null)
@@ -717,6 +729,8 @@
                 cachedLinkedAlias.HeadsetDeviceDetails.ConnectionStatusChanged.RemoveListener(HeadsetConnectionChangedEventHandler);
                 cachedLinkedAlias.HeadsetDeviceDetails.TrackingTypeChanged.RemoveListener(HeadsetTrackingTypeChangedEventHandler);
                 cachedLinkedAlias.HeadsetDeviceDetails.BatteryChargeStatusChanged.RemoveListener(HeadsetBatteryChargeStatusChangedEventHandler);
+                cachedLinkedAlias.HeadsetDeviceDetails.PassThroughCameraWasEnabled.RemoveListener(HeadsetPassThroughCameraWasEnabledEventHandler);
+                cachedLinkedAlias.HeadsetDeviceDetails.PassThroughCameraWasDisabled.RemoveListener(HeadsetPassThroughCameraWasDisabledEventHandler);
             }
 
             if (cachedLinkedAlias != null && cachedLinkedAlias.LeftControllerDeviceDetails != null)

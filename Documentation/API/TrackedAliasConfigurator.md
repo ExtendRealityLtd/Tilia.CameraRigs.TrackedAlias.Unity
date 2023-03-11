@@ -25,6 +25,8 @@ Sets up the Tracked Alias Prefab based on the provided user settings.
   * [DominantControllerIsChangingEventHandler]
   * [HeadsetBatteryChargeStatusChangedEventHandler]
   * [HeadsetConnectionChangedEventHandler]
+  * [HeadsetPassThroughCameraWasDisabledEventHandler]
+  * [HeadsetPassThroughCameraWasEnabledEventHandler]
   * [HeadsetTrackingBegunEventHandler]
   * [HeadsetTrackingTypeChangedEventHandler]
   * [LeftControllerBatteryChargeStatusChangedEventHandler]
@@ -253,6 +255,26 @@ The event handler to run when the bubbled headset event for connection changed i
 
 ```
 protected UnityAction<bool> HeadsetConnectionChangedEventHandler
+```
+
+#### HeadsetPassThroughCameraWasDisabledEventHandler
+
+The event handler to run when the bubbled headset event for passtrhrough camera disabled is raised.
+
+##### Declaration
+
+```
+protected UnityAction HeadsetPassThroughCameraWasDisabledEventHandler
+```
+
+#### HeadsetPassThroughCameraWasEnabledEventHandler
+
+The event handler to run when the bubbled headset event for passtrhrough camera enabled is raised.
+
+##### Declaration
+
+```
+protected UnityAction HeadsetPassThroughCameraWasEnabledEventHandler
 ```
 
 #### HeadsetTrackingBegunEventHandler
@@ -735,6 +757,8 @@ protected virtual void UnsubscribeToDetailsEvents()
 [DominantControllerIsChangingEventHandler]: #DominantControllerIsChangingEventHandler
 [HeadsetBatteryChargeStatusChangedEventHandler]: #HeadsetBatteryChargeStatusChangedEventHandler
 [HeadsetConnectionChangedEventHandler]: #HeadsetConnectionChangedEventHandler
+[HeadsetPassThroughCameraWasDisabledEventHandler]: #HeadsetPassThroughCameraWasDisabledEventHandler
+[HeadsetPassThroughCameraWasEnabledEventHandler]: #HeadsetPassThroughCameraWasEnabledEventHandler
 [HeadsetTrackingBegunEventHandler]: #HeadsetTrackingBegunEventHandler
 [HeadsetTrackingTypeChangedEventHandler]: #HeadsetTrackingTypeChangedEventHandler
 [LeftControllerBatteryChargeStatusChangedEventHandler]: #LeftControllerBatteryChargeStatusChangedEventHandler
