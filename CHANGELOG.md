@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v2.1.3...v2.2.0) (2023-03-21)
+
+#### Features
+
+* **prefab:** add skybox toggle logic for passthrough ([8f46beb](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/8f46beb719e963a13a83c8c7f8c22f9076ab7ca9))
+  > The prefab has been updated to use the CameraBackgroundMutator to toggle the skybox to a transparent color when the passthrough camera is enabled and to restore the camera settings when the passthrough camera is disabled.
+
 ### [2.1.3](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v2.1.2...v2.1.3) (2023-03-21)
 
 #### Miscellaneous Chores
