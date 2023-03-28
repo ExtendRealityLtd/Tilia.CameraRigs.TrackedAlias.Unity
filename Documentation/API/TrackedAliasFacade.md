@@ -8,6 +8,10 @@ The public interface into the Tracked Alias Prefab.
 * [Namespace]
 * [Syntax]
 * [Fields]
+  * [ApplicationFocusLost]
+  * [ApplicationFocusResumed]
+  * [ApplicationPaused]
+  * [ApplicationResumeFromPaused]
   * [DominantControllerIsChanging]
   * [HeadsetBatteryChargeStatusChanged]
   * [HeadsetBecameDominantController]
@@ -172,6 +176,46 @@ public class TrackedAliasFacade : MonoBehaviour
 ```
 
 ### Fields
+
+#### ApplicationFocusLost
+
+Emitted when the application loses focus from being the active window.
+
+##### Declaration
+
+```
+public UnityEvent ApplicationFocusLost
+```
+
+#### ApplicationFocusResumed
+
+Emitted when the application resumes focus and becomes the active window.
+
+##### Declaration
+
+```
+public UnityEvent ApplicationFocusResumed
+```
+
+#### ApplicationPaused
+
+Emitted when the application pauses.
+
+##### Declaration
+
+```
+public UnityEvent ApplicationPaused
+```
+
+#### ApplicationResumeFromPaused
+
+Emitted when the application resumes from pause.
+
+##### Declaration
+
+```
+public UnityEvent ApplicationResumeFromPaused
+```
 
 #### DominantControllerIsChanging
 
@@ -1819,6 +1863,10 @@ protected virtual void UnsubscribeFromCameraRigsEvents()
 [Namespace]: #Namespace
 [Syntax]: #Syntax
 [Fields]: #Fields
+[ApplicationFocusLost]: #ApplicationFocusLost
+[ApplicationFocusResumed]: #ApplicationFocusResumed
+[ApplicationPaused]: #ApplicationPaused
+[ApplicationResumeFromPaused]: #ApplicationResumeFromPaused
 [DominantControllerIsChanging]: #DominantControllerIsChanging
 [HeadsetBatteryChargeStatusChanged]: #HeadsetBatteryChargeStatusChanged
 [HeadsetBecameDominantController]: #HeadsetBecameDominantController

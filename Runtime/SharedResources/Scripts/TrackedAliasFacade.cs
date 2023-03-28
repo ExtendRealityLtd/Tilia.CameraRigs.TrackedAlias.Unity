@@ -64,6 +64,22 @@
         /// Emitted when the dominant controller is changing.
         /// </summary>
         public DominantControllerObserver.UnityEvent DominantControllerIsChanging = new DominantControllerObserver.UnityEvent();
+        /// <summary>
+        /// Emitted when the application pauses.
+        /// </summary>
+        public UnityEvent ApplicationPaused = new UnityEvent();
+        /// <summary>
+        /// Emitted when the application resumes from pause.
+        /// </summary>
+        public UnityEvent ApplicationResumeFromPaused = new UnityEvent();
+        /// <summary>
+        /// Emitted when the application loses focus from being the active window.
+        /// </summary>
+        public UnityEvent ApplicationFocusLost = new UnityEvent();
+        /// <summary>
+        /// Emitted when the application resumes focus and becomes the active window.
+        /// </summary>
+        public UnityEvent ApplicationFocusResumed = new UnityEvent();
         #endregion
 
         #region Headset Events
