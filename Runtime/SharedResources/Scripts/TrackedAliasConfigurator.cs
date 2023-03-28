@@ -537,6 +537,30 @@
             Facade.DominantControllerIsChanging?.RemoveListener(SetUpDominantTracking);
         }
 
+        protected virtual void OnApplicationPause(bool pauseState)
+        {
+            if (pauseState)
+            {
+                Facade.ApplicationPaused?.Invoke();
+            }
+            else
+            {
+                Facade.ApplicationResumeFromPaused?.Invoke();
+            }
+        }
+
+        protected virtual void OnApplicationFocus(bool focusState)
+        {
+            if (focusState)
+            {
+                Facade.ApplicationFocusResumed?.Invoke();
+            }
+            else
+            {
+                Facade.ApplicationFocusLost?.Invoke();
+            }
+        }
+
         /// <summary>
         /// Checks if the two given values equal and raises the given event with the relevant payload if they are not.
         /// </summary>

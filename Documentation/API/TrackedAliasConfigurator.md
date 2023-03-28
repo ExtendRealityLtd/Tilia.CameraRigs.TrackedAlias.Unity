@@ -61,6 +61,8 @@ Sets up the Tracked Alias Prefab based on the provided user settings.
   * [NotifyLeftControllerTrackingBegun()]
   * [NotifyRightControllerTrackingBegun()]
   * [NotifyTrackedAliasChanged(GameObject)]
+  * [OnApplicationFocus(Boolean)]
+  * [OnApplicationPause(Boolean)]
   * [OnDisable()]
   * [OnEnable()]
   * [SetUpCameraRigsConfiguration()]
@@ -671,6 +673,34 @@ public virtual void NotifyTrackedAliasChanged(GameObject _)
 | --- | --- | --- |
 | GameObject | \_ | n/a |
 
+#### OnApplicationFocus(Boolean)
+
+##### Declaration
+
+```
+protected virtual void OnApplicationFocus(bool focusState)
+```
+
+##### Parameters
+
+| Type | Name | Description |
+| --- | --- | --- |
+| System.Boolean | focusState | n/a |
+
+#### OnApplicationPause(Boolean)
+
+##### Declaration
+
+```
+protected virtual void OnApplicationPause(bool pauseState)
+```
+
+##### Parameters
+
+| Type | Name | Description |
+| --- | --- | --- |
+| System.Boolean | pauseState | n/a |
+
 #### OnDisable()
 
 ##### Declaration
@@ -793,6 +823,8 @@ protected virtual void UnsubscribeToDetailsEvents()
 [NotifyLeftControllerTrackingBegun()]: #NotifyLeftControllerTrackingBegun
 [NotifyRightControllerTrackingBegun()]: #NotifyRightControllerTrackingBegun
 [NotifyTrackedAliasChanged(GameObject)]: #NotifyTrackedAliasChangedGameObject
+[OnApplicationFocus(Boolean)]: #OnApplicationFocusBoolean
+[OnApplicationPause(Boolean)]: #OnApplicationPauseBoolean
 [OnDisable()]: #OnDisable
 [OnEnable()]: #OnEnable
 [SetUpCameraRigsConfiguration()]: #SetUpCameraRigsConfiguration
