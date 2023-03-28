@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v2.2.1...v2.3.0) (2023-03-28)
+
+#### Features
+
+* **Facade:** add events for application focus and pause ([0732f4f](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/0732f4f5d2cdef78b9b47dbbb1d8bdbb77c98a09))
+  > Some new events have been added to the tracked alias to raise when the application gains focus and loses focus and when the application is paused or unpaused.
+
 ### [2.2.1](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v2.2.0...v2.2.1) (2023-03-28)
 
 #### Miscellaneous Chores
