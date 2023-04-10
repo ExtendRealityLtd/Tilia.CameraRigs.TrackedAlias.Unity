@@ -285,6 +285,10 @@
         /// </summary>
         protected bool cachedHeadsetTrackingBegun;
         /// <summary>
+        /// The current cached <see cref="Camera"/>.
+        /// </summary>
+        protected Camera cachedCurrentCamera;
+        /// <summary>
         /// The current cached headset connection status.
         /// </summary>
         protected bool cachedHeadsetConnectionStatus;
@@ -499,6 +503,7 @@
 
             SubscribeToDetailsEvents();
             CheckExistingEventStatus();
+            Facade.HeadsetCameraChanged?.Invoke(Facade.ActiveLinkedAliasAssociation.HeadsetCamera);
             Facade.TrackedAliasChanged?.Invoke(Facade.ActiveLinkedAliasAssociation);
         }
 
