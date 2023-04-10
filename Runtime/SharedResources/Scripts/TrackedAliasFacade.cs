@@ -24,6 +24,11 @@
         /// </summary>
         [Serializable]
         public class LinkedAliasAssociationCollectionUnityEvent : UnityEvent<LinkedAliasAssociationCollection> { }
+        /// <summary>
+        /// Defines the event with the <see cref="Camera"/>.
+        /// </summary>
+        [Serializable]
+        public class CameraUnityEvent : UnityEvent<Camera> { }
 
         #region Tracked Alias Settings
         [Header("Tracked Alias Settings")]
@@ -88,6 +93,10 @@
         /// </summary>
         [Header("Headset Events")]
         public UnityEvent HeadsetTrackingBegun = new UnityEvent();
+        /// <summary>
+        /// Emitted when the headset camera changes.
+        /// </summary>
+        public CameraUnityEvent HeadsetCameraChanged = new CameraUnityEvent();
         /// <summary>
         /// Emitted when the headset becomes the dominant controller.
         /// </summary>
