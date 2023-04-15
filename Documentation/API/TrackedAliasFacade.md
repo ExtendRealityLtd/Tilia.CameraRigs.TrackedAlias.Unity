@@ -15,6 +15,7 @@ The public interface into the Tracked Alias Prefab.
   * [DominantControllerIsChanging]
   * [HeadsetBatteryChargeStatusChanged]
   * [HeadsetBecameDominantController]
+  * [HeadsetCameraChanged]
   * [HeadsetConnectionStatusChanged]
   * [HeadsetPassThroughCameraWasDisabled]
   * [HeadsetPassThroughCameraWasEnabled]
@@ -245,6 +246,16 @@ Emitted when the headset becomes the dominant controller.
 
 ```
 public UnityEvent HeadsetBecameDominantController
+```
+
+#### HeadsetCameraChanged
+
+Emitted when the headset camera changes.
+
+##### Declaration
+
+```
+public TrackedAliasFacade.CameraUnityEvent HeadsetCameraChanged
 ```
 
 #### HeadsetConnectionStatusChanged
@@ -1849,6 +1860,7 @@ protected virtual void UnsubscribeFromCameraRigsEvents()
 ```
 
 [Tilia.CameraRigs.TrackedAlias]: README.md
+[TrackedAliasFacade.CameraUnityEvent]: TrackedAliasFacade.CameraUnityEvent.md
 [TrackedAliasFacade.LinkedAliasAssociationCollectionUnityEvent]: TrackedAliasFacade.LinkedAliasAssociationCollectionUnityEvent.md
 [TrackedAliasConfigurator]: TrackedAliasConfigurator.md
 [PlayAreaAlias]: TrackedAliasFacade.md#PlayAreaAlias
@@ -1870,6 +1882,7 @@ protected virtual void UnsubscribeFromCameraRigsEvents()
 [DominantControllerIsChanging]: #DominantControllerIsChanging
 [HeadsetBatteryChargeStatusChanged]: #HeadsetBatteryChargeStatusChanged
 [HeadsetBecameDominantController]: #HeadsetBecameDominantController
+[HeadsetCameraChanged]: #HeadsetCameraChanged
 [HeadsetConnectionStatusChanged]: #HeadsetConnectionStatusChanged
 [HeadsetPassThroughCameraWasDisabled]: #HeadsetPassThroughCameraWasDisabled
 [HeadsetPassThroughCameraWasEnabled]: #HeadsetPassThroughCameraWasEnabled
