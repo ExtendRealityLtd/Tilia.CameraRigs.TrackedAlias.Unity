@@ -8,6 +8,7 @@ Sets up the Tracked Alias Prefab based on the provided user settings.
 * [Namespace]
 * [Syntax]
 * [Fields]
+  * [cachedCurrentCamera]
   * [cachedCurrentDominantController]
   * [cachedHeadsetBatteryChargeStatus]
   * [cachedHeadsetConnectionStatus]
@@ -88,6 +89,16 @@ public class TrackedAliasConfigurator : MonoBehaviour
 ```
 
 ### Fields
+
+#### cachedCurrentCamera
+
+The current cached Camera.
+
+##### Declaration
+
+```
+protected Camera cachedCurrentCamera
+```
 
 #### cachedCurrentDominantController
 
@@ -770,6 +781,7 @@ protected virtual void UnsubscribeToDetailsEvents()
 [Namespace]: #Namespace
 [Syntax]: #Syntax
 [Fields]: #Fields
+[cachedCurrentCamera]: #cachedCurrentCamera
 [cachedCurrentDominantController]: #cachedCurrentDominantController
 [cachedHeadsetBatteryChargeStatus]: #cachedHeadsetBatteryChargeStatus
 [cachedHeadsetConnectionStatus]: #cachedHeadsetConnectionStatus
