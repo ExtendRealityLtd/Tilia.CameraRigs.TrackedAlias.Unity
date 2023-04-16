@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.4.1](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v2.4.0...v2.4.1) (2023-04-16)
+
+#### Bug Fixes
+
+* **API:** add missing docs for headset camera changed event ([2e2d8fe](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/2e2d8fee5162913b39c7c2cd763c1c3370629ced))
+  > The docs were not auto generated when this feature was added. They have been auto generated now.
+
 ## [2.4.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v2.3.1...v2.4.0) (2023-04-10)
 
 #### Features
