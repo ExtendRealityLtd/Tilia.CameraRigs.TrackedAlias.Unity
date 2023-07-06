@@ -612,6 +612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4419020640412130}
   - component: {fileID: 114636638081852210}
+  - component: {fileID: 6711382039139604295}
   m_Layer: 0
   m_Name: CameraRigs.TrackedAlias
   m_TagString: Untagged
@@ -654,7 +655,22 @@ MonoBehaviour:
   DominantControllerIsChanging:
     m_PersistentCalls:
       m_Calls: []
+  ApplicationPaused:
+    m_PersistentCalls:
+      m_Calls: []
+  ApplicationResumeFromPaused:
+    m_PersistentCalls:
+      m_Calls: []
+  ApplicationFocusLost:
+    m_PersistentCalls:
+      m_Calls: []
+  ApplicationFocusResumed:
+    m_PersistentCalls:
+      m_Calls: []
   HeadsetTrackingBegun:
+    m_PersistentCalls:
+      m_Calls: []
+  HeadsetCameraChanged:
     m_PersistentCalls:
       m_Calls: []
   HeadsetBecameDominantController:
@@ -728,6 +744,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   configuration: {fileID: 114148444839838400}
+--- !u!114 &6711382039139604295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540271613746846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a11862926720f544fb5d904995c2b57b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source:
+    field: {fileID: 114260913676001494}
+  onlyProcessOnActiveAndEnabled: 1
+  interval: 0
 --- !u!1 &1673389523159584
 GameObject:
   m_ObjectHideFlags: 0
