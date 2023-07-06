@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v2.4.5...v2.5.0) (2023-07-06)
+
+#### Features
+
+* **Prefabs:** add moment process for internal moment processor ([b03ccde](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/b03ccde37bb0144228e5deb156beac6cf252d92d))
+  > A MomentProcess component has been added to the top level that references the internal MomentProcessor for occasions where the TrackedAlias process wants to be processed by an external moment processor. This makes it easy to just drag and drop the TrackedAlias into another MomentProcessor.
+
 ### [2.4.5](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v2.4.4...v2.4.5) (2023-07-05)
 
 #### Miscellaneous Chores
