@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.5.5](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v2.5.4...v2.5.5) (2024-09-28)
+
+#### Miscellaneous Chores
+
+* **deps:** bump io.extendreality.zinnia.unity from 2.16.1 to 2.16.2 ([8b56f69](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/commit/8b56f69804f981392a8649068d86496d75a1e8c8))
+  > Bumps [io.extendreality.zinnia.unity](https://github.com/ExtendRealityLtd/Zinnia.Unity) from 2.16.1 to 2.16.2. - [Release notes](https://github.com/ExtendRealityLtd/Zinnia.Unity/releases) - [Changelog](https://github.com/ExtendRealityLtd/Zinnia.Unity/blob/master/CHANGELOG.md) - [Commits](https://github.com/ExtendRealityLtd/Zinnia.Unity/compare/v2.16.1...v2.16.2)
+
 ### [2.5.4](https://github.com/ExtendRealityLtd/Tilia.CameraRigs.TrackedAlias.Unity/compare/v2.5.3...v2.5.4) (2024-05-11)
 
 #### Miscellaneous Chores
